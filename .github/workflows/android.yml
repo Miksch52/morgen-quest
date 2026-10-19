@@ -43,8 +43,14 @@ jobs:
           VERSION_CODE: ${{ github.run_number }}
         run: |
           chmod +x android/gradlew
-          cd android && ./gradlew assembleRelease --no-daemon
+          set -o pipefail
+          cd android && ./gradlew assembleRelease --no-daemon 2>&1 | tee ../gradle.log
           cp app/build/outputs/apk/release/app-release.apk ../morgen-quest.apk
+
+      - name: Build-Fehler anzeigen
+        if: failure()
+        run: |
+          grep -vE "^> Task" gradle.log | grep -E "error:|What went wrong|^e: |Could not|not found|FAILED|Exception" -A4 | head -c 3500 | tr '\n' '|' | sed 's/^/::error title=Gradle::/' ; echo
 
       - uses: softprops/action-gh-release@v2
         with:
