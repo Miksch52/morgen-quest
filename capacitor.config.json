@@ -1,0 +1,21 @@
+{
+  "appId": "de.tammo.morgenquest",
+  "appName": "Morgen-Quest",
+  "webDir": "www",
+  "backgroundColor": "#130f22",
+  "android": {
+    "backgroundColor": "#130f22"
+  },
+  "plugins": {
+    "SystemBars": {
+      "insetsHandling": "css",
+      "initialViewportFitValueHint": "cover",
+      "style": "DARK"
+    },
+    "LocalNotifications": {
+      "smallIcon": "ic_stat_quest",
+      "iconColor": "#FFC23D",
+      "sound": "wecker.wav"
+    }
+  }
+}

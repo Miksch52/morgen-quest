@@ -1,0 +1,1203 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="theme-color" content="#130f22">
+<title>Morgen-Quest</title>
+<style>
+@font-face {
+  font-family: 'Bungee';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/Bungee-400-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Bungee';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/Bungee-400-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(fonts/JetBrainsMono-500-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(fonts/JetBrainsMono-500-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(fonts/JetBrainsMono-700-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(fonts/JetBrainsMono-700-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/Rubik-400-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/Rubik-400-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(fonts/Rubik-500-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(fonts/Rubik-500-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(fonts/Rubik-700-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(fonts/Rubik-700-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(fonts/Rubik-800-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(fonts/Rubik-800-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+*,*::before,*::after{box-sizing:border-box}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0;-webkit-user-select:none;user-select:none;overscroll-behavior:none}
+img{max-width:100%}
+</style>
+<style>
+/* Layout: eine schmale Handy-Spalte, Spielbildschirme statt Seiten. Bewusst nur dunkel (Arcade-Nacht). */
+:root{
+  color-scheme: dark;
+  --ink:#130f22; --panel:#1e1934; --panel2:#2a2347; --line:#3a3160;
+  --text:#f4effd; --muted:#a69cc6;
+  --gold:#ffc23d; --coral:#ff5d73; --mint:#3de0b5;
+  --accent:var(--gold);
+  --r-common:#b8b0d4; --r-rare:#4ea8ff; --r-epic:#b46bff; --r-leg:#ffc23d;
+  --f-display:"Bungee","Arial Black",Impact,sans-serif;
+  --f-body:"Rubik",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+[hidden]{display:none!important}
+html,body{height:100%}
+body{background:var(--ink);color:var(--text);font-family:var(--f-body);font-size:16px;line-height:1.45;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  background-image:radial-gradient(circle at 50% -10%,color-mix(in srgb,var(--accent) 22%,transparent),transparent 55%);
+  background-attachment:fixed;-webkit-tap-highlight-color:transparent}
+.app{max-width:460px;margin:0 auto;padding-block:18px 40px}
+.screen{display:flex;flex-direction:column;gap:16px}
+h1,h2,h3{margin:0;font-family:var(--f-display);font-weight:400;letter-spacing:.01em;text-wrap:balance}
+p{margin:0}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
+
+/* Kopf */
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.hello h1{font-size:22px;line-height:1.1}
+.hello .label{margin-bottom:4px}
+.lvl{display:grid;place-items:center;width:58px;height:58px;flex:none;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);
+  background:linear-gradient(160deg,var(--accent),color-mix(in srgb,var(--accent) 40%,var(--ink)));color:var(--ink);font-family:var(--f-display);font-size:22px}
+.xpbar{display:flex;flex-direction:column;gap:6px}
+.xpbar .row{display:flex;justify-content:space-between;font-size:13px;color:var(--muted)}
+.xpbar .row b{color:var(--text);font-weight:700}
+.bar{height:10px;background:var(--panel2);border-radius:99px;overflow:hidden}
+.bar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--coral));border-radius:99px;transition:width .9s cubic-bezier(.2,.8,.2,1)}
+
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.stat{background:var(--panel);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.stat .v{font-family:var(--f-display);font-size:24px;line-height:1}
+.stat .k{font-size:12px;color:var(--muted)}
+.stat.flame .v{color:var(--coral)}
+.week{display:flex;gap:6px;justify-content:space-between}
+.week span{flex:1;height:30px;border-radius:8px;background:var(--panel);display:grid;place-items:center;font-size:11px;color:var(--muted);font-weight:700}
+.week span.on{background:color-mix(in srgb,var(--mint) 25%,var(--panel));color:var(--mint)}
+.week span.today{outline:2px solid var(--accent);outline-offset:-2px;color:var(--text)}
+.note{font-size:14px;padding:10px 12px;border-radius:12px;background:color-mix(in srgb,var(--coral) 16%,var(--panel));color:var(--text)}
+.note.good{background:color-mix(in srgb,var(--mint) 14%,var(--panel))}
+
+/* Heute-Karte */
+.today{background:var(--panel);border-radius:22px;padding:22px 18px;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;position:relative;overflow:hidden}
+.box{width:150px;height:150px;position:relative;margin-top:6px;transition:transform .15s}
+.box .lid,.box .body{position:absolute;left:0;right:0;border-radius:14px}
+.box .body{bottom:0;height:104px;background:linear-gradient(160deg,color-mix(in srgb,var(--accent) 85%,#fff),color-mix(in srgb,var(--accent) 55%,var(--ink)));box-shadow:0 18px 40px -10px color-mix(in srgb,var(--accent) 60%,transparent)}
+.box .lid{top:16px;height:38px;left:-8px;right:-8px;background:color-mix(in srgb,var(--accent) 70%,#fff);transition:transform .4s}
+.box .rib{position:absolute;left:50%;top:16px;bottom:0;width:22px;transform:translateX(-50%);background:var(--coral);border-radius:4px}
+.box .q{position:absolute;left:0;right:0;bottom:22px;font-family:var(--f-display);font-size:44px;color:var(--ink);opacity:.55}
+.box.shake{animation:shake .35s}
+.box.c1{transform:rotate(-3deg) scale(1.03)} .box.c2{transform:rotate(3deg) scale(1.07)}
+.box.open .lid{transform:translateY(-70px) rotate(-18deg);opacity:0}
+@keyframes shake{0%,100%{translate:0}20%{translate:-6px 0}40%{translate:6px 0}60%{translate:-4px 0}80%{translate:4px 0}}
+.taps{display:flex;gap:8px}.taps i{width:10px;height:10px;border-radius:50%;background:var(--panel2)}.taps i.on{background:var(--accent)}
+.mod-name{font-size:34px;line-height:1;color:var(--accent)}
+.mod-tag{color:var(--muted);max-width:32ch}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.chip{font-size:13px;padding:6px 10px;border-radius:99px;background:var(--panel2);color:var(--text);font-weight:500}
+.cta{width:100%;padding:16px 18px;border-radius:16px;background:var(--accent);color:var(--ink);font-family:var(--f-display);font-size:18px;letter-spacing:.02em;
+  box-shadow:0 6px 0 color-mix(in srgb,var(--accent) 45%,var(--ink));transition:transform .08s,box-shadow .08s}
+.cta:active{transform:translateY(4px);box-shadow:0 2px 0 color-mix(in srgb,var(--accent) 45%,var(--ink))}
+.ghost{padding:12px 14px;border-radius:14px;background:var(--panel2);font-weight:700;font-size:15px}
+.slots{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.slots span{width:34px;height:42px;border-radius:9px;background:var(--panel2);display:grid;place-items:center;font-family:var(--f-display);color:var(--muted);font-size:16px}
+.slots span.boss{background:color-mix(in srgb,var(--coral) 35%,var(--panel2));color:var(--text)}
+
+.teaser{background:linear-gradient(135deg,var(--panel),var(--panel2));border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:8px;border:1px dashed var(--line)}
+.teaser .hint{font-size:18px;font-weight:700}
+.teaser .rumor{font-size:14px;color:var(--gold)}
+.count{font-family:var(--f-mono);font-size:14px;color:var(--muted)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tiny{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;font-size:12px;color:var(--muted)}
+.tiny button{text-decoration:underline;text-underline-offset:3px;color:var(--muted);font-size:12px;padding:6px}
+
+/* Session */
+.sess-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.phase{font-family:var(--f-display);font-size:15px;color:var(--accent)}
+.prog{display:flex;gap:4px;flex:1;max-width:220px}
+.prog i{flex:1;height:6px;border-radius:9px;background:var(--panel2)}
+.prog i.done{background:var(--accent)}.prog i.cur{background:var(--text)}
+.boss{background:var(--panel);border-radius:14px;padding:10px 12px;display:flex;flex-direction:column;gap:6px}
+.boss .row{display:flex;justify-content:space-between;font-size:13px}
+.boss .bar>i{background:linear-gradient(90deg,var(--coral),#ff9b3d);transition:width .2s linear}
+.ringwrap{position:relative;width:min(50vw,200px);aspect-ratio:1;max-width:100%;margin:0 auto}
+.ringwrap svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ringwrap .t{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
+.ringwrap .big{font-family:var(--f-display);font-size:56px;line-height:1}
+.ringwrap .sub{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;font-weight:700}
+.ringwrap.rest .big{color:var(--muted)}
+.exname{font-size:28px;text-align:center;line-height:1.1;min-height:1.1em}
+.exname.land{animation:land .4s}
+@keyframes land{0%{transform:scale(1.25);color:var(--accent)}100%{transform:scale(1)}}
+.cues{background:var(--panel);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:6px}
+.cues li{margin-left:18px}
+.cues ul{margin:0;padding:0;display:flex;flex-direction:column;gap:4px}
+.cues .easy{font-size:14px;color:var(--muted)}
+.badge{align-self:center;font-size:13px;font-weight:700;padding:6px 12px;border-radius:99px;background:color-mix(in srgb,var(--accent) 22%,var(--panel));color:var(--accent)}
+.ctrl{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:10px}
+
+/* Overlay */
+.ov{position:fixed;inset:0;background:color-mix(in srgb,var(--ink) 80%,transparent);display:grid;place-items:center;z-index:20;
+  padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));backdrop-filter:blur(4px)}
+.card{background:var(--panel);border:2px solid var(--accent);border-radius:22px;padding:22px;max-width:380px;width:100%;display:flex;flex-direction:column;gap:12px;text-align:center;animation:pop .35s cubic-bezier(.2,1.4,.4,1)}
+@keyframes pop{0%{transform:scale(.7);opacity:0}100%{transform:scale(1);opacity:1}}
+.card h2{font-size:26px;color:var(--accent)}
+.card .btns{display:flex;flex-direction:column;gap:10px;margin-top:6px}
+
+/* Ergebnis */
+.res-h{text-align:center;display:flex;flex-direction:column;gap:6px}
+.res-h h1{font-size:34px;color:var(--accent)}
+.ledger{background:var(--panel);border-radius:16px;padding:6px 16px}
+.ledger div{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:15px}
+.ledger div:last-child{border:0;font-weight:800;font-size:18px}
+.ledger b{font-family:var(--f-mono)}
+.lvup{font-family:var(--f-display);font-size:22px;color:var(--gold);text-align:center;animation:pop .5s}
+.chest{display:flex;flex-direction:column;align-items:center;gap:10px;background:var(--panel);border-radius:22px;padding:20px}
+.relic{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
+.glyph{width:110px;height:124px;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);display:grid;place-items:center;
+  font-family:var(--f-display);font-size:36px;color:var(--ink);background:linear-gradient(160deg,#fff,var(--rc) 45%,color-mix(in srgb,var(--rc) 40%,var(--ink)))}
+.relic.reveal .glyph{animation:spinin .8s cubic-bezier(.2,1.2,.4,1)}
+@keyframes spinin{0%{transform:scale(.2) rotate(-200deg);opacity:0}100%{transform:none;opacity:1}}
+.rar{font-family:var(--f-display);font-size:14px;letter-spacing:.08em;color:var(--rc)}
+.relic h3{font-size:20px}
+.flash{position:fixed;inset:0;pointer-events:none;z-index:30;background:var(--rc,#fff);opacity:0}
+.flash.go{animation:flash .7s}
+@keyframes flash{0%{opacity:.75}100%{opacity:0}}
+
+/* Sammlung */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.cell{background:var(--panel);border-radius:14px;padding:12px 6px;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;min-width:0;border:1px solid transparent}
+.cell .glyph{width:54px;height:60px;font-size:17px}
+.cell.miss .glyph{background:var(--panel2);color:color-mix(in srgb,var(--rc) 70%,var(--panel2))}
+.cell .nm{font-size:12px;line-height:1.2;overflow-wrap:anywhere}
+.cell .st{font-size:11px;color:var(--gold);letter-spacing:.1em}
+.cell.has{border-color:color-mix(in srgb,var(--rc) 45%,transparent)}
+.back{align-self:flex-start}
+canvas#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:25}
+/* Vormach-Figur */
+.demo{background:var(--panel);border-radius:16px;position:relative;overflow:hidden}
+.demo canvas{display:block;width:100%;height:auto;aspect-ratio:240/152}
+.demo .tag{position:absolute;left:12px;top:10px}
+.demo .replay{position:absolute;right:8px;top:6px;font-size:12px;font-weight:700;padding:6px 10px;border-radius:99px;background:var(--panel2)}
+
+/* Tagestest */
+.bench{background:var(--panel);border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:12px}
+.bench h3{font-size:18px}
+.bench .stat{background:var(--panel2)}
+.bench .v.up{color:var(--mint)} .bench .v.down{color:var(--coral)}
+.bench svg{width:100%;height:auto;display:block}
+.bc-bar{fill:var(--mint)} .bc-bar.now{fill:var(--accent)} .bc-empty{fill:var(--line)}
+.bc-val{fill:var(--text);font:700 12px var(--f-mono)} .bc-day{fill:var(--muted);font:600 11px var(--f-body)}
+.bc-day.now{fill:var(--text)}
+.bc-ref{stroke:var(--gold);stroke-dasharray:4 4;stroke-width:1.5} .bc-reft{fill:var(--gold);font:600 10px var(--f-body)}
+.weeks{display:flex;gap:6px;flex-wrap:wrap}
+.weeks span{font-size:12px;padding:5px 9px;border-radius:99px;background:var(--panel2);color:var(--muted)}
+.weeks span b{color:var(--text);font-family:var(--f-mono)}
+.stepper{display:flex;align-items:center;justify-content:center;gap:14px}
+.stepper .num{font-family:var(--f-display);font-size:60px;min-width:2.2ch;text-align:center;line-height:1}
+.stepper button{width:58px;height:58px;border-radius:50%;background:var(--panel2);font-size:30px;font-weight:800}
+
+/* Wecker */
+.alarmc{background:var(--panel);border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:12px}
+.al-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.al-time input{font-family:var(--f-display);font-size:40px;line-height:1.1;background:transparent;color:var(--text);border:0;padding:0;max-width:100%}
+.al-time input:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:8px}
+.toggle{padding:10px 18px;border-radius:99px;background:var(--panel2);font-weight:800;color:var(--muted)}
+.toggle.on{background:var(--mint);color:var(--ink)}
+.days{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.days button{padding:9px 0;border-radius:10px;background:var(--panel2);font-weight:700;font-size:13px;color:var(--muted)}
+.days button.on{background:color-mix(in srgb,var(--accent) 28%,var(--panel2));color:var(--text)}
+.al-next{font-weight:700}
+.al-note{font-size:13px;color:var(--muted)}
+.full{position:fixed;inset:0;z-index:40;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;
+  padding:max(24px,env(safe-area-inset-top,0px)) max(24px,env(safe-area-inset-right,0px)) max(24px,env(safe-area-inset-bottom,0px)) max(24px,env(safe-area-inset-left,0px))}
+.full .clock{font-family:var(--f-display);font-size:72px;line-height:1}
+.full>button{width:100%;max-width:360px}
+#night{background:#020106;color:#5d5580}
+#night .clock{color:#7b72a3}
+#night .ghost{background:#120f1f;color:#7b72a3}
+#alarm{background:var(--ink);animation:pulse 1.4s infinite}
+#alarm h1{font-size:28px;color:var(--accent)}
+#alarm p{max-width:34ch}
+@keyframes pulse{0%,100%{background-color:var(--ink)}50%{background-color:color-mix(in srgb,var(--accent) 28%,var(--ink))}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<canvas id="fx"></canvas>
+<div class="flash" id="flash"></div>
+<div class="app">
+
+<!-- BASIS -->
+<section class="screen" id="home">
+  <div class="top">
+    <div class="hello"><div class="label" id="h-date"></div><h1>Guten Morgen, Tammo</h1></div>
+    <div class="lvl" id="h-lvl" aria-label="Level">1</div>
+  </div>
+  <div class="xpbar">
+    <div class="row"><b id="h-title">Schlafwandler</b><span class="mono" id="h-xp">0 / 120 XP</span></div>
+    <div class="bar"><i id="h-xpbar"></i></div>
+  </div>
+  <div class="stats">
+    <div class="stat flame"><span class="v mono" id="h-streak">0</span><span class="k">Tage-Serie</span></div>
+    <div class="stat"><span class="v mono" id="h-shield">1</span><span class="k">Serien-Schilde</span></div>
+    <div class="stat"><span class="v mono" id="h-col">0/24</span><span class="k">Relikte</span></div>
+  </div>
+  <div class="week" id="h-week"></div>
+  <div id="h-note" hidden></div>
+
+  <div class="today" id="t-card"></div>
+  <div class="teaser" id="t-teaser" hidden></div>
+  <div class="bench" id="bench"></div>
+  <div class="alarmc" id="alarmc"></div>
+
+  <div class="row2">
+    <button class="ghost" id="b-col">Sammlung ansehen</button>
+    <button class="ghost" id="b-sound">Ton: an</button>
+  </div>
+  <div class="tiny">
+    <span>Testmodus:</span>
+    <button id="b-next">Einen Tag vorspulen</button>
+    <button id="b-reset">Alles zurücksetzen</button>
+  </div>
+</section>
+
+<!-- SESSION -->
+<section class="screen" id="sess" hidden>
+  <div class="sess-top"><span class="phase" id="s-phase">AUFWÄRMEN</span><div class="prog" id="s-prog"></div></div>
+  <div class="boss" id="s-boss" hidden>
+    <div class="row"><b id="s-bossname">Boss</b><span class="mono" id="s-bosshp">100%</span></div>
+    <div class="bar"><i id="s-bossbar" style="width:100%"></i></div>
+  </div>
+  <div class="ringwrap" id="s-ring">
+    <svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="90" fill="none" stroke="var(--panel2)" stroke-width="12"/>
+      <circle id="s-arc" cx="100" cy="100" r="90" fill="none" stroke="var(--accent)" stroke-width="12" stroke-linecap="round" stroke-dasharray="565.5" stroke-dashoffset="0"/></svg>
+    <div class="t"><span class="big mono" id="s-time">30</span><span class="sub" id="s-sub">Los</span></div>
+  </div>
+  <h2 class="exname" id="s-name">…</h2>
+  <div class="demo"><span class="label tag">So geht's</span><canvas id="s-fig" width="480" height="304"></canvas><button class="replay" id="s-replay">Nochmal zeigen</button></div>
+  <span class="badge" id="s-badge" hidden></span>
+  <div class="cues" id="s-cues"></div>
+  <div class="ctrl">
+    <button class="ghost" id="s-quit">Beenden</button>
+    <button class="cta" id="s-pause">Pause</button>
+    <button class="ghost" id="s-skip">Weiter</button>
+  </div>
+</section>
+
+<!-- ERGEBNIS -->
+<section class="screen" id="res" hidden>
+  <div class="res-h"><span class="label" id="r-mod"></span><h1 id="r-head">Quest geschafft</h1><p id="r-sub" style="color:var(--muted)"></p></div>
+  <div class="ledger" id="r-ledger"></div>
+  <div class="xpbar">
+    <div class="row"><b id="r-title"></b><span class="mono" id="r-xp"></span></div>
+    <div class="bar"><i id="r-xpbar"></i></div>
+  </div>
+  <div class="lvup" id="r-lvup" hidden></div>
+  <div class="chest" id="r-chest"></div>
+  <div class="teaser" id="r-teaser"></div>
+  <button class="cta" id="r-home">Zur Basis</button>
+</section>
+
+<!-- SAMMLUNG -->
+<section class="screen" id="col" hidden>
+  <button class="ghost back" id="c-back">Zurück</button>
+  <div><span class="label">Relikt-Sammlung</span><h1 style="font-size:26px">Fundstücke</h1></div>
+  <p style="color:var(--muted)" id="c-sum"></p>
+  <div class="grid" id="c-grid"></div>
+</section>
+</div>
+
+<div class="ov" id="ov" hidden><div class="card" id="ov-card"></div></div>
+
+<div class="full" id="night" hidden>
+  <span class="label">Nachtmodus</span>
+  <div class="clock mono" id="n-clock">00:00</div>
+  <p id="n-info"></p>
+  <p style="max-width:32ch">Lass diese Seite offen und das Handy am Ladekabel. Der Bildschirm bleibt an, aber dunkel.</p>
+  <button class="ghost" id="n-exit">Nachtmodus beenden</button>
+</div>
+<div class="full" id="alarm" hidden>
+  <span class="label">Wecker</span>
+  <div class="clock mono" id="a-clock">07:50</div>
+  <h1>Guten Morgen, Tammo</h1>
+  <p>Deine Mystery-Kiste ist bereit. Startest du die Quest in den nächsten 20 Minuten, gibt es den Pünktlich-Bonus: +30 XP.</p>
+  <button class="cta" id="a-up">Aufstehen</button>
+  <button class="ghost" id="a-snooze">5 Minuten schlummern (nur einmal)</button>
+</div>
+
+<script src="capacitor.js"></script>
+<script>
+/* ---------- Daten ---------- */
+const EX = [
+ // Aufwärmen
+ {id:'armk',n:'Arm-Kreise XXL',c:'warm',cue:['Arme seitlich gestreckt','Große, langsame Kreise','Zur Hälfte Richtung wechseln'],e:'Kleinere Kreise sind auch okay.'},
+ {id:'hamp',n:'Hampelmann',c:'warm',cue:['Springen: Beine auseinander, Arme über den Kopf','Leise landen, auf den Fußballen'],e:'Ohne Sprung: abwechselnd ein Bein zur Seite tippen.'},
+ {id:'hueft',n:'Hüft-Kreise',c:'warm',cue:['Hände in die Hüften','Großer Kreis mit dem Becken','Zur Hälfte Richtung wechseln'],e:'Kreise kleiner machen.'},
+ {id:'katz',n:'Katze-Kuh',c:'warm',cue:['Auf allen Vieren','Ausatmen: Rücken rund machen','Einatmen: Brust nach vorn, Hohlkreuz'],e:'Langsamer werden.'},
+ {id:'wgs',n:'Weltbester Stretch',c:'warm',cue:['Großer Ausfallschritt','Hand neben den Fuß, anderen Arm zur Decke drehen','Zur Hälfte Seite wechseln'],e:'Hinteres Knie auf den Boden.'},
+ {id:'inch',n:'Raupe',c:'warm',cue:['Aus dem Stand nach vorn beugen','Mit den Händen in den Liegestütz laufen','Zurücklaufen und aufrichten'],e:'Knie leicht beugen.'},
+ {id:'march',n:'Knie-Marsch',c:'warm',cue:['Auf der Stelle marschieren','Knie bis Hüfthöhe','Arme kräftig mitnehmen'],e:'Knie nur so hoch wie angenehm.'},
+ // Drücken
+ {id:'push',n:'Liegestütze',c:'push',cue:['Hände schulterbreit, Körper gerade','Brust Richtung Boden','Kraftvoll hochdrücken'],e:'Auf den Knien oder gegen die Wand.'},
+ {id:'diam',n:'Diamant-Liegestütze',c:'push',cue:['Daumen und Zeigefinger bilden ein Dreieck','Ellbogen eng am Körper'],e:'Auf den Knien.'},
+ {id:'pike',n:'Pike-Liegestütze',c:'push',cue:['Po hoch, Körper wie ein umgedrehtes V','Kopf Richtung Boden zwischen die Hände'],e:'Nur halb so tief.'},
+ {id:'stap',n:'Schulter-Taps',c:'push',cue:['Hoher Liegestütz','Abwechselnd Hand an gegenüberliegende Schulter','Hüfte bleibt ruhig'],e:'Füße weiter auseinander oder auf den Knien.'},
+ {id:'dips',n:'Stuhl-Dips',c:'push',cue:['Hände hinter dir auf Stuhl oder Bettkante','Ellbogen nach hinten beugen','Hochdrücken'],e:'Füße näher heranstellen.'},
+ {id:'tpush',n:'T-Liegestütze',c:'push',cue:['Ein Liegestütz','Oben zur Seite drehen, Arm zur Decke','Seite jedes Mal wechseln'],e:'Ohne Liegestütz, nur die Drehung.'},
+ // Beine
+ {id:'squat',n:'Kniebeugen',c:'legs',cue:['Füße schulterbreit','Po nach hinten, als würdest du dich setzen','Fersen bleiben am Boden'],e:'Nur bis zur halben Tiefe.'},
+ {id:'lunge',n:'Ausfallschritte',c:'legs',cue:['Großer Schritt nach vorn','Hinteres Knie Richtung Boden','Abwechselnd links und rechts'],e:'Am Stuhl festhalten.'},
+ {id:'sumo',n:'Sumo-Kniebeugen',c:'legs',cue:['Sehr breiter Stand, Zehen nach außen','Tief runter, Rücken aufrecht'],e:'Weniger tief.'},
+ {id:'wall',n:'Wandsitzen',c:'legs',h:1,cue:['Rücken an die Wand','Runter, bis die Knie im rechten Winkel sind','Halten'],e:'Höher sitzen.'},
+ {id:'bridge',n:'Po-Brücke',c:'legs',cue:['Rückenlage, Füße aufgestellt','Hüfte hoch, oben den Po anspannen','Langsam ablegen'],e:'Kleinere Bewegung.'},
+ {id:'sqj',n:'Hock-Strecksprünge',c:'legs',j:1,cue:['Kniebeuge','Explosiv nach oben springen','Weich landen'],e:'Ohne Sprung, nur auf die Zehen.'},
+ {id:'calf',n:'Wadenheben',c:'legs',cue:['Auf die Zehenspitzen','Oben kurz halten','Langsam runter'],e:'An der Wand abstützen.'},
+ {id:'bulg',n:'Bulgarische Kniebeuge',c:'legs',cue:['Hinterer Fuß auf Bett oder Stuhl','Vorderes Bein beugt tief','Zur Hälfte Seite wechseln'],e:'Hinteren Fuß auf den Boden.'},
+ // Rumpf
+ {id:'plank',n:'Unterarmstütz',c:'core',h:1,cue:['Ellbogen unter den Schultern','Körper eine gerade Linie','Bauch und Po fest'],e:'Knie am Boden.'},
+ {id:'side',n:'Seitstütz',c:'core',h:1,cue:['Auf einem Unterarm, seitlich','Hüfte hoch','Zur Hälfte Seite wechseln'],e:'Unteres Knie am Boden.'},
+ {id:'mc',n:'Bergsteiger',c:'core',cue:['Hoher Liegestütz','Knie abwechselnd schnell zur Brust','Hüfte unten halten'],e:'Langsam, ein Knie nach dem anderen.'},
+ {id:'dbug',n:'Toter Käfer',c:'core',cue:['Rückenlage, Arme und Beine nach oben','Gegenüberliegenden Arm und Bein absenken','Unterer Rücken bleibt am Boden'],e:'Nur die Beine bewegen.'},
+ {id:'hollow',n:'Banane halten',c:'core',h:1,cue:['Rückenlage, Arme über dem Kopf','Schultern und Beine leicht anheben','Unterer Rücken drückt in den Boden'],e:'Knie anwinkeln.'},
+ {id:'bike',n:'Fahrrad-Crunches',c:'core',cue:['Hände an die Schläfen','Ellbogen zum gegenüberliegenden Knie','Andere Seite strecken'],e:'Langsamer und kleiner.'},
+ {id:'super',n:'Superman',c:'core',cue:['Bauchlage','Arme und Beine gleichzeitig anheben','Kurz halten, ablegen'],e:'Nur Arme oder nur Beine.'},
+ {id:'bear',n:'Bärenstand',c:'core',h:1,cue:['Auf allen Vieren','Knie 3 cm über dem Boden schweben lassen','Rücken flach wie ein Tisch'],e:'Knie kurz absetzen, wieder heben.'},
+ // Cardio
+ {id:'burpee',n:'Burpees',c:'cardio',j:1,cue:['Hinhocken, Hände auf den Boden','Füße zurück in den Liegestütz','Füße vor, hochspringen'],e:'Ohne Sprung, Füße einzeln zurücksetzen.'},
+ {id:'skate',n:'Eisschnellläufer',c:'cardio',j:1,cue:['Seitlicher Sprung von Bein zu Bein','Oberkörper leicht nach vorn'],e:'Seitlich schreiten statt springen.'},
+ {id:'box',n:'Schattenboxen',c:'cardio',cue:['Kampfstellung, Fäuste hoch','Schnelle Geraden und Haken','In Bewegung bleiben'],e:'Langsamer boxen.'},
+ {id:'knees',n:'Kniehebelauf',c:'cardio',j:1,cue:['Auf der Stelle rennen','Knie hoch, Arme schnell'],e:'Marschieren.'},
+ {id:'crawl',n:'Bärengang',c:'cardio',cue:['Bärenstand, Knie schweben','Zwei Schritte vor, zwei zurück'],e:'Kleinere Schritte.'},
+ {id:'crab',n:'Krebsgang',c:'cardio',cue:['Sitzen, Hände hinter dir, Po hoch','Vorwärts und rückwärts krabbeln'],e:'Po zwischendurch absetzen.'},
+ {id:'frog',n:'Froschsprünge',c:'cardio',j:1,cue:['Tiefe Hocke','Nach vorn springen, umdrehen, zurück'],e:'Kleine Sprünge.'},
+];
+const EXM = Object.fromEntries(EX.map(x=>[x.id,x]));
+
+const MODS = {
+ speed:{n:'Speedrun',tag:'Sechs Runden, kurze Pausen, keine Gnade.',hint:'Morgen zählt jede Sekunde.',col:'#3de0b5'},
+ boss:{n:'Boss-Kampf',tag:'Jede Sekunde Arbeit trifft den Boss. Am Ende kommt der Finalschlag.',hint:'Morgen wartet am Ende etwas Großes.',col:'#ff5d73'},
+ blind:{n:'Blindflug',tag:'Du siehst die nächste Übung erst 3 Sekunden vorher.',hint:'Morgen siehst du nichts kommen.',col:'#8f7bff'},
+ wheel:{n:'Glücksrad',tag:'Das Rad wählt jede Übung, live, kurz bevor es losgeht.',hint:'Morgen entscheidet der Zufall.',col:'#ffc23d'},
+ ladder:{n:'Himmelsleiter',tag:'Jede Runde dauert 10 Sekunden länger als die davor.',hint:'Morgen geht es Stufe für Stufe nach oben.',col:'#4ea8ff'},
+ dice:{n:'Würfel-Tag',tag:'Ein Würfel bestimmt, wie lange jede Runde dauert.',hint:'Morgen rollen die Würfel.',col:'#ff9b3d'},
+ slow:{n:'Zeitlupe',tag:'Alles in Zeitlupe: 4 Sekunden runter, 1 Sekunde hoch.',hint:'Morgen wird es langsam. Und gemein.',col:'#c86bff'},
+ double:{n:'Doppelpack',tag:'Zwei Übungen im Wechsel, zwei Durchgänge.',hint:'Morgen kommt alles doppelt.',col:'#5ce07a'},
+};
+const MOD_IDS = Object.keys(MODS);
+const BOSSES = ['Snooze-Golem','Sofa-Krake','Graf Müdula','Scroll-Dämon','Kissen-Titan','Lord Später'];
+
+const RAR = {
+ c:{n:'GEWÖHNLICH',col:'var(--r-common)',st:1},
+ r:{n:'SELTEN',col:'var(--r-rare)',st:2},
+ e:{n:'EPISCH',col:'var(--r-epic)',st:3},
+ l:{n:'LEGENDÄR',col:'var(--r-leg)',st:4},
+};
+const RELICS = [
+ ['wecker','Rostiger Wecker','c'],['banane','Halbe Banane','c'],['socke','Socke des Mutes','c'],['pad','Zerkratzter Controller','c'],
+ ['bohne','Kaffeebohne','c'],['band','Gummiband der Kraft','c'],['kopfh','Verlorener Kopfhörer','c'],['magnet','Kühlschrank-Magnet','c'],
+ ['schweiss','Schweißband','c'],['flasche','Wasserflasche Lv.1','c'],
+ ['zahnb','Goldene Zahnbürste','r'],['schuh','Turbo-Turnschuh','r'],['hantel','Kristall-Hantel','r'],['karte','Sonnenaufgangs-Karte','r'],
+ ['ninja','Ninja-Stirnband','r'],['pixel','Pixel-Herz','r'],['keks','Donnerkeks','r'],
+ ['phoenix','Phönixfeder','e'],['tee','Drachenatem-Tee','e'],['uhr','Zeitstopp-Uhr','e'],['umhang','Schattenumhang','e'],['faust','Titan-Faust','e'],
+ ['krone','Krone des Frühaufstehers','l'],['licht','Das Erste Licht','l'],
+].map(([id,n,r])=>({id,n,r}));
+const TITLES = ['Schlafwandler','Frühaufsteher','Morgen-Krieger','Sonnenjäger','Dämmerungs-Ninja','Tagesbezwinger','Legende des Morgens'];
+const COOKIES = ['Dein zukünftiges Ich hat gerade gelächelt.','Jede Wiederholung ist ein Speicherpunkt.','Der Boss von morgen hat schon Angst.','Gamer wissen: Grinding lohnt sich.','Du bist heute schon weiter als dein Bett.'];
+
+/* ---------- Zufall ---------- */
+function seedFrom(s){let h=2166136261;for(const ch of s){h^=ch.charCodeAt(0);h=Math.imul(h,16777619)}return h>>>0}
+function rngOf(s){let a=seedFrom(s);return()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function shuffle(arr,r){const a=arr.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+
+/* ---------- Zustand ---------- */
+const KEY='tammo-morgen-quest-v1';
+const FRESH = ()=>({xp:0,level:1,streak:0,best:0,lastDone:null,shields:1,potion:false,splitter:0,sinceEpic:0,sinceLeg:0,relics:{},plans:{},opened:{},done:{},pending:null,dayOffset:0,total:0,sound:true,
+  bench:{},alarm:{on:true,time:'07:50',days:[1,1,1,1,1,1,1],fired:null,firedAt:0,snoozed:false}});
+const BENCH='push';
+let st = FRESH();
+try{const raw=localStorage.getItem(KEY);if(raw)st=Object.assign(FRESH(),JSON.parse(raw))}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
+
+/* ---------- Tage (Tageswechsel um 4 Uhr) ---------- */
+const DAY=864e5;
+function keyOf(d){return d.toISOString().slice(0,10)}
+function todayKey(){const d=new Date(Date.now()-4*36e5);const k=Date.UTC(d.getFullYear(),d.getMonth(),d.getDate());return keyOf(new Date(k+st.dayOffset*DAY))}
+function addDays(k,n){return keyOf(new Date(Date.parse(k)+n*DAY))}
+function diffDays(a,b){return Math.round((Date.parse(b)-Date.parse(a))/DAY)}
+function dayIndex(k){return Math.round(Date.parse(k)/DAY)}
+
+/* Mutator: alle 8 kommen in jedem 8-Tage-Block genau einmal vor, Reihenfolge zufällig */
+function blockOrder(b){return shuffle(MOD_IDS,rngOf('blk'+b))}
+function modFor(k){
+  const i=dayIndex(k),b=Math.floor(i/8),p=i%8;let o=blockOrder(b);
+  const prevLast=blockOrder(b-1)[7];
+  if(o[0]===prevLast){[o[0],o[1]]=[o[1],o[0]]}
+  return o[p];
+}
+function luckyDay(k){return rngOf('luck'+k)()<0.2}
+
+/* ---------- Plan bauen ---------- */
+function buildPlan(k){
+  if(st.plans[k]&&(st.plans[k].v===2||st.done[k]))return st.plans[k];
+  const r=rngOf('tammo'+k), mod=modFor(k);
+  const recent=new Set([1,2].flatMap(n=>(st.plans[addDays(k,-n)]||{ex:[]}).ex));
+  const used=new Set();
+  const take=(cat,filter=()=>true)=>{
+    let pool=shuffle(EX.filter(x=>x.c===cat&&x.id!==BENCH&&filter(x)&&!used.has(x.id)),r);
+    const fresh=pool.filter(x=>!recent.has(x.id));
+    const x=(fresh.length?fresh:pool)[0];used.add(x.id);return x.id;
+  };
+  const mainCats=n=>{const order=[];let cats=shuffle(['push','legs','core','cardio'],r);
+    if(mod==='slow')cats=cats.filter(c=>c!=='cardio');
+    while(order.length<n){order.push(cats[order.length%cats.length])}return order};
+  const noJump=x=>!x.j;
+  const steps=[];
+  const rest=(d,lab='PAUSE')=>steps.push({k:'r',d,lab});
+  const work=(id,d,lab,main=true,extra={})=>steps.push(Object.assign({k:'w',ex:id,d,lab,main},extra));
+  // Aufwärmen
+  const w1=take('warm'),w2=take('warm');
+  rest(5,'BEREIT MACHEN');work(w1,30,'AUFWÄRMEN',false);rest(5,'WECHSEL');work(w2,30,'AUFWÄRMEN',false);
+  // Fester Tagestest direkt nach dem Aufwärmen: immer gleiche Übung, gleiche Position, vergleichbar
+  rest(10,'TAGESTEST');work(BENCH,30,'TAGESTEST',false,{test:1});
+  let boss=null;
+  if(mod==='double'){
+    const ids=mainCats(4).map(c=>take(c));
+    [[0,1],[2,3]].forEach((pr,pi)=>{for(let rd=0;rd<2;rd++)pr.forEach((ix,j)=>{rest(10);work(ids[ix],30,'SUPERSATZ '+'AB'[pi]+(rd*2+j+1))})});
+  }else{
+    const cfg={speed:[6,20,10],boss:[4,40,20],blind:[5,35,15],wheel:[5,30,15],ladder:[4,0,15],dice:[5,0,15],slow:[4,45,15]}[mod];
+    const [n,wd,rd]=cfg;
+    const ids=mainCats(n).map(c=>take(c,mod==='slow'?noJump:undefined));
+    ids.forEach((id,i)=>{
+      let d=wd,extra={};
+      if(mod==='ladder')d=20+i*10;
+      if(mod==='dice'){const roll=1+Math.floor(r()*6);d=15+roll*5;extra.dice=roll}
+      rest(rd);work(id,d,'RUNDE '+(i+1)+'/'+n,true,extra);
+    });
+    if(mod==='boss'){boss=BOSSES[Math.floor(r()*BOSSES.length)];rest(20,'BOSS ERSCHEINT');work(take('cardio'),45,'FINALSCHLAG',true,{fin:1})}
+  }
+  const plan={v:2,mod,boss,steps,ex:[...used]};
+  st.plans[k]=plan;
+  // alte Pläne aufräumen
+  Object.keys(st.plans).forEach(p=>{if(diffDays(p,k)>10)delete st.plans[p]});
+  save();return plan;
+}
+function planMinutes(p){return Math.round(p.steps.reduce((s,x)=>s+x.d,0)/60)}
+
+/* ---------- Ton & Vibration ---------- */
+let ac=null;
+function audio(force){if(!st.sound&&!force)return null;try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();if(ac.state==='suspended')ac.resume()}catch(e){ac=null}return ac}
+function tone(f,d=.12,type='sine',vol=.18,delay=0,force=false){const a=audio(force);if(!a)return;const o=a.createOscillator(),g=a.createGain();o.type=type;o.frequency.value=f;
+  const t=a.currentTime+delay;g.gain.setValueAtTime(vol,t);g.gain.exponentialRampToValueAtTime(.001,t+d);o.connect(g).connect(a.destination);o.start(t);o.stop(t+d+.02)}
+function arp(fs,step=.08,type='triangle'){fs.forEach((f,i)=>tone(f,.18,type,.16,i*step))}
+function buzz(p){try{navigator.vibrate&&navigator.vibrate(p)}catch(e){}}
+const NATIVE=!!(window.Capacitor&&Capacitor.isNativePlatform&&Capacitor.isNativePlatform());
+const plug=n=>NATIVE?(Capacitor.Plugins&&Capacitor.Plugins[n])||(Capacitor.registerPlugin&&Capacitor.registerPlugin(n)):null;
+let wake=null;
+async function keepAwake(){try{if(NATIVE){await plug('KeepAwake').keepAwake();wake=true}else wake=await navigator.wakeLock.request('screen')}catch(e){}}
+function release(){try{if(NATIVE)plug('KeepAwake').allowSleep();else wake&&wake.release()}catch(e){}wake=null}
+
+/* ---------- Effekte ---------- */
+const fx=document.getElementById('fx'),fctx=fx.getContext('2d');let parts=[],fxOn=false;
+function confetti(n=90,cols){fx.width=innerWidth*devicePixelRatio;fx.height=innerHeight*devicePixelRatio;
+  cols=cols||[getAccent(),'#ff5d73','#3de0b5','#ffc23d','#4ea8ff'];
+  for(let i=0;i<n;i++)parts.push({x:fx.width/2,y:fx.height*.42,vx:(Math.random()-.5)*16*devicePixelRatio,vy:(-Math.random()*14-4)*devicePixelRatio,s:(4+Math.random()*6)*devicePixelRatio,c:cols[i%cols.length],a:1,r:Math.random()*6});
+  if(!fxOn){fxOn=true;requestAnimationFrame(fxLoop)}}
+function fxLoop(){fctx.clearRect(0,0,fx.width,fx.height);parts.forEach(p=>{p.vy+=.45*devicePixelRatio;p.x+=p.vx;p.y+=p.vy;p.a-=.012;p.r+=.2;
+  fctx.globalAlpha=Math.max(p.a,0);fctx.fillStyle=p.c;fctx.save();fctx.translate(p.x,p.y);fctx.rotate(p.r);fctx.fillRect(-p.s/2,-p.s/2,p.s,p.s*.6);fctx.restore()});
+  parts=parts.filter(p=>p.a>0&&p.y<fx.height+50);if(parts.length)requestAnimationFrame(fxLoop);else{fxOn=false;fctx.clearRect(0,0,fx.width,fx.height)}}
+function flash(col){const f=document.getElementById('flash');f.style.setProperty('--rc',col);f.classList.remove('go');void f.offsetWidth;f.classList.add('go')}
+function getAccent(){return getComputedStyle(document.documentElement).getPropertyValue('--accent').trim()||'#ffc23d'}
+function setAccent(c){document.documentElement.style.setProperty('--accent',c)}
+
+/* ---------- Helfer ---------- */
+const $=id=>document.getElementById(id);
+function show(id){['home','sess','res','col'].forEach(s=>$(s).hidden=s!==id);scrollTo(0,0)}
+function need(l){return 80+l*40}
+function title(l){return TITLES[Math.min(TITLES.length-1,Math.floor((l-1)/3))]}
+function fmtDate(k){return new Date(Date.parse(k)).toLocaleDateString('de-DE',{weekday:'long',day:'numeric',month:'long',timeZone:'UTC'})}
+function owned(){return Object.keys(st.relics).length}
+function countdown(){const now=Date.now();const d=new Date(now-4*36e5);d.setHours(0,0,0,0);const next=d.getTime()+DAY+4*36e5;
+  let s=Math.max(0,Math.floor((next-now)/1000));const h=Math.floor(s/3600),m=Math.floor(s%3600/60);s%=60;
+  return st.dayOffset?'Testmodus: Tag vorspulen zum Öffnen':`Neue Kiste in ${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`}
+function streakState(k){
+  if(!st.lastDone)return{gap:null};
+  const gap=diffDays(st.lastDone,k),missed=Math.max(0,gap-1);
+  return{gap,missed,saved:missed>0&&st.shields>=missed,broken:missed>0&&st.shields<missed};
+}
+function teaserHTML(k){
+  const m=MODS[modFor(k)],lucky=luckyDay(k);
+  return `<span class="label">Morgen</span><p class="hint">${m.hint}</p>${lucky?'<p class="rumor">Gerücht: Morgen ist ein Glückstag. Epische Funde sind doppelt so wahrscheinlich.</p>':''}<span class="count" data-count>${countdown()}</span>`;
+}
+
+/* ---------- Basis ---------- */
+let taps=0;
+function renderHome(){
+  const k=todayKey(),plan=buildPlan(k),m=MODS[plan.mod],opened=st.opened[k],done=st.done[k];
+  setAccent(opened?m.col:'#ffc23d');
+  $('h-date').textContent=fmtDate(k)+(st.dayOffset?' · Test':'');
+  $('h-lvl').textContent=st.level;$('h-title').textContent=title(st.level);
+  $('h-xp').textContent=`${st.xp} / ${need(st.level)} XP`;$('h-xpbar').style.width=(st.xp/need(st.level)*100)+'%';
+  $('h-streak').textContent=st.streak;$('h-shield').textContent=st.shields;$('h-col').textContent=owned()+'/'+RELICS.length;
+  // Woche
+  const wd=(new Date(Date.parse(k)).getUTCDay()+6)%7,names=['Mo','Di','Mi','Do','Fr','Sa','So'];
+  $('h-week').innerHTML=names.map((n,i)=>{const dk=addDays(k,i-wd);return`<span class="${st.done[dk]?'on':''} ${dk===k?'today':''}">${n}</span>`}).join('');
+  // Hinweis Serie
+  const ss=streakState(k),note=$('h-note');note.hidden=true;
+  if(!done&&ss.broken){note.hidden=false;note.className='note';note.textContent=`Serie gerissen. Dafür wartet heute ein Comeback-Bonus: 1,5× XP.`}
+  else if(!done&&ss.saved){note.hidden=false;note.className='note good';note.textContent=`${ss.missed} Tag verpasst. Ein Serien-Schild fängt das ab, wenn du heute trainierst.`}
+  else if(!done&&st.potion){note.hidden=false;note.className='note good';note.textContent='XP-Trank aktiv: heute 1,5× XP.'}
+  const card=$('t-card'),tz=$('t-teaser');tz.hidden=true;
+  if(!opened){
+    taps=0;
+    card.innerHTML=`<span class="label">Mystery-Kiste von heute</span>
+      <button class="box" id="box" aria-label="Kiste öffnen"><div class="body"></div><div class="lid"></div><div class="rib"></div><div class="q">?</div></button>
+      <div class="taps"><i></i><i></i><i></i></div>
+      <p style="color:var(--muted)">Tippe dreimal, um zu sehen, was heute auf dich wartet.</p>`;
+    $('box').onclick=tapBox;
+  }else if(!done){
+    const works=plan.steps.filter(s=>s.k==='w'&&s.main).length;
+    card.innerHTML=`<span class="label">Heutiger Mutator</span><h2 class="mod-name">${m.n}</h2><p class="mod-tag">${m.tag}</p>
+      ${plan.boss?`<p><b>Gegner: ${plan.boss}</b></p>`:''}
+      <div class="chips"><span class="chip">ca. ${planMinutes(plan)} Min</span><span class="chip">${works} Runden + Aufwärmen</span>${luckyDay(k)?'<span class="chip" style="color:var(--gold)">Glückstag</span>':''}</div>
+      <div class="slots">${plan.steps.filter(s=>s.k==='w'&&s.main).map(s=>`<span class="${s.fin?'boss':''}">${s.fin?'B':'?'}</span>`).join('')}</div>
+      <p style="color:var(--muted);font-size:14px">Welche Übungen kommen, erfährst du erst unterwegs.</p>
+      <button class="cta" id="b-start">Quest starten</button>`;
+    $('b-start').onclick=()=>startSession(k);
+  }else if(st.pending){
+    card.innerHTML=`<span class="label">Erledigt</span><h2 class="mod-name">Truhe wartet</h2><p class="mod-tag">Du hast deine Belohnung noch nicht geöffnet.</p><button class="cta" id="b-loot">Zur Truhe</button>`;
+    $('b-loot').onclick=()=>{renderResults(st.pending.summary);show('res')};
+  }else{
+    card.innerHTML=`<span class="label">Heute erledigt</span><h2 class="mod-name">${m.n} besiegt</h2><p class="mod-tag">Serie: ${st.streak} ${st.streak===1?'Tag':'Tage'}. Rekord: ${st.best}.</p>`;
+    tz.hidden=false;tz.innerHTML=teaserHTML(addDays(k,1));
+  }
+  renderBench(k);renderAlarm();
+}
+function tapBox(){
+  const b=$('box');taps++;audio();tone(300+taps*160,.15,'square',.12);buzz(30*taps);
+  b.classList.remove('shake');void b.offsetWidth;b.classList.add('shake','c'+Math.min(taps,2));
+  document.querySelectorAll('.taps i').forEach((d,i)=>d.classList.toggle('on',i<taps));
+  if(taps>=3){
+    const k=todayKey(),m=MODS[buildPlan(k).mod];
+    b.classList.add('open');b.onclick=null;
+    setTimeout(()=>{setAccent(m.col);flash(m.col);confetti(110,[m.col,'#fff','#ffc23d']);arp([523,659,784,1047]);buzz([60,40,120]);
+      st.opened[k]=true;save();setTimeout(renderHome,450)},380);
+  }
+}
+
+/* ---------- Session ---------- */
+let S=null,timer=null;
+function startSession(k){
+  audio();keepAwake();
+  const plan=buildPlan(k);
+  S={k,plan,steps:plan.steps.map(s=>Object.assign({},s)),i:0,run:true,end:0,left:0,done:0,xp:0,bonus:[],events:0,dbl:false,revealed:{},lastSec:null,
+    bossMax:plan.steps.filter(s=>s.k==='w'&&s.main).reduce((a,s)=>a+s.d,0),bossDone:0,started:Date.now(),shown:new Set()};
+  demoCur=null;
+  $('s-boss').hidden=!plan.boss;if(plan.boss)$('s-bossname').textContent=plan.boss;
+  show('sess');enterStep();
+  clearInterval(timer);timer=setInterval(tick,100);
+}
+function cur(){return S.steps[S.i]}
+function nextWork(){for(let j=S.i+1;j<S.steps.length;j++)if(S.steps[j].k==='w')return S.steps[j];return null}
+function enterStep(){
+  const s=cur();S.left=s.d*1000;S.end=Date.now()+S.left;S.lastSec=null;S.run=true;$('s-pause').textContent='Pause';
+  if(s.k==='w'){tone(988,.25,'square',.14);buzz(120)}
+  else if(['wheel','dice'].includes(S.plan.mod)){const nw=nextWork();if(nw&&nw.main&&!S.revealed[S.i])rollFor(nw)}
+  render();
+}
+function rollFor(nw){
+  const idx=S.i;S.revealed[idx]='rolling';
+  const el=$('s-name'),names=EX.filter(x=>x.c!=='warm').map(x=>x.n);let t=0;
+  const iv=setInterval(()=>{t++;
+    el.textContent=S.plan.mod==='dice'?'Würfel: '+(1+Math.floor(Math.random()*6)):names[Math.floor(Math.random()*names.length)];
+    tone(500+Math.random()*400,.04,'square',.06);
+    if(t>18||!S||S.i!==idx){clearInterval(iv);if(S&&S.i===idx){S.revealed[idx]=true;render();el.classList.remove('land');void el.offsetWidth;el.classList.add('land');arp([660,880],.07)}}
+  },75);
+}
+function tick(){
+  if(!S||!S.run)return;
+  const s=cur(),left=S.end-Date.now(),sec=Math.ceil(left/1000);
+  if(sec!==S.lastSec){S.lastSec=sec;if(sec<=3&&sec>0){tone(s.k==='r'?660:440,.1,'sine',.16);buzz(40)}
+    if(s.k==='r'&&S.plan.mod==='blind'&&sec===3){arp([392,523],.06)}}
+  if(left<=0){advance(true);return}
+  S.left=left;renderTime();
+}
+function advance(natural){
+  const s=cur();
+  if(s.k==='w'){
+    if(natural&&s.test){S.xp+=12;S.done++;S.run=false;S.i++;showBenchInput();return}
+    if(s.main)S.bossDone+=s.d;
+    if(natural){const gain=(s.bx||12)*(S.dbl&&s.main?2:1);S.xp+=gain;if(s.main||s.bx)S.done++;if(S.dbl&&s.main)S.dbl=false}
+    if(natural&&s.main&&!s.fin&&!s.bx&&S.events<2&&S.i<S.steps.length-2&&Math.random()<.38){S.run=false;S.events++;S.i++;showEvent();return}
+  }
+  S.i++;
+  if(S.i>=S.steps.length){finish();return}
+  enterStep();
+}
+function showEvent(){
+  tone(784,.12,'triangle');tone(1175,.2,'triangle',.16,.1);buzz([50,50,50]);
+  const evs=[
+    {h:'Kritischer Treffer',p:'Die nächste Runde zählt doppelt XP.',b:[['Nice',()=>{S.dbl=true;S.bonus.push(['Kritischer Treffer','×2 nächste Runde'])}]]},
+    {h:'Wildcard',p:'15 Sekunden extra von der gleichen Übung. Dafür +40 XP.',b:[['Ich bin dabei',()=>insertBonus(S.steps[S.i-1].ex,15,40,'BONUS-SATZ')],['Heute nicht',()=>{}]]},
+    {h:'Schatz-Splitter',p:'Du hast einen Splitter gefunden. Drei Splitter ergeben eine Bonus-Truhe.',b:[['Einsacken',()=>{st.splitter++;S.bonus.push(['Schatz-Splitter',st.splitter+'/3'])}]]},
+    {h:'Mini-Challenge',p:'10 Sekunden Unterarmstütz extra. +25 XP.',b:[['Her damit',()=>insertBonus('plank',10,25,'MINI-CHALLENGE')],['Lieber nicht',()=>{}]]},
+    {h:'Glückskeks',p:COOKIES[Math.floor(Math.random()*COOKIES.length)]+' +10 XP.',b:[['Danke',()=>{S.xp+=10;S.bonus.push(['Glückskeks','+10'])}]]},
+  ];
+  const ev=evs[Math.floor(Math.random()*evs.length)];
+  $('ov-card').innerHTML=`<span class="label">Zufallsereignis</span><h2>${ev.h}</h2><p>${ev.p}</p><div class="btns">${ev.b.map((b,i)=>`<button class="${i?'ghost':'cta'}" data-i="${i}">${b[0]}</button>`).join('')}</div>`;
+  $('ov').hidden=false;
+  $('ov-card').querySelectorAll('button').forEach(btn=>btn.onclick=()=>{ev.b[+btn.dataset.i][1]();$('ov').hidden=true;
+    if(S.i>=S.steps.length){finish();return}enterStep()});
+}
+function insertBonus(ex,d,bx,lab){S.steps.splice(S.i,0,{k:'r',d:5,lab:'BONUS GLEICH'},{k:'w',ex,d,lab,main:false,bx});S.bonus.push([lab==='BONUS-SATZ'?'Wildcard angenommen':'Mini-Challenge','+'+bx])}
+function renderTime(){
+  const s=cur(),sec=Math.max(0,Math.ceil(S.left/1000));
+  $('s-time').textContent=sec;$('s-arc').style.strokeDashoffset=565.5*(1-S.left/(s.d*1000));
+  if(S.plan.boss){const live=s.k==='w'&&s.main?(s.d*1000-S.left)/1000:0;const hp=Math.max(0,1-(S.bossDone+live)/S.bossMax);
+    $('s-bossbar').style.width=(hp*100)+'%';$('s-bosshp').textContent=Math.ceil(hp*100)+'%'}
+  if(s.k==='r'&&S.plan.mod==='blind'){const nw=nextWork();if(nw&&!nw.test){const show=sec<=3;const nm=show?EXM[nw.ex].n:'???';if($('s-name').textContent!==nm){$('s-name').textContent=nm;if(show){$('s-name').classList.remove('land');void $('s-name').offsetWidth;$('s-name').classList.add('land');renderCues(nw);showDemo(nw.ex)}}}}
+}
+function renderCues(s){
+  const c=$('s-cues');if(!s){c.hidden=true;return}c.hidden=false;const x=EXM[s.ex];
+  c.innerHTML=`<ul>${x.cue.map(t=>`<li>${t}</li>`).join('')}</ul><p class="easy">Leichter: ${x.e}</p>`;
+}
+function render(){
+  const s=cur(),m=MODS[S.plan.mod];
+  const works=S.steps.filter(x=>x.k==='w');const wi=S.steps.slice(0,S.i+1).filter(x=>x.k==='w').length;
+  $('s-prog').innerHTML=works.map((_,j)=>`<i class="${j<wi-(s.k==='w'?1:0)?'done':''} ${s.k==='w'&&j===wi-1?'cur':''}"></i>`).join('');
+  $('s-ring').classList.toggle('rest',s.k==='r');
+  const badge=$('s-badge');badge.hidden=true;
+  if(s.k==='w'){
+    $('s-phase').textContent=s.lab;$('s-sub').textContent='Sekunden';$('s-name').textContent=EXM[s.ex].n;renderCues(s);showDemo(s.ex);
+    if(s.test){badge.hidden=false;badge.textContent='Zähl mit! Immer dieselbe Variante.'}
+    else if(S.dbl&&s.main){badge.hidden=false;badge.textContent='Doppelte XP'}
+    else if(S.plan.mod==='slow'&&s.main){badge.hidden=false;badge.textContent=EXM[s.ex].h?'Statisch: extra fest anspannen':'Tempo: 4 Sek. runter, 1 Sek. hoch'}
+    else if(s.fin){badge.hidden=false;badge.textContent='Alles geben. Der Boss wankt.'}
+    else if(s.dice){badge.hidden=false;badge.textContent='Gewürfelt: '+s.dice}
+  }else{
+    const nw=nextWork();$('s-phase').textContent=s.lab;$('s-sub').textContent='Pause';
+    if(S.plan.mod==='blind'&&nw&&!nw.test){ $('s-name').textContent='???';$('s-cues').hidden=false;$('s-cues').innerHTML='<p class="easy">Blindflug. Die nächste Übung erscheint 3 Sekunden vor dem Start.</p>';demoUnknown() }
+    else if(['wheel','dice'].includes(S.plan.mod)&&nw&&nw.main&&S.revealed[S.i]==='rolling'){ $('s-cues').hidden=true;demoUnknown() }
+    else{ $('s-name').textContent=nw?'Gleich: '+EXM[nw.ex].n:'';renderCues(nw);if(nw)showDemo(nw.ex);
+      if(nw&&nw.test){badge.hidden=false;badge.textContent='Tagestest: so viele wie möglich in 30 Sekunden'}
+      else if(nw&&nw.dice){badge.hidden=false;badge.textContent=`Würfel: ${nw.dice} → ${nw.d} Sekunden`} }
+  }
+  renderTime();
+}
+$('s-pause').onclick=()=>{if(!S)return;if(S.run){S.run=false;S.left=S.end-Date.now();$('s-pause').textContent='Weiter'}else{S.run=true;S.end=Date.now()+S.left;$('s-pause').textContent='Pause'}};
+$('s-skip').onclick=()=>{if(S)advance(false)};
+$('s-quit').onclick=()=>{
+  if(!S)return;S.run=false;
+  $('ov-card').innerHTML=`<span class="label">Quest abbrechen?</span><h2>Wirklich aufhören?</h2><p>Der Fortschritt von heute geht verloren. Die Kiste bleibt offen, du kannst neu starten.</p><div class="btns"><button class="cta" id="q-no">Weitermachen</button><button class="ghost" id="q-yes">Abbrechen</button></div>`;
+  $('ov').hidden=false;
+  $('q-no').onclick=()=>{$('ov').hidden=true;S.run=true;S.end=Date.now()+S.left};
+  $('q-yes').onclick=()=>{$('ov').hidden=true;clearInterval(timer);S=null;release();renderHome();show('home')};
+};
+
+/* ---------- Abschluss & Beute ---------- */
+function rollLoot(k){
+  const lucky=luckyDay(k);let w=lucky?{c:44,r:34,e:16,l:6}:{c:62,r:26,e:9,l:3};
+  let x=Math.random()*100,r='c';for(const t of ['l','e','r','c']){const acc=['l','e','r','c'].slice(0,['l','e','r','c'].indexOf(t)+1).reduce((a,q)=>a+w[q],0);if(x<acc){r=t;break}}
+  if(st.sinceLeg>=20)r='l';else if(st.sinceEpic>=6&&(r==='c'||r==='r'))r='e';
+  st.sinceEpic=(r==='e'||r==='l')?0:st.sinceEpic+1;st.sinceLeg=r==='l'?0:st.sinceLeg+1;
+  const pool=RELICS.filter(q=>q.r===r),rel=pool[Math.floor(Math.random()*pool.length)];
+  const lvl=(st.relics[rel.id]||0)+1;st.relics[rel.id]=lvl;
+  const extra=[];const y=Math.random();
+  if(y<.2&&st.shields<3){st.shields++;extra.push('Serien-Schild +1')}else if(y<.35){st.potion=true;extra.push('XP-Trank für morgen (1,5× XP)')}
+  return{id:rel.id,r,lvl,extra,lucky};
+}
+function finish(){
+  clearInterval(timer);release();
+  const k=S.k,ss=streakState(k);let note='';
+  if(ss.gap===null||ss.gap===0){st.streak=Math.max(1,st.streak)}
+  else if(ss.gap===1){st.streak++}
+  else if(ss.saved){st.shields-=ss.missed;st.streak++;note=`Ein Serien-Schild hat deine Serie gerettet.`}
+  else{st.streak=1}
+  const comeback=!!ss.broken;st.best=Math.max(st.best,st.streak);
+  const lines=[[`Runden geschafft (${S.done})`,'+'+S.xp],['Quest-Abschluss','+60']];
+  S.bonus.forEach(b=>lines.push(b));
+  let early=0;const fa=st.alarm.firedAt;
+  if(fa&&S.started>=fa&&S.started-fa<=20*60e3){early=30;lines.push(['Pünktlich aufgestanden','+30'])}
+  if(fa)st.alarm.firedAt=0;
+  let base=S.xp+60+early,mult=1+Math.min(st.streak,10)*.05;
+  lines.push([`Serien-Bonus (${st.streak} ${st.streak===1?'Tag':'Tage'})`,'×'+mult.toFixed(2).replace('.',',')]);
+  if(comeback){mult*=1.5;lines.push(['Comeback-Bonus','×1,5'])}
+  if(st.potion){mult*=1.5;lines.push(['XP-Trank','×1,5']);st.potion=false}
+  const total=Math.round(base*mult);
+  const before={lvl:st.level,xp:st.xp};
+  st.xp+=total;let ups=0;while(st.xp>=need(st.level)){st.xp-=need(st.level);st.level++;ups++}
+  st.done[k]=true;st.lastDone=k;st.total++;
+  const chests=[rollLoot(k)];
+  if(st.splitter>=3){st.splitter-=3;chests.push(rollLoot(k))}
+  const summary={k,mod:S.plan.mod,boss:S.plan.boss,lines,total,before,ups,note,chests,opened:0};
+  st.pending={summary};save();S=null;
+  renderResults(summary);show('res');confetti(140);arp([523,659,784,1047,1319],.09);buzz([80,60,160]);
+}
+function renderResults(sm){
+  const m=MODS[sm.mod];setAccent(m.col);
+  $('r-mod').textContent=m.n;$('r-head').textContent=sm.boss?sm.boss+' besiegt':'Quest geschafft';
+  $('r-sub').textContent=sm.note||`Tag ${st.total} deiner Morgen-Quest.`;
+  $('r-ledger').innerHTML=sm.lines.map(l=>`<div><span>${l[0]}</span><b>${l[1]}</b></div>`).join('')+`<div><span>Gesamt</span><b id="r-total">+0 XP</b></div>`;
+  let n=0;const tgt=sm.total,iv=setInterval(()=>{n=Math.min(tgt,n+Math.ceil(tgt/30));$('r-total').textContent='+'+n+' XP';if(n%3===0)tone(900+n,.03,'square',.04);if(n>=tgt)clearInterval(iv)},35);
+  $('r-title').textContent='Level '+st.level+' · '+title(st.level);$('r-xp').textContent=`${st.xp} / ${need(st.level)} XP`;
+  $('r-xpbar').style.width='0';requestAnimationFrame(()=>requestAnimationFrame(()=>$('r-xpbar').style.width=(st.xp/need(st.level)*100)+'%'));
+  $('r-lvup').hidden=!sm.ups;if(sm.ups)$('r-lvup').textContent=`Level up! Jetzt Level ${st.level}`;
+  $('r-teaser').innerHTML=teaserHTML(addDays(sm.k,1));
+  renderChest(sm);
+}
+function renderChest(sm){
+  const box=$('r-chest');
+  if(sm.opened>=sm.chests.length){
+    box.innerHTML=sm.chests.map(c=>relicHTML(c,false)).join('');$('r-home').hidden=false;return;
+  }
+  $('r-home').hidden=true;
+  const isBonus=sm.opened>0;let t=0;
+  box.innerHTML=`<span class="label">${isBonus?'Bonus-Truhe aus 3 Splittern':'Deine Truhe'}${sm.chests[sm.opened].lucky?' · Glückstag':''}</span>
+    <button class="box" id="chest" aria-label="Truhe öffnen"><div class="body"></div><div class="lid"></div><div class="rib"></div><div class="q">?</div></button>
+    <div class="taps"><i></i><i></i><i></i></div><p style="color:var(--muted)">Dreimal tippen zum Öffnen.</p>`;
+  $('chest').onclick=()=>{
+    const b=$('chest');t++;tone(250+t*180,.15,'square',.12);buzz(40*t);
+    b.classList.remove('shake');void b.offsetWidth;b.classList.add('shake','c'+Math.min(t,2));
+    box.querySelectorAll('.taps i').forEach((d,i)=>d.classList.toggle('on',i<t));
+    if(t<3)return;b.onclick=null;b.classList.add('open');
+    const c=sm.chests[sm.opened];
+    setTimeout(()=>{
+      const col={c:'#b8b0d4',r:'#4ea8ff',e:'#b46bff',l:'#ffc23d'}[c.r];
+      flash(col);confetti(c.r==='l'?260:c.r==='e'?180:c.r==='r'?110:60,[col,'#fff']);
+      ({c:()=>arp([523,659]),r:()=>arp([523,659,784]),e:()=>arp([523,659,784,1047,1319],.07),l:()=>{arp([392,523,659,784,1047,1319,1568],.07);setTimeout(()=>arp([1047,1319,1568],.1),600)}})[c.r]();
+      buzz(c.r==='l'?[100,50,100,50,300]:c.r==='e'?[80,40,200]:[80]);
+      box.innerHTML=relicHTML(c,true)+(sm.chests.length>sm.opened+1?'<button class="cta" id="next-chest">Bonus-Truhe öffnen</button>':'');
+      sm.opened++;
+      if(sm.opened>=sm.chests.length){st.pending=null;$('r-home').hidden=false}else{st.pending={summary:sm}}
+      save();
+      const nc=$('next-chest');if(nc)nc.onclick=()=>renderChest(sm);
+    },350);
+  };
+}
+function relicHTML(c,anim){
+  const rel=RELICS.find(q=>q.id===c.id),R=RAR[c.r];
+  const ini=rel.n.replace(/^(Das|Der|Die)\s/,'').split(/[\s-]/).filter(Boolean).slice(0,2).map(w=>w[0]).join('').toUpperCase();
+  return `<div class="relic ${anim?'reveal':''}" style="--rc:${R.col}"><div class="glyph">${ini}</div><span class="rar">${R.n}</span><h3>${rel.n}</h3>
+   <p style="color:var(--muted)">${c.lvl===1?'Neu in deiner Sammlung':'Doppelt gefunden: Relikt steigt auf Stufe '+c.lvl}</p>
+   ${c.extra.map(e=>`<span class="chip">${e}</span>`).join('')}</div>`;
+}
+$('r-home').onclick=()=>{renderHome();show('home')};
+
+/* ---------- Sammlung ---------- */
+function renderCol(){
+  const o=owned();$('c-sum').textContent=`${o} von ${RELICS.length} Relikten gefunden. Doppelte Funde lassen ein Relikt aufsteigen.`;
+  $('c-grid').innerHTML=RELICS.map(r=>{const lv=st.relics[r.id],R=RAR[r.r];
+    const ini=r.n.replace(/^(Das|Der|Die)\s/,'').split(/[\s-]/).filter(Boolean).slice(0,2).map(w=>w[0]).join('').toUpperCase();
+    return`<div class="cell ${lv?'has':'miss'}" style="--rc:${R.col}"><div class="glyph">${lv?ini:'?'}</div><span class="nm">${lv?r.n:'Unbekannt'}</span><span class="st" style="color:${R.col}">${lv?'★'.repeat(Math.min(lv,5)):R.n}</span></div>`}).join('');
+}
+$('b-col').onclick=()=>{renderCol();show('col')};
+$('c-back').onclick=()=>show('home');
+$('b-sound').onclick=()=>{st.sound=!st.sound;save();$('b-sound').textContent='Ton: '+(st.sound?'an':'aus');if(st.sound)tone(880)};
+$('b-sound').textContent='Ton: '+(st.sound?'an':'aus');
+$('b-next').onclick=()=>{st.dayOffset++;save();renderHome()};
+let resetArm=false;
+$('b-reset').onclick=()=>{if(!resetArm){resetArm=true;$('b-reset').textContent='Sicher? Nochmal tippen';setTimeout(()=>{resetArm=false;$('b-reset').textContent='Alles zurücksetzen'},3000);return}
+  st=FRESH();save();resetArm=false;$('b-reset').textContent='Alles zurücksetzen';renderHome()};
+setInterval(()=>{
+  document.querySelectorAll('[data-count]').forEach(e=>e.textContent=countdown());
+  alarmCheck();
+  if(nightOn)$('n-clock').textContent=hhmm(new Date());
+  if(ringing)$('a-clock').textContent=hhmm(new Date());
+},1000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&S&&!wake)keepAwake()});
+
+/* ---------- Vormach-Figur ----------
+   Winkel in Grad: 0 = nach unten, 90 = nach vorn (Blickrichtung), 180 = nach oben, -90 = nach hinten.
+   t = Rumpf (Hüfte→Schulter), a/b = Arm nah/fern [Oberarm, Unterarm], c/d = Bein nah/fern [Oberschenkel, Schienbein].
+   Die Figur wird automatisch auf den Boden gestellt (tiefster Punkt = Boden). */
+const LEN={T:42,UA:20,FA:19,TH:25,SH:25,N:5,HR:8,FT:7};
+function P(o){return Object.assign({t:180,a:[6,4],b:[-6,-4],c:[0,0],d:[0,0],x:0,lift:0,k:0,hd:0,toe:0,toe2:0},o)}
+const V=(p,o)=>Object.assign({},p,o);
+const ST=P({}),STF=P({a:[12,8],b:[-12,-8],c:[6,6],d:[-6,-6]});
+const PL=P({t:115,a:[0,0],b:[0,0],c:[-65,-65],d:[-65,-65]});
+const PLD=P({t:98,x:4,a:[-100,40],b:[-100,40],c:[-82,-82],d:[-82,-82]});
+const QUAD=P({t:110,a:[0,0],b:[0,0],c:[0,-90],d:[0,-90]});
+const SQ=P({t:145,a:[90,90],b:[90,90],c:[90,-12],d:[90,-12]});
+const JMP=P({a:[170,175],b:[170,175],lift:14,toe:-50,toe2:-50});
+const BE=P({t:93,a:[0,0],b:[0,0],c:[0,-75],d:[0,-75]});
+const HIP=P({a:[25,-20],b:[-25,20],c:[8,8],d:[-8,-8]});
+const MOVES={
+ armk:{fr:[P({a:[0,0],b:[0,0]}),P({a:[90,90],b:[90,90]}),P({a:[180,180],b:[180,180]}),P({a:[270,270],b:[270,270]}),P({a:[360,360],b:[360,360]})]},
+ hamp:{f:1,fr:[STF,P({a:[165,175],b:[-165,-175],c:[22,22],d:[-22,-22],lift:5}),STF]},
+ hueft:{f:1,fr:[HIP,V(HIP,{x:5,t:188,c:[2,2],d:[-14,-14]}),HIP,V(HIP,{x:-5,t:172,c:[14,14],d:[-2,-2]}),HIP]},
+ katz:{fr:[QUAD,V(QUAD,{k:-9,hd:-50}),QUAD,V(QUAD,{k:7,hd:35}),QUAD]},
+ wgs:{fr:[ST,P({t:112,a:[10,10],b:[15,15],c:[90,0],d:[-20,-85]}),P({t:112,a:[10,10],b:[175,180],c:[90,0],d:[-20,-85]}),P({t:112,a:[10,10],b:[15,15],c:[90,0],d:[-20,-85]}),ST]},
+ inch:{fr:[ST,P({t:40,a:[63,63],b:[63,63]}),V(PL,{x:45}),P({t:40,a:[63,63],b:[63,63]}),ST]},
+ march:{fr:[ST,P({c:[85,0],a:[-35,-20],b:[50,90]}),ST,P({d:[85,0],b:[-35,-20],a:[50,90]}),ST]},
+ push:{fr:[PL,PLD,PL]},
+ diam:{fr:[PL,V(PLD,{a:[-95,35],b:[-95,35]}),PL]},
+ pike:{fr:[P({t:55,a:[50,50],b:[50,50],c:[-35,-35],d:[-35,-35]}),P({t:72,a:[-20,50],b:[-20,50],c:[-35,-35],d:[-35,-35]}),P({t:55,a:[50,50],b:[50,50],c:[-35,-35],d:[-35,-35]})]},
+ stap:{fr:[PL,V(PL,{a:[20,-160]}),PL,V(PL,{b:[20,-160]}),PL]},
+ dips:{prop:'benchHand',fr:[P({t:176,a:[-20,-20],b:[-20,-20],c:[80,-5],d:[80,-5]}),P({t:176,x:10,a:[-80,-10],b:[-80,-10],c:[110,10],d:[110,10]}),P({t:176,a:[-20,-20],b:[-20,-20],c:[80,-5],d:[80,-5]})]},
+ tpush:{fr:[PL,PLD,PL,V(PL,{b:[175,180]}),PL]},
+ squat:{fr:[ST,SQ,ST]},
+ lunge:{fr:[ST,P({c:[90,0],d:[-15,-85]}),ST,P({d:[90,0],c:[-15,-85]}),ST]},
+ sumo:{f:1,fr:[P({a:[30,-150],b:[-30,150],c:[28,28],d:[-28,-28]}),P({a:[30,-150],b:[-30,150],c:[75,15],d:[-75,-15]}),P({a:[30,-150],b:[-30,150],c:[28,28],d:[-28,-28]})]},
+ wall:{prop:'wall',fr:[ST,P({a:[90,90],b:[90,90],c:[90,0],d:[90,0]}),P({a:[90,90],b:[90,90],c:[90,0],d:[90,0]})]},
+ bridge:{fr:[P({t:-90,a:[90,90],b:[90,90],c:[135,30],d:[135,30]}),P({t:-70,a:[85,85],b:[85,85],c:[110,5],d:[110,5]}),P({t:-90,a:[90,90],b:[90,90],c:[135,30],d:[135,30]})]},
+ sqj:{fr:[ST,SQ,JMP,SQ,ST]},
+ calf:{fr:[ST,P({toe:-55,toe2:-55}),ST]},
+ bulg:{prop:'benchFoot',fr:[P({t:178,c:[25,-5],d:[-30,-115]}),P({t:170,c:[80,0],d:[-35,-150]}),P({t:178,c:[25,-5],d:[-30,-115]})]},
+ plank:{fr:[P({t:92,a:[40,90],b:[40,90],c:[-88,-88],d:[-88,-88]}),P({t:103,a:[0,90],b:[0,90],c:[-77,-77],d:[-77,-77]}),P({t:103,a:[0,90],b:[0,90],c:[-77,-77],d:[-77,-77]})]},
+ side:{fr:[P({t:92,a:[90,90],b:[40,90],c:[-88,-88],d:[-88,-88]}),P({t:103,a:[175,175],b:[0,90],c:[-77,-77],d:[-77,-77]}),P({t:103,a:[175,175],b:[0,90],c:[-77,-77],d:[-77,-77]})]},
+ mc:{fr:[PL,V(PL,{c:[70,-80]}),PL,V(PL,{d:[70,-80]}),PL]},
+ dbug:{fr:(()=>{const b=P({t:-90,a:[180,180],b:[180,180],c:[180,90],d:[180,90]});return[b,V(b,{a:[-100,-100],d:[95,95]}),b,V(b,{b:[-100,-100],c:[95,95]}),b]})()},
+ hollow:{fr:[P({t:-90,a:[90,90],b:[90,90],c:[90,90],d:[90,90]}),P({t:-102,a:[-110,-110],b:[-110,-110],c:[100,100],d:[100,100]}),P({t:-102,a:[-110,-110],b:[-110,-110],c:[100,100],d:[100,100]})]},
+ bike:{fr:(()=>{const b=P({t:-108,a:[160,-100],b:[160,-100],c:[150,80],d:[100,100]});return[b,V(b,{c:[100,100],d:[150,80]}),b]})()},
+ super:{fr:[P({t:90,a:[90,90],b:[90,90],c:[-90,-90],d:[-90,-90]}),P({t:102,a:[103,103],b:[103,103],c:[-100,-100],d:[-100,-100]}),P({t:102,a:[103,103],b:[103,103],c:[-100,-100],d:[-100,-100]}),P({t:90,a:[90,90],b:[90,90],c:[-90,-90],d:[-90,-90]})]},
+ bear:{fr:[QUAD,BE,BE]},
+ burpee:{fr:[ST,P({t:125,a:[5,5],b:[5,5],c:[100,-40],d:[100,-40]}),PL,P({t:125,a:[5,5],b:[5,5],c:[100,-40],d:[100,-40]}),JMP,ST]},
+ skate:{f:1,fr:[STF,P({x:18,lift:4,t:172,a:[-50,-40],b:[-60,-40],c:[10,15],d:[25,40]}),P({x:-18,lift:4,t:188,a:[50,40],b:[60,40],c:[-25,-40],d:[-10,-15]}),STF]},
+ box:{fr:(()=>{const g=P({t:178,a:[35,165],b:[45,170],c:[12,12],d:[-12,-12]});return[g,V(g,{a:[92,92]}),g,V(g,{b:[92,92]}),g]})()},
+ knees:{fr:[ST,P({c:[95,0],a:[-40,-30],b:[60,100],lift:3,toe2:-40}),P({d:[95,0],b:[-40,-30],a:[60,100],lift:3,toe:-40}),P({c:[95,0],a:[-40,-30],b:[60,100],lift:3,toe2:-40}),ST]},
+ crawl:{fr:[BE,V(BE,{x:5,a:[20,15],d:[20,-70]}),V(BE,{x:10,b:[20,15],c:[20,-70]}),V(BE,{x:15})]},
+ crab:{fr:[P({t:-115,a:[-10,-10],b:[-10,-10],c:[100,0],d:[100,0]}),P({t:-115,x:8,a:[-10,-10],b:[0,0],c:[110,5],d:[100,0]}),P({t:-115,x:16,a:[-10,-10],b:[-10,-10],c:[100,0],d:[100,0]})]},
+ frog:{fr:[ST,P({t:130,a:[15,15],b:[15,15],c:[115,-35],d:[115,-35]}),P({x:28,lift:18,t:150,a:[150,150],b:[150,150],c:[-15,-15],d:[-15,-15],toe:-40,toe2:-40}),P({x:50,t:130,a:[15,15],b:[15,15],c:[115,-35],d:[115,-35]})]},
+};
+function dv(a){const r=a*Math.PI/180;return[Math.sin(r),Math.cos(r)]}
+function mvp(p,a,l){const d=dv(a);return[p[0]+d[0]*l,p[1]+d[1]*l]}
+function fk(p,front){
+  const H=[0,0],S=mvp(H,p.t,LEN.T),td=dv(p.t);
+  const C=[(H[0]+S[0])/2-td[1]*p.k,(H[1]+S[1])/2+td[0]*p.k],Hd=mvp(S,p.t+p.hd,LEN.N+LEN.HR);
+  const arm=q=>{const e=mvp(S,q[0],LEN.UA);return[e,mvp(e,q[1],LEN.FA)]};
+  const leg=(q,toe)=>{const kn=mvp(H,q[0],LEN.TH),an=mvp(kn,q[1],LEN.SH);return[kn,an,front?an:mvp(an,q[1]+90+toe,LEN.FT)]};
+  const A=arm(p.a),B=arm(p.b),Cl=leg(p.c,p.toe),D=leg(p.d,p.toe2);
+  let low=Hd[1]+LEN.HR;for(const q of[H,S,...A,...B,...Cl,...D])low=Math.max(low,q[1]);
+  const dx=p.x,dy=-low-p.lift,T=q=>[q[0]+dx,q[1]+dy];
+  return{H:T(H),S:T(S),C:T(C),Hd:T(Hd),A:A.map(T),B:B.map(T),Cl:Cl.map(T),D:D.map(T)};
+}
+function lerpPose(p,q,u){const o={};for(const k in p)o[k]=Array.isArray(p[k])?p[k].map((v,i)=>v+(q[k][i]-v)*u):p[k]+(q[k]-p[k])*u;return o}
+function propOf(mv){
+  if(!mv.prop)return null;
+  if(mv.prop==='wall'){const g=fk(mv.fr[mv.fr.length-1],mv.f);const x=Math.min(g.H[0],g.S[0])-4;return{x:x-7,y:g.Hd[1]-24,w:7,h:-(g.Hd[1]-24)}}
+  const g=fk(mv.fr[0],mv.f);
+  if(mv.prop==='benchHand'){const h=g.A[1];return{x:h[0]-22,y:h[1]+3,w:28,h:-(h[1]+3)}}
+  const an=g.D[1],top=Math.max(an[1],g.D[2][1])+3;return{x:an[0]-22,y:top,w:30,h:-top};
+}
+const FW=240,GY=140;
+function fitMove(mv){
+  let x0=1e9,x1=-1e9,y0=0;
+  const poses=[];mv.fr.forEach((f,i)=>{poses.push(f);if(i)poses.push(lerpPose(mv.fr[i-1],f,.5))});
+  poses.forEach(p=>{const g=fk(p,mv.f);const pts=[g.H,g.S,...g.A,...g.B,...g.Cl,...g.D];
+    pts.forEach(q=>{x0=Math.min(x0,q[0]);x1=Math.max(x1,q[0]);y0=Math.min(y0,q[1])});
+    x0=Math.min(x0,g.Hd[0]-LEN.HR);x1=Math.max(x1,g.Hd[0]+LEN.HR);y0=Math.min(y0,g.Hd[1]-LEN.HR)});
+  const pr=propOf(mv);if(pr){x0=Math.min(x0,pr.x);x1=Math.max(x1,pr.x+pr.w);y0=Math.min(y0,pr.y)}
+  const s=Math.min(1.3,(FW-28)/(x1-x0),(GY-16)/(-y0));
+  return{s,ox:FW/2-(x0+x1)/2*s,pr};
+}
+function figColors(){const cs=getComputedStyle(document.documentElement),g=n=>cs.getPropertyValue(n).trim();
+  return{fg:g('--text'),far:g('--muted'),line:g('--line'),prop:g('--panel2'),acc:g('--accent'),bg:g('--panel')}}
+function figCtx(){const c=$('s-fig'),x=c.getContext('2d');x.setTransform(c.width/FW,0,0,c.width/FW,0,0);return x}
+function drawPose(ctx,mv,pose,fi,col){
+  ctx.clearRect(0,0,FW,200);
+  const s=fi.s,M=q=>[fi.ox+q[0]*s,GY+q[1]*s];
+  ctx.strokeStyle=col.line;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(12,GY+1);ctx.lineTo(FW-12,GY+1);ctx.stroke();
+  if(fi.pr){const a=M([fi.pr.x,fi.pr.y]);ctx.fillStyle=col.prop;ctx.fillRect(a[0],a[1],fi.pr.w*s,fi.pr.h*s)}
+  const g=fk(pose,mv.f);ctx.lineCap='round';ctx.lineJoin='round';ctx.lineWidth=Math.max(3.5,5.2*s);
+  const line=(pts,c)=>{ctx.strokeStyle=c;ctx.beginPath();pts.map(M).forEach((q,i)=>i?ctx.lineTo(q[0],q[1]):ctx.moveTo(q[0],q[1]));ctx.stroke()};
+  const farC=mv.f?col.fg:col.far;
+  line([g.H,...g.D],farC);line([g.S,...g.B],farC);
+  const h=M(g.H),c=M(g.C),sh=M(g.S);ctx.strokeStyle=col.fg;ctx.beginPath();ctx.moveTo(h[0],h[1]);ctx.quadraticCurveTo(c[0],c[1],sh[0],sh[1]);ctx.stroke();
+  const hd=M(g.Hd);ctx.beginPath();ctx.arc(hd[0],hd[1],LEN.HR*s,0,7);ctx.fillStyle=col.acc;ctx.fill();
+  line([g.H,...g.Cl],col.fg);line([g.S,...g.A],col.fg);
+}
+let anim=0,demoCur=null;
+const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function playMove(id,animate){
+  cancelAnimationFrame(anim);const mv=MOVES[id];if(!mv){drawQ();return}
+  const fi=fitMove(mv),col=figColors(),ctx=figCtx(),fr=mv.fr,seg=620,total=(fr.length-1)*seg;
+  if(!animate||reduceMotion){drawPose(ctx,mv,fr[animate?1:fr.length-1],fi,col);return}
+  const ease=u=>u<.5?2*u*u:1-Math.pow(-2*u+2,2)/2,t0=performance.now();
+  const step=now=>{const e=Math.min(total,now-t0),i=Math.min(fr.length-2,Math.floor(e/seg));
+    drawPose(ctx,mv,lerpPose(fr[i],fr[i+1],ease(Math.min(1,(e-i*seg)/seg))),fi,col);if(e<total)anim=requestAnimationFrame(step)};
+  anim=requestAnimationFrame(step);
+}
+function drawQ(){const ctx=figCtx(),col=figColors();ctx.clearRect(0,0,FW,200);ctx.strokeStyle=col.line;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(12,GY+1);ctx.lineTo(FW-12,GY+1);ctx.stroke();
+  ctx.fillStyle=col.far;ctx.font='56px Bungee, Impact, sans-serif';ctx.textAlign='center';ctx.fillText('?',FW/2,GY-34)}
+// Jede Übung wird pro Quest einmal vorgemacht; danach steht das Standbild, "Nochmal zeigen" spielt sie erneut.
+function showDemo(id){if(demoCur===id)return;demoCur=id;const first=!S.shown.has(id);S.shown.add(id);playMove(id,first)}
+function demoUnknown(){if(demoCur==='?')return;demoCur='?';cancelAnimationFrame(anim);drawQ()}
+$('s-replay').onclick=()=>{if(demoCur&&demoCur!=='?')playMove(demoCur,true)};
+
+/* ---------- Tagestest ---------- */
+const fmt1=v=>v==null?'–':(Math.round(v*10)/10).toString().replace('.',',');
+function bestBench(except){let b=null;for(const[k,v]of Object.entries(st.bench))if(k!==except&&(b===null||v>b))b=v;return b}
+function lastBench(before){let lk=null;for(const k of Object.keys(st.bench))if(k<before&&(!lk||k>lk))lk=k;return lk?st.bench[lk]:null}
+function weekAvg(mon){const vs=[];for(let i=0;i<7;i++){const v=st.bench[addDays(mon,i)];if(v!=null)vs.push(v)}return vs.length?vs.reduce((a,b)=>a+b,0)/vs.length:null}
+function showBenchInput(){
+  const k=S.k,prev=lastBench(k),best=bestBench(k);let v=prev??10;
+  tone(660,.12,'triangle');buzz(60);
+  const card=$('ov-card');
+  card.innerHTML=`<span class="label">Tagestest</span><h2>Wie viele Liegestütze?</h2>
+    <div class="stepper"><button id="bn-m" aria-label="Eins weniger">−</button><span class="num mono" id="bn-v">${v}</span><button id="bn-p" aria-label="Eins mehr">+</button></div>
+    <p style="color:var(--muted)">${prev==null?'Dein erster Wert. Ab jetzt misst du dich an dir selbst.':`Letztes Mal: ${prev} · Rekord: ${best}`}</p>
+    <div class="btns"><button class="cta" id="bn-ok">Eintragen</button><button class="ghost" id="bn-skip">Nicht gezählt</button></div>`;
+  $('ov').hidden=false;
+  const set=n=>{v=Math.max(0,Math.min(150,n));$('bn-v').textContent=v;tone(500+v*8,.04,'square',.06)};
+  $('bn-m').onclick=()=>set(v-1);$('bn-p').onclick=()=>set(v+1);
+  $('bn-skip').onclick=resumeAfterOverlay;
+  $('bn-ok').onclick=()=>{
+    st.bench[k]=v;save();
+    const rec=best!=null&&v>best;
+    if(rec){S.xp+=25;S.bonus.push(['Rekord im Tagestest','+25']);confetti(120);arp([523,659,784,1047],.07);buzz([80,40,160])}
+    const diff=prev==null?'':v>prev?`${v-prev} mehr als letztes Mal.`:v<prev?`${prev-v} weniger als letztes Mal. Kommt vor.`:'Genau wie letztes Mal.';
+    card.innerHTML=`<span class="label">Tagestest</span><h2>${rec?'Neuer Rekord!':'Eingetragen'}</h2>
+      <div class="stepper"><span class="num mono">${v}</span></div>
+      <p>${rec?`Vorher ${best}. +25 XP.`:diff||'Erster Wert gespeichert.'}</p>
+      <div class="btns"><button class="cta" id="bn-go">Weiter zur Quest</button></div>`;
+    $('bn-go').onclick=resumeAfterOverlay;
+  };
+}
+function resumeAfterOverlay(){$('ov').hidden=true;if(S.i>=S.steps.length){finish();return}enterStep()}
+function renderBench(k){
+  const el=$('bench'),wd=(new Date(Date.parse(k)).getUTCDay()+6)%7,mon=addDays(k,-wd);
+  const head=`<div><span class="label">Tagestest · jeden Tag gleich</span><h3>Liegestütze in 30 Sekunden</h3></div>`;
+  if(!Object.keys(st.bench).length){
+    el.innerHTML=head+`<p style="color:var(--muted)">Noch kein Wert. Der Test kommt in jeder Quest direkt nach dem Aufwärmen. Mach immer dieselbe Variante, normal oder auf den Knien, sonst ist der Vergleich wertlos.</p>`;return}
+  const days=['Mo','Di','Mi','Do','Fr','Sa','So'],vals=days.map((_,i)=>st.bench[addDays(mon,i)]);
+  const best=bestBench(null),now=weekAvg(mon),prev=weekAvg(addDays(mon,-7));
+  const max=Math.max(best||0,...vals.filter(v=>v!=null),5)*1.18,base=100,hh=78,slot=300/7;
+  const y=v=>base-v/max*hh;
+  let svg=`<svg viewBox="0 0 300 124" role="img" aria-label="Tagestest diese Woche">`;
+  if(prev!=null)svg+=`<line class="bc-ref" x1="0" x2="300" y1="${y(prev)}" y2="${y(prev)}"/><text class="bc-reft" x="298" y="${y(prev)-4}" text-anchor="end">Ø Vorwoche ${fmt1(prev)}</text>`;
+  vals.forEach((v,i)=>{const cx=slot*i+slot/2,isNow=i===wd;
+    if(v==null)svg+=`<rect class="bc-empty" x="${cx-13}" y="${base-2}" width="26" height="2" rx="1"/>`;
+    else svg+=`<rect class="bc-bar ${isNow?'now':''}" x="${cx-13}" y="${y(v)}" width="26" height="${base-y(v)}" rx="4"/><text class="bc-val" x="${cx}" y="${y(v)-5}" text-anchor="middle">${v}</text>`;
+    svg+=`<text class="bc-day ${isNow?'now':''}" x="${cx}" y="118" text-anchor="middle">${days[i]}</text>`});
+  svg+='</svg>';
+  const tr=now!=null&&prev!=null?now-prev:null;
+  const weeks=[3,2,1,0].map(w=>{const a=weekAvg(addDays(mon,-7*w));return`<span>${w===0?'Diese Woche':w===1?'Vorwoche':'vor '+w+' Wo.'}: <b>${fmt1(a)}</b></span>`}).join('');
+  el.innerHTML=head+`<div class="stats">
+      <div class="stat"><span class="v mono">${best}</span><span class="k">Rekord</span></div>
+      <div class="stat"><span class="v mono">${fmt1(now)}</span><span class="k">Ø diese Woche</span></div>
+      <div class="stat"><span class="v mono ${tr>0?'up':tr<0?'down':''}">${tr==null?'–':(tr>0?'+':'')+fmt1(tr)}</span><span class="k">vs. Vorwoche</span></div>
+    </div>${svg}<div class="weeks">${weeks}</div>`;
+}
+
+/* ---------- Wecker ---------- */
+const DAYN=['Mo','Di','Mi','Do','Fr','Sa','So'];
+let ringing=false,ringT=0,ringStart=0,snoozeAt=0,testAt=0,nightOn=false,wasNight=false;
+const hhmm=d=>String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
+const realKey=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+function alarmAt(d){const[h,m]=st.alarm.time.split(':').map(Number);const a=new Date(d);a.setHours(h,m,0,0);return a}
+function nextAlarmText(){
+  const A=st.alarm;if(!A.on)return'Wecker ist aus.';if(!A.days.some(Boolean))return'Kein Tag ausgewählt.';
+  const now=new Date();
+  for(let i=0;i<8;i++){const d=new Date(now);d.setDate(d.getDate()+i);const a=alarmAt(d),wd=(d.getDay()+6)%7;
+    if(A.days[wd]&&a>now&&!(i===0&&A.fired===realKey(now)))return`Klingelt ${i===0?'heute':i===1?'morgen':'am '+DAYN[wd]} um ${A.time} Uhr.`}
+  return'';
+}
+function renderAlarm(){
+  const A=st.alarm,el=$('alarmc');
+  el.innerHTML=`<div class="al-head"><div><span class="label">Wecker</span><div class="al-time"><input type="time" id="al-time" value="${A.time}" aria-label="Weckzeit"></div></div>
+      <button class="toggle ${A.on?'on':''}" id="al-on" aria-pressed="${A.on}">${A.on?'An':'Aus'}</button></div>
+    <div class="days">${DAYN.map((d,i)=>`<button class="${A.days[i]?'on':''}" data-d="${i}" aria-pressed="${!!A.days[i]}">${d}</button>`).join('')}</div>
+    <p class="al-next" id="al-next">${nextAlarmText()}</p>
+    <button class="cta" id="al-night">Nachtmodus starten</button>
+    <p class="al-note">Der Wecker klingelt nur, solange diese Seite offen ist. Starte abends den Nachtmodus und leg das Handy ans Ladekabel. Wer innerhalb von 20 Minuten nach dem Klingeln die Quest startet, bekommt +30 XP.</p>
+    <div class="tiny"><button id="al-test">Wecker testen (klingelt in 5 Sekunden)</button></div>`;
+  $('al-time').onchange=e=>{if(!e.target.value)return;A.time=e.target.value;const now=new Date();if(alarmAt(now)>now)A.fired=null;save();$('al-next').textContent=nextAlarmText()};
+  $('al-on').onclick=()=>{A.on=!A.on;save();renderAlarm()};
+  el.querySelectorAll('.days button').forEach(b=>b.onclick=()=>{const i=+b.dataset.d;A.days[i]=A.days[i]?0:1;save();renderAlarm()});
+  $('al-night').onclick=startNight;
+  $('al-test').onclick=()=>{audio(true);tone(1,.01,'sine',.001,0,true);testAt=Date.now()+5000;$('al-test').textContent='Klingelt gleich…'};
+}
+function startNight(){
+  audio(true);tone(1,.01,'sine',.001,0,true);keepAwake();nightOn=true;
+  $('n-clock').textContent=hhmm(new Date());$('n-info').textContent=st.alarm.on?nextAlarmText():'Wecker ist aus.';$('night').hidden=false;
+}
+$('n-exit').onclick=()=>{nightOn=false;$('night').hidden=true;release();renderAlarm()};
+function alarmCheck(){
+  if(ringing)return;const now=new Date(),A=st.alarm;
+  if(testAt&&+now>=testAt){testAt=0;ring(true);return}
+  if(snoozeAt&&+now>=snoozeAt){snoozeAt=0;ring(false);return}
+  if(!A.on||NATIVE)return; // in der App klingelt Android selbst
+  const dk=realKey(now),wd=(now.getDay()+6)%7;if(!A.days[wd]||A.fired===dk)return;
+  const late=now-alarmAt(now);if(late>=0&&late<60*60e3){A.fired=dk;A.snoozed=false;save();ring(false)}
+}
+function ring(test){
+  ringing=true;ringStart=Date.now();wasNight=nightOn;if(!test){st.alarm.firedAt=st.alarm.firedAt||Date.now();save()}
+  $('night').hidden=true;$('alarm').hidden=false;$('a-snooze').hidden=!test&&st.alarm.snoozed;$('a-clock').textContent=hhmm(new Date());
+  keepAwake();
+  const beat=()=>{const e=(Date.now()-ringStart)/1000,vol=Math.min(.45,.08+e/60*.37);
+    [784,988,1175,1568].forEach((f,i)=>tone(f,.16,'square',vol,i*.12,true));buzz([300,150,300])};
+  beat();ringT=setInterval(beat,1400);
+}
+function stopRing(){ringing=false;clearInterval(ringT);$('alarm').hidden=true;buzz(0)}
+$('a-up').onclick=()=>{stopRing();nightOn=false;$('night').hidden=true;renderHome();show('home');confetti(70);arp([523,659,784],.08)};
+$('a-snooze').onclick=()=>{stopRing();st.alarm.snoozed=true;save();snoozeAt=Date.now()+5*60e3;if(wasNight){nightOn=true;$('night').hidden=false;$('n-info').textContent='Schlummern bis '+hhmm(new Date(snoozeAt))+' Uhr.'}};
+
+/* ---------- Android-App (Capacitor) ----------
+   Der Wecker wird als exakte Android-Benachrichtigung für die nächsten 14 Tage geplant,
+   plus ein zweiter Weckruf 10 Minuten später. Klingelt also auch bei geschlossener App. */
+if(NATIVE){
+  const LN=plug('LocalNotifications'),APP=plug('App');
+  const FOLLOW=10*60e3;let schedTimer=0,exactOk=true;
+  async function scheduleAlarms(){
+    try{
+      const pend=await LN.getPending();
+      const old=pend.notifications.filter(n=>n.extra&&n.extra.alarm&&!n.extra.adhoc).map(n=>({id:n.id}));
+      if(old.length)await LN.cancel({notifications:old});
+      const A=st.alarm;if(!A.on)return;
+      const now=new Date(),list=[];
+      for(let i=0;i<14;i++){
+        const d=new Date(now);d.setDate(d.getDate()+i);const at=alarmAt(d),wd=(d.getDay()+6)%7;
+        if(!A.days[wd])continue;
+        const base={channelId:'wecker',smallIcon:'ic_stat_quest',iconColor:'#FFC23D',autoCancel:true};
+        if(at>now)list.push(Object.assign({id:3000+i*2,title:'Guten Morgen, Tammo',body:'Deine Mystery-Kiste wartet. Starte in 20 Minuten für +30 XP.',schedule:{at,allowWhileIdle:true},extra:{alarm:1}},base));
+        const f=new Date(+at+FOLLOW);
+        if(f>now&&A.fired!==realKey(d))list.push(Object.assign({id:3001+i*2,title:'Zweiter Weckruf',body:'Die Kiste wird ungeduldig. Aufstehen!',schedule:{at:f,allowWhileIdle:true},extra:{alarm:1}},base));
+      }
+      if(list.length){const r=await LN.schedule({notifications:list});exactOk=!(r&&r.warning)}
+    }catch(e){console.warn('Wecker planen fehlgeschlagen',e)}
+  }
+  const scheduleSoon=()=>{clearTimeout(schedTimer);schedTimer=setTimeout(scheduleAlarms,400)};
+  async function adhoc(id,ms,title,body){
+    try{await LN.schedule({notifications:[{id,title,body,channelId:'wecker',smallIcon:'ic_stat_quest',iconColor:'#FFC23D',autoCancel:true,
+      schedule:{at:new Date(Date.now()+ms),allowWhileIdle:true},extra:{alarm:1,adhoc:1}}]})}catch(e){}
+  }
+  // App nach dem Klingeln geöffnet? Dann zählt der Pünktlich-Bonus ab der Weckzeit, der zweite Weckruf entfällt.
+  function markAlarmIfRecent(){
+    const A=st.alarm,now=new Date(),dk=realKey(now),wd=(now.getDay()+6)%7,late=now-alarmAt(now);
+    if(A.on&&A.days[wd]&&late>=0&&late<=FOLLOW*2&&A.fired!==dk){A.fired=dk;A.firedAt=+alarmAt(now);save();scheduleSoon()}
+  }
+  const baseRenderAlarm=renderAlarm;
+  renderAlarm=function(){
+    baseRenderAlarm();
+    $('al-night').hidden=true;
+    document.querySelector('#alarmc .al-note').textContent='Android weckt dich, auch wenn die App geschlossen ist. Der Wecker nutzt die Lautstärke für Benachrichtigungen: Im Lautlos-Modus bleibt er stumm. Nach 10 Minuten kommt ein zweiter Weckruf. Wer innerhalb von 20 Minuten nach dem Klingeln startet, bekommt +30 XP.';
+    if(!exactOk){const b=document.createElement('button');b.className='cta';b.textContent='Exakte Weckzeit erlauben';
+      b.onclick=async()=>{try{await LN.changeExactNotificationSetting()}catch(e){}exactOk=true;scheduleAlarms().then(renderAlarm)};$('al-night').after(b)}
+    $('al-test').onclick=()=>{adhoc(3999,10000,'Wecker-Test','So klingt dein Wecker.');$('al-test').textContent='Klingelt in 10 Sekunden. Du kannst das Handy sperren.'};
+    scheduleSoon();
+  };
+  $('a-up').onclick=()=>{stopRing();renderHome();show('home');confetti(70);arp([523,659,784],.08);scheduleSoon()};
+  $('a-snooze').onclick=()=>{stopRing();st.alarm.snoozed=true;save();adhoc(3990,5*60e3,'Schlummern vorbei','Jetzt aber: Die Kiste wartet.')};
+  $('b-next').parentElement.hidden=true; // kein Vorspulen in der echten App
+  (async()=>{
+    try{
+      await LN.createChannel({id:'wecker',name:'Wecker',description:'Morgen-Quest Wecker',importance:5,visibility:1,sound:'wecker.wav',vibration:true,lights:true,lightColor:'#FFC23D'});
+      let p=await LN.checkPermissions();if(p.display!=='granted')p=await LN.requestPermissions();
+      const ex=await LN.checkExactNotificationSetting();exactOk=ex.exact_alarm==='granted';
+    }catch(e){}
+    markAlarmIfRecent();await scheduleAlarms();renderAlarm();
+    LN.addListener('localNotificationReceived',n=>{if(n.extra&&n.extra.alarm&&!ringing){st.alarm.fired=realKey(new Date());save();ring(false)}});
+    LN.addListener('localNotificationActionPerformed',a=>{if(a.notification.extra&&a.notification.extra.alarm){markAlarmIfRecent();if(ringing)stopRing();renderHome();show('home')}});
+    APP.addListener('resume',()=>{markAlarmIfRecent();if($('sess').hidden)renderHome();scheduleSoon()});
+    APP.addListener('backButton',()=>{
+      if(!$('ov').hidden||!$('alarm').hidden)return;
+      if(!$('sess').hidden){$('s-quit').click();return}
+      if(!$('home').hidden){APP.minimizeApp();return}
+      renderHome();show('home');
+    });
+  })();
+}
+
+renderHome();
+</script>
+
+</body>
+</html>
