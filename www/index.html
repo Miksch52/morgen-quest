@@ -380,7 +380,7 @@ canvas#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-in
     <div class="t"><span class="big mono" id="s-time">30</span><span class="sub" id="s-sub">Los</span></div>
   </div>
   <h2 class="exname" id="s-name">…</h2>
-  <div class="demo"><span class="label tag">So geht's</span><canvas id="s-fig" width="480" height="304"></canvas><button class="replay" id="s-replay">Nochmal zeigen</button><div class="mus" id="s-mus"></div></div>
+  <div class="demo"><span class="label tag">So geht's</span><canvas id="s-fig" width="480" height="304"></canvas><button class="replay" id="s-replay">Anhalten</button><div class="mus" id="s-mus"></div></div>
   <span class="badge" id="s-badge" hidden></span>
   <div class="cues" id="s-cues"></div>
   <div class="ctrl">
@@ -796,7 +796,7 @@ $('s-quit').onclick=()=>{
   $('ov-card').innerHTML=`<span class="label">Quest abbrechen?</span><h2>Wirklich aufhören?</h2><p>Der Fortschritt von heute geht verloren. Die Kiste bleibt offen, du kannst neu starten.</p><div class="btns"><button class="cta" id="q-no">Weitermachen</button><button class="ghost" id="q-yes">Abbrechen</button></div>`;
   $('ov').hidden=false;
   $('q-no').onclick=()=>{$('ov').hidden=true;S.run=true;S.end=Date.now()+S.left};
-  $('q-yes').onclick=()=>{$('ov').hidden=true;clearInterval(timer);S=null;release();renderHome();show('home')};
+  $('q-yes').onclick=()=>{$('ov').hidden=true;clearInterval(timer);stopDemo();S=null;release();renderHome();show('home')};
 };
 
 /* ---------- Abschluss & Beute ---------- */
@@ -812,6 +812,7 @@ function rollLoot(k){
   return{id:rel.id,r,lvl,extra,lucky};
 }
 function finish(){
+  stopDemo();
   clearInterval(timer);release();
   const k=S.k,ss=streakState(k);let note='';
   if(ss.gap===null||ss.gap===0){st.streak=Math.max(1,st.streak)}
@@ -1063,20 +1064,25 @@ function playMove(id,animate){
   cancelAnimationFrame(anim);const mv=MOVES[id];if(!mv){drawQ();return}
   const fi=fitMove(mv),col=figColors(),ctx=figCtx(),fr=mv.fr,seg=620,total=(fr.length-1)*seg;
   const mus=MUS[id];renderMus(id);
-  if(!animate||reduceMotion){drawPose(ctx,mv,fr[animate?1:fr.length-1],fi,col,mus);return}
-  const ease=u=>u<.5?2*u*u:1-Math.pow(-2*u+2,2)/2,t0=performance.now();
-  const step=now=>{const e=Math.min(total,now-t0),i=Math.min(fr.length-2,Math.floor(e/seg));
+  if(!animate||reduceMotion){drawPose(ctx,mv,fr[1],fi,col,mus);return}
+  // Endlosschleife: ein Durchgang, kurz in der Endposition halten, dann von vorn
+  const hold=700,cycle=total+hold,ease=u=>u<.5?2*u*u:1-Math.pow(-2*u+2,2)/2,t0=performance.now();
+  const step=now=>{const e=Math.min(total,Math.max(0,now-t0)%cycle), // rAF-Zeit kann vor t0 liegen
+    i=Math.min(fr.length-2,Math.floor(e/seg));
     const glow=e<total?.45+.55*Math.pow(Math.sin(Math.PI*(e%seg)/seg),2):1;
-    drawPose(ctx,mv,lerpPose(fr[i],fr[i+1],ease(Math.min(1,(e-i*seg)/seg))),fi,col,mus,glow);if(e<total)anim=requestAnimationFrame(step)};
+    drawPose(ctx,mv,lerpPose(fr[i],fr[i+1],ease(Math.min(1,(e-i*seg)/seg))),fi,col,mus,glow);anim=requestAnimationFrame(step)};
   anim=requestAnimationFrame(step);
 }
 function drawQ(){const ctx=figCtx(),col=figColors();ctx.clearRect(0,0,FW,200);ctx.strokeStyle=col.line;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(12,GY+1);ctx.lineTo(FW-12,GY+1);ctx.stroke();
   ctx.fillStyle=col.far;ctx.font='56px Bungee, Impact, sans-serif';ctx.textAlign='center';ctx.fillText('?',FW/2,GY-34);
   $('s-mus').innerHTML='<span class="key">Muskeln: Überraschung</span>'}
-// Jede Übung wird pro Quest einmal vorgemacht; danach steht das Standbild, "Nochmal zeigen" spielt sie erneut.
-function showDemo(id){if(demoCur===id)return;demoCur=id;const first=!S.shown.has(id);S.shown.add(id);playMove(id,first)}
+// Die Übung läuft in Schleife, solange sie angezeigt wird; "Anhalten" friert sie als Standbild ein.
+let demoPaused=false;
+function showDemo(id){if(demoCur===id)return;demoCur=id;playMove(id,!demoPaused)}
+function stopDemo(){cancelAnimationFrame(anim);demoCur=null}
 function demoUnknown(){if(demoCur==='?')return;demoCur='?';cancelAnimationFrame(anim);drawQ()}
-$('s-replay').onclick=()=>{if(demoCur&&demoCur!=='?')playMove(demoCur,true)};
+$('s-replay').onclick=()=>{demoPaused=!demoPaused;$('s-replay').textContent=demoPaused?'Abspielen':'Anhalten';
+  if(demoCur&&demoCur!=='?')playMove(demoCur,!demoPaused)};
 
 /* ---------- Tagestest ---------- */
 const fmt1=v=>v==null?'–':(Math.round(v*10)/10).toString().replace('.',',');
