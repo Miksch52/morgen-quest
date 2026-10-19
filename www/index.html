@@ -131,6 +131,7 @@ img{max-width:100%}
   --text:#f4effd; --muted:#a69cc6;
   --gold:#ffc23d; --coral:#ff5d73; --mint:#3de0b5;
   --accent:var(--gold);
+  --body:#8278b4; --body2:#51497c; --hot:#ff5d73; --warm:#ffb547;
   --r-common:#b8b0d4; --r-rare:#4ea8ff; --r-epic:#b46bff; --r-leg:#ffc23d;
   --f-display:"Bungee","Arial Black",Impact,sans-serif;
   --f-body:"Rubik",system-ui,-apple-system,"Segoe UI",sans-serif;
@@ -276,6 +277,12 @@ canvas#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-in
 .demo canvas{display:block;width:100%;height:auto;aspect-ratio:240/152}
 .demo .tag{position:absolute;left:12px;top:10px}
 .demo .replay{position:absolute;right:8px;top:6px;font-size:12px;font-weight:700;padding:6px 10px;border-radius:99px;background:var(--panel2)}
+.mus{display:flex;flex-wrap:wrap;gap:6px;padding:0 12px 12px}
+.mus span{font-size:12px;font-weight:700;padding:4px 9px;border-radius:99px;background:var(--panel2);display:inline-flex;align-items:center;gap:6px}
+.mus i{width:9px;height:9px;border-radius:50%;background:var(--hot);flex:none}
+.mus span.s i{background:var(--warm)}
+.mus span.puls{color:var(--hot)}
+.mus .key{background:none;color:var(--muted);font-weight:500;padding-inline:2px}
 
 /* Tagestest */
 .bench{background:var(--panel);border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:12px}
@@ -373,7 +380,7 @@ canvas#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-in
     <div class="t"><span class="big mono" id="s-time">30</span><span class="sub" id="s-sub">Los</span></div>
   </div>
   <h2 class="exname" id="s-name">…</h2>
-  <div class="demo"><span class="label tag">So geht's</span><canvas id="s-fig" width="480" height="304"></canvas><button class="replay" id="s-replay">Nochmal zeigen</button></div>
+  <div class="demo"><span class="label tag">So geht's</span><canvas id="s-fig" width="480" height="304"></canvas><button class="replay" id="s-replay">Nochmal zeigen</button><div class="mus" id="s-mus"></div></div>
   <span class="badge" id="s-badge" hidden></span>
   <div class="cues" id="s-cues"></div>
   <div class="ctrl">
@@ -957,6 +964,20 @@ const MOVES={
  crab:{fr:[P({t:-115,a:[-10,-10],b:[-10,-10],c:[100,0],d:[100,0]}),P({t:-115,x:8,a:[-10,-10],b:[0,0],c:[110,5],d:[100,0]}),P({t:-115,x:16,a:[-10,-10],b:[-10,-10],c:[100,0],d:[100,0]})]},
  frog:{fr:[ST,P({t:130,a:[15,15],b:[15,15],c:[115,-35],d:[115,-35]}),P({x:28,lift:18,t:150,a:[150,150],b:[150,150],c:[-15,-15],d:[-15,-15],toe:-40,toe2:-40}),P({x:50,t:130,a:[15,15],b:[15,15],c:[115,-35],d:[115,-35]})]},
 };
+/* Arbeitende Muskeln je Übung: [stark, hilft mit, Puls hoch?] */
+const MNAME={brust:'Brust',schulter:'Schultern',trizeps:'Trizeps',bauch:'Bauch',ruecken:'Rücken',po:'Po',beinv:'Oberschenkel vorn',beinh:'Oberschenkel hinten',waden:'Waden'};
+const MUS={
+ armk:[['schulter'],['ruecken']],hamp:[['waden','schulter'],['beinv'],1],hueft:[['bauch'],['po','ruecken']],katz:[['ruecken'],['bauch']],
+ wgs:[['po','beinh'],['ruecken','schulter']],inch:[['beinh','schulter'],['bauch']],march:[['beinv'],['bauch'],1],
+ push:[['brust','trizeps'],['schulter','bauch']],diam:[['trizeps'],['brust','schulter']],pike:[['schulter'],['trizeps','bauch']],
+ stap:[['bauch','schulter'],['trizeps']],dips:[['trizeps'],['schulter','brust']],tpush:[['brust','bauch'],['schulter','trizeps']],
+ squat:[['beinv','po'],['beinh','bauch']],lunge:[['beinv','po'],['beinh','waden']],sumo:[['po','beinv'],['beinh']],wall:[['beinv'],['po']],
+ bridge:[['po'],['beinh','ruecken']],sqj:[['beinv','po'],['waden'],1],calf:[['waden'],[]],bulg:[['beinv','po'],['beinh']],
+ plank:[['bauch'],['schulter','po']],side:[['bauch'],['schulter','po']],mc:[['bauch'],['schulter','beinv'],1],dbug:[['bauch'],[]],
+ hollow:[['bauch'],['beinv']],bike:[['bauch'],[]],super:[['ruecken','po'],['beinh','schulter']],bear:[['bauch','schulter'],['beinv']],
+ burpee:[['beinv','brust'],['schulter','bauch'],1],skate:[['po','beinv'],['waden'],1],box:[['schulter'],['bauch'],1],
+ knees:[['beinv'],['bauch'],1],crawl:[['schulter','bauch'],['beinv'],1],crab:[['trizeps','po'],['schulter']],frog:[['beinv','po'],['waden'],1],
+};
 function dv(a){const r=a*Math.PI/180;return[Math.sin(r),Math.cos(r)]}
 function mvp(p,a,l){const d=dv(a);return[p[0]+d[0]*l,p[1]+d[1]*l]}
 function fk(p,front){
@@ -985,38 +1006,73 @@ function fitMove(mv){
     pts.forEach(q=>{x0=Math.min(x0,q[0]);x1=Math.max(x1,q[0]);y0=Math.min(y0,q[1])});
     x0=Math.min(x0,g.Hd[0]-LEN.HR);x1=Math.max(x1,g.Hd[0]+LEN.HR);y0=Math.min(y0,g.Hd[1]-LEN.HR)});
   const pr=propOf(mv);if(pr){x0=Math.min(x0,pr.x);x1=Math.max(x1,pr.x+pr.w);y0=Math.min(y0,pr.y)}
-  const s=Math.min(1.3,(FW-28)/(x1-x0),(GY-16)/(-y0));
+  x0-=7;x1+=7;y0-=5;
+  const s=Math.min(1.25,(FW-28)/(x1-x0),(GY-16)/(-y0));
   return{s,ox:FW/2-(x0+x1)/2*s,pr};
 }
 function figColors(){const cs=getComputedStyle(document.documentElement),g=n=>cs.getPropertyValue(n).trim();
-  return{fg:g('--text'),far:g('--muted'),line:g('--line'),prop:g('--panel2'),acc:g('--accent'),bg:g('--panel')}}
+  return{fg:g('--text'),far:g('--muted'),line:g('--line'),prop:g('--panel2'),acc:g('--accent'),bg:g('--panel'),body:g('--body'),body2:g('--body2'),hot:g('--hot'),warm:g('--warm')}}
 function figCtx(){const c=$('s-fig'),x=c.getContext('2d');x.setTransform(c.width/FW,0,0,c.width/FW,0,0);return x}
-function drawPose(ctx,mv,pose,fi,col){
+// Figur mit Volumen; arbeitende Muskeln rot (stark) bzw. gelb (hilft mit), glow = Pulsstärke 0..1
+function drawPose(ctx,mv,pose,fi,col,mus,glow=1){
   ctx.clearRect(0,0,FW,200);
-  const s=fi.s,M=q=>[fi.ox+q[0]*s,GY+q[1]*s];
+  const s=fi.s,M=q=>[fi.ox+q[0]*s,GY+q[1]*s],front=!!mv.f;
   ctx.strokeStyle=col.line;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(12,GY+1);ctx.lineTo(FW-12,GY+1);ctx.stroke();
   if(fi.pr){const a=M([fi.pr.x,fi.pr.y]);ctx.fillStyle=col.prop;ctx.fillRect(a[0],a[1],fi.pr.w*s,fi.pr.h*s)}
-  const g=fk(pose,mv.f);ctx.lineCap='round';ctx.lineJoin='round';ctx.lineWidth=Math.max(3.5,5.2*s);
-  const line=(pts,c)=>{ctx.strokeStyle=c;ctx.beginPath();pts.map(M).forEach((q,i)=>i?ctx.lineTo(q[0],q[1]):ctx.moveTo(q[0],q[1]));ctx.stroke()};
-  const farC=mv.f?col.fg:col.far;
-  line([g.H,...g.D],farC);line([g.S,...g.B],farC);
-  const h=M(g.H),c=M(g.C),sh=M(g.S);ctx.strokeStyle=col.fg;ctx.beginPath();ctx.moveTo(h[0],h[1]);ctx.quadraticCurveTo(c[0],c[1],sh[0],sh[1]);ctx.stroke();
-  const hd=M(g.Hd);ctx.beginPath();ctx.arc(hd[0],hd[1],LEN.HR*s,0,7);ctx.fillStyle=col.acc;ctx.fill();
-  line([g.H,...g.Cl],col.fg);line([g.S,...g.A],col.fg);
+  const g=fk(pose,front);ctx.lineCap='round';ctx.lineJoin='round';
+  const P=new Set(mus?mus[0]:[]),W=new Set(mus?mus[1]:[]);
+  const mc=k=>P.has(k)?col.hot:W.has(k)?col.warm:null;
+  const seg=(a,b,w,c,al=1)=>{ctx.globalAlpha=al;ctx.strokeStyle=c;ctx.lineWidth=w*s;ctx.beginPath();const p=M(a),q=M(b);ctx.moveTo(p[0],p[1]);ctx.lineTo(q[0],q[1]);ctx.stroke();ctx.globalAlpha=1};
+  const part=(a,b,u0,u1)=>[[a[0]+(b[0]-a[0])*u0,a[1]+(b[1]-a[1])*u0],[a[0]+(b[0]-a[0])*u1,a[1]+(b[1]-a[1])*u1]];
+  const dot=(q,r,c,al)=>{const p=M(q);ctx.globalAlpha=al;ctx.fillStyle=c;ctx.beginPath();ctx.arc(p[0],p[1],r*s,0,7);ctx.fill();ctx.globalAlpha=1};
+  const limb=(root,L,arm,base,far)=>{
+    const w1=arm?8:10.5,w2=arm?6.5:8.5,al=(far?.6:1)*glow;
+    seg(root,L[0],w1,base);seg(L[0],L[1],w2,base);if(!arm&&!front)seg(L[1],L[2],4.5,base);
+    if(arm){const c=mc('trizeps');if(c)seg(...part(root,L[0],.18,.82),w1-3.4,c,al)}
+    else{const c=mc('beinv')||mc('beinh');if(c)seg(...part(root,L[0],.15,.85),w1-3.6,c,al);
+      const w=mc('waden');if(w)seg(...part(L[0],L[1],.14,.6),w2-3,w,al)}
+  };
+  const farBase=front?col.body:col.body2;
+  limb(g.H,g.D,false,farBase,!front);limb(g.S,g.B,true,farBase,!front);
+  // Rumpf als Kurve, vorne/hinten getrennt einfärbbar
+  const H=g.H,C=g.C,S=g.S,dx=S[0]-H[0],dy=S[1]-H[1],len=Math.hypot(dx,dy)||1,n=[-dy/len,dx/len];
+  const qp=u=>[(1-u)*(1-u)*H[0]+2*(1-u)*u*C[0]+u*u*S[0],(1-u)*(1-u)*H[1]+2*(1-u)*u*C[1]+u*u*S[1]];
+  const curve=(u0,u1,off,w,c,al=1)=>{ctx.globalAlpha=al;ctx.strokeStyle=c;ctx.lineWidth=w*s;ctx.beginPath();
+    for(let i=0;i<=12;i++){const p=qp(u0+(u1-u0)*i/12),m=M([p[0]+n[0]*off,p[1]+n[1]*off]);i?ctx.lineTo(m[0],m[1]):ctx.moveTo(m[0],m[1])}ctx.stroke();ctx.globalAlpha=1};
+  curve(0,1,0,15,col.body);
+  const fo=front?0:3.6;
+  if(!front&&mc('ruecken'))curve(.15,.9,-fo,6.5,mc('ruecken'),glow);
+  if(mc('bauch'))curve(.1,.5,fo,front?8:6.5,mc('bauch'),glow);
+  if(mc('brust'))curve(.6,.92,fo,front?9:6.5,mc('brust'),glow);
+  if(mc('po'))dot([H[0]-n[0]*(front?0:4),H[1]-n[1]*(front?0:4)],front?6:5.5,mc('po'),glow);
+  dot(g.Hd,LEN.HR,col.acc,1);
+  limb(g.H,g.Cl,false,col.body,false);limb(g.S,g.A,true,col.body,false);
+  if(mc('schulter'))dot(S,4.8,mc('schulter'),glow);
+  // Herz für "Puls hoch"
+  if(mus&&mus[2]){const k=.75+.25*glow,x=26,y=42;ctx.fillStyle=col.hot;ctx.globalAlpha=.5+.5*glow;ctx.beginPath();
+    ctx.moveTo(x,y+6*k);ctx.bezierCurveTo(x-11*k,y-2*k,x-5*k,y-11*k,x,y-5*k);ctx.bezierCurveTo(x+5*k,y-11*k,x+11*k,y-2*k,x,y+6*k);ctx.fill();ctx.globalAlpha=1}
+}
+function renderMus(id){
+  const m=MUS[id],el=$('s-mus');if(!m){el.innerHTML='';return}
+  el.innerHTML=m[0].map(k=>`<span><i></i>${MNAME[k]}</span>`).join('')+m[1].map(k=>`<span class="s"><i></i>${MNAME[k]}</span>`).join('')
+    +(m[2]?'<span class="puls">♥ Puls hoch</span>':'')+'<span class="key">rot: arbeitet stark · gelb: hilft mit</span>';
 }
 let anim=0,demoCur=null;
 const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
 function playMove(id,animate){
   cancelAnimationFrame(anim);const mv=MOVES[id];if(!mv){drawQ();return}
   const fi=fitMove(mv),col=figColors(),ctx=figCtx(),fr=mv.fr,seg=620,total=(fr.length-1)*seg;
-  if(!animate||reduceMotion){drawPose(ctx,mv,fr[animate?1:fr.length-1],fi,col);return}
+  const mus=MUS[id];renderMus(id);
+  if(!animate||reduceMotion){drawPose(ctx,mv,fr[animate?1:fr.length-1],fi,col,mus);return}
   const ease=u=>u<.5?2*u*u:1-Math.pow(-2*u+2,2)/2,t0=performance.now();
   const step=now=>{const e=Math.min(total,now-t0),i=Math.min(fr.length-2,Math.floor(e/seg));
-    drawPose(ctx,mv,lerpPose(fr[i],fr[i+1],ease(Math.min(1,(e-i*seg)/seg))),fi,col);if(e<total)anim=requestAnimationFrame(step)};
+    const glow=e<total?.45+.55*Math.pow(Math.sin(Math.PI*(e%seg)/seg),2):1;
+    drawPose(ctx,mv,lerpPose(fr[i],fr[i+1],ease(Math.min(1,(e-i*seg)/seg))),fi,col,mus,glow);if(e<total)anim=requestAnimationFrame(step)};
   anim=requestAnimationFrame(step);
 }
 function drawQ(){const ctx=figCtx(),col=figColors();ctx.clearRect(0,0,FW,200);ctx.strokeStyle=col.line;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(12,GY+1);ctx.lineTo(FW-12,GY+1);ctx.stroke();
-  ctx.fillStyle=col.far;ctx.font='56px Bungee, Impact, sans-serif';ctx.textAlign='center';ctx.fillText('?',FW/2,GY-34)}
+  ctx.fillStyle=col.far;ctx.font='56px Bungee, Impact, sans-serif';ctx.textAlign='center';ctx.fillText('?',FW/2,GY-34);
+  $('s-mus').innerHTML='<span class="key">Muskeln: Überraschung</span>'}
 // Jede Übung wird pro Quest einmal vorgemacht; danach steht das Standbild, "Nochmal zeigen" spielt sie erneut.
 function showDemo(id){if(demoCur===id)return;demoCur=id;const first=!S.shown.has(id);S.shown.add(id);playMove(id,first)}
 function demoUnknown(){if(demoCur==='?')return;demoCur='?';cancelAnimationFrame(anim);drawQ()}
