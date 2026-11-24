@@ -10,7 +10,7 @@
   --text:#f4effd; --muted:#a69cc6;
   --gold:#ffc23d; --coral:#ff5d73; --mint:#3de0b5;
   --accent:var(--gold);
-  --body:#8278b4; --body2:#51497c; --hot:#ff5d73; --warm:#ffb547;
+  --body:#958bc8; --body2:#5e5591; --outline:#29224a; --hot:#ff5d73; --warm:#ffb547;
   --r-common:#b8b0d4; --r-rare:#4ea8ff; --r-epic:#b46bff; --r-leg:#ffc23d;
   --f-display:"Bungee","Arial Black",Impact,sans-serif;
   --f-body:"Rubik",system-ui,-apple-system,"Segoe UI",sans-serif;
@@ -51,7 +51,7 @@ button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 .week{display:flex;gap:6px;justify-content:space-between}
 .week span{flex:1;height:30px;border-radius:8px;background:var(--panel);display:grid;place-items:center;font-size:11px;color:var(--muted);font-weight:700}
 .week span.on{background:color-mix(in srgb,var(--mint) 25%,var(--panel));color:var(--mint)}
-.week span.today{outline:2px solid var(--accent);outline-offset:-2px;color:var(--text)}
+.week span.now{outline:2px solid var(--accent);outline-offset:-2px;color:var(--text)}
 .note{font-size:14px;padding:10px 12px;border-radius:12px;background:color-mix(in srgb,var(--coral) 16%,var(--panel));color:var(--text)}
 .note.good{background:color-mix(in srgb,var(--mint) 14%,var(--panel))}
 
@@ -85,6 +85,40 @@ button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 .teaser .rumor{font-size:14px;color:var(--gold)}
 .count{font-family:var(--f-mono);font-size:14px;color:var(--muted)}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+/* Generator */
+.gen{background:var(--panel);border-radius:22px;padding:18px;display:flex;flex-direction:column;gap:14px}
+.gen h2{font-size:22px}
+.durrow{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.durv{font-family:var(--f-display);font-size:44px;line-height:1;color:var(--accent)}
+.durv small{font-family:var(--f-body);font-size:16px;color:var(--muted);font-weight:700;margin-left:6px}
+.gen input[type=range]{width:100%;accent-color:var(--accent);height:28px}
+.quick{display:flex;gap:6px;flex-wrap:wrap}
+.quick button{flex:1;min-width:48px;padding:8px 0;border-radius:10px;background:var(--panel2);font-weight:700;color:var(--muted)}
+.quick button.on{background:color-mix(in srgb,var(--accent) 28%,var(--panel2));color:var(--text)}
+.themes{display:grid;gap:8px}
+.theme{display:flex;flex-direction:column;gap:2px;text-align:left;padding:12px 14px;border-radius:14px;background:var(--panel2);border:2px solid transparent}
+.theme b{font-size:16px}
+.theme span{font-size:13px;color:var(--muted)}
+.theme.on{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,var(--panel2))}
+.chk{display:flex;gap:10px;align-items:center;font-size:14px}
+.chk input{width:20px;height:20px;accent-color:var(--accent)}
+.tip{background:var(--panel);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:6px}
+.tip p{font-size:15px}
+.linkbtn{align-self:flex-start;color:var(--accent);font-weight:700;font-size:14px;text-decoration:underline;text-underline-offset:3px;padding:2px 0}
+/* Wissen */
+.know{display:flex;flex-direction:column;gap:12px}
+.know section{background:var(--panel);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.know h2{font-size:18px}
+.know ol,.know ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px}
+.know li b{display:block}
+.know .src{font-size:12px;color:var(--muted)}
+/* Richtig/Falsch */
+.cues .ch{font-weight:800;font-size:13px;letter-spacing:.04em}
+.cues .ok{color:var(--mint)} .cues .bad{color:var(--hot)}
+.wrong{display:grid;grid-template-columns:44% 1fr;gap:10px;align-items:center;background:color-mix(in srgb,var(--hot) 10%,var(--panel2));border-radius:12px;padding:8px;margin-top:4px}
+.wrong.txt{grid-template-columns:1fr}
+.wrong canvas{width:100%;height:auto;display:block;border-radius:8px;background:var(--panel)}
+.wrong p{font-size:14px}
 .tiny{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;font-size:12px;color:var(--muted)}
 .tiny button{text-decoration:underline;text-underline-offset:3px;color:var(--muted);font-size:12px;padding:6px}
 
@@ -213,7 +247,7 @@ canvas#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-in
 <!-- BASIS -->
 <section class="screen" id="home">
   <div class="top">
-    <div class="hello"><div class="label" id="h-date"></div><h1>Guten Morgen, Tammo</h1></div>
+    <div class="hello"><div class="label" id="h-date"></div><h1 id="h-greet">Hallo Tammo</h1></div>
     <div class="lvl" id="h-lvl" aria-label="Level">1</div>
   </div>
   <div class="xpbar">
@@ -228,18 +262,27 @@ canvas#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-in
   <div class="week" id="h-week"></div>
   <div id="h-note" hidden></div>
 
-  <div class="today" id="t-card"></div>
-  <div class="teaser" id="t-teaser" hidden></div>
+  <div class="gen" id="gen">
+    <div><span class="label">Neues Workout · zu Hause, ohne Hilfsmittel</span><h2>Was soll's heute sein?</h2></div>
+    <div class="durrow"><span class="label">Dauer</span><span class="durv"><span id="g-min">10</span><small>Min</small></span></div>
+    <input type="range" id="g-range" min="1" max="30" step="1" value="10" aria-label="Dauer in Minuten">
+    <div class="quick" id="g-quick"><button data-m="3">3</button><button data-m="5">5</button><button data-m="10">10</button><button data-m="15">15</button><button data-m="20">20</button><button data-m="30">30</button></div>
+    <span class="label">Thema</span>
+    <div class="themes" id="g-themes"></div>
+    <label class="chk" id="g-testrow"><input type="checkbox" id="g-test"> Tagestest einbauen (30 Sek. Liegestütze)</label>
+    <button class="cta" id="g-go">Überraschung erstellen</button>
+  </div>
+  <div class="today" id="t-card" hidden></div>
+  <div class="tip" id="h-tip"></div>
   <div class="bench" id="bench"></div>
   <div class="alarmc" id="alarmc"></div>
 
   <div class="row2">
     <button class="ghost" id="b-col">Sammlung ansehen</button>
-    <button class="ghost" id="b-sound">Ton: an</button>
+    <button class="ghost" id="b-know">Grundlagen &amp; Tipps</button>
   </div>
   <div class="tiny">
-    <span>Testmodus:</span>
-    <button id="b-next">Einen Tag vorspulen</button>
+    <button id="b-sound">Ton: an</button>
     <button id="b-reset">Alles zurücksetzen</button>
   </div>
 </section>
@@ -269,7 +312,7 @@ canvas#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-in
 
 <!-- ERGEBNIS -->
 <section class="screen" id="res" hidden>
-  <div class="res-h"><span class="label" id="r-mod"></span><h1 id="r-head">Quest geschafft</h1><p id="r-sub" style="color:var(--muted)"></p></div>
+  <div class="res-h"><span class="label" id="r-mod"></span><h1 id="r-head">Workout geschafft</h1><p id="r-sub" style="color:var(--muted)"></p></div>
   <div class="ledger" id="r-ledger"></div>
   <div class="xpbar">
     <div class="row"><b id="r-title"></b><span class="mono" id="r-xp"></span></div>
@@ -279,6 +322,32 @@ canvas#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-in
   <div class="chest" id="r-chest"></div>
   <div class="teaser" id="r-teaser"></div>
   <button class="cta" id="r-home">Zur Basis</button>
+</section>
+
+<!-- GRUNDLAGEN -->
+<section class="screen know" id="know" hidden>
+  <button class="ghost back" id="k-back">Zurück</button>
+  <div><span class="label">Grundlagen</span><h1 style="font-size:26px">Besser trainieren</h1></div>
+  <section>
+    <h2>Sicherheit zuerst</h2>
+    <ul>
+      <li><b>Ziehen ja, Schmerz nein.</b>Bei stechendem Schmerz, Schwindel oder Atemnot sofort aufhören.</li>
+      <li><b>Leichter ist kein Versagen.</b>Jede Übung hat eine leichtere Variante. Saubere Ausführung zählt mehr als Tempo.</li>
+      <li><b>Bei Beschwerden zuerst zum Arzt.</b>Die App ersetzt keine Untersuchung oder Therapie.</li>
+    </ul>
+  </section>
+  <section>
+    <h2>Acht Grundprinzipien</h2>
+    <ol id="k-list"></ol>
+  </section>
+  <section>
+    <h2>Hintergrund: Dr. Hans-Wilhelm Müller-Wohlfahrt</h2>
+    <p>Orthopäde und Sportmediziner, jahrzehntelang Mannschaftsarzt des FC Bayern München (1977–2015, 2017–2020) und der deutschen Fußballnationalmannschaft (1995–2018). 2017 erhielt er von der Fascia Research Society den „Clinical Pioneer Award“ für Beiträge zur Faszienforschung.</p>
+    <p>In seinen Büchern geht es unter anderem um Bewegung als Gesundheitsfaktor („Bewegung. Das Lebenselixier für unsere Gesundheit“, 2022), um das Bindegewebe („Mensch, beweg dich! So stärken Sie Ihr Bindegewebe“, 2001) und um Training („Besser trainieren!“, 2007).</p>
+    <p><b>Was die App daraus aufgreift:</b> Regelmäßige, abwechslungsreiche Bewegung und Übungen, die den ganzen Körper in langen Bewegungsketten fordern, statt einzelne Muskeln isoliert zu trainieren.</p>
+    <p><b>Wichtig:</b> Die Übungen und Tipps in dieser App stammen nicht aus seinen Büchern und sind nicht von ihm geprüft. Einige seiner Behandlungsmethoden, etwa bestimmte Injektionen, und seine Ansichten zu Nahrungsergänzungsmitteln sind unter Medizinern umstritten. Die App empfiehlt keine Präparate.</p>
+    <p class="src">Quelle: Wikipedia, Artikel „Hans-Wilhelm Müller-Wohlfahrt“, abgerufen November 2026.</p>
+  </section>
 </section>
 
 <!-- SAMMLUNG -->
@@ -303,7 +372,7 @@ canvas#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-in
   <span class="label">Wecker</span>
   <div class="clock mono" id="a-clock">07:50</div>
   <h1>Guten Morgen, Tammo</h1>
-  <p>Deine Mystery-Kiste ist bereit. Startest du die Quest in den nächsten 20 Minuten, gibt es den Pünktlich-Bonus: +30 XP.</p>
+  <p>Zeit für dein Überraschungs-Workout. Startest du in den nächsten 20 Minuten, gibt es den Pünktlich-Bonus: +30 XP.</p>
   <button class="cta" id="a-up">Aufstehen</button>
   <button class="ghost" id="a-snooze">5 Minuten schlummern (nur einmal)</button>
 </div>
@@ -352,19 +421,80 @@ const EX = [
  {id:'crawl',n:'Bärengang',c:'cardio',cue:['Bärenstand, Knie schweben','Zwei Schritte vor, zwei zurück'],e:'Kleinere Schritte.'},
  {id:'crab',n:'Krebsgang',c:'cardio',cue:['Sitzen, Hände hinter dir, Po hoch','Vorwärts und rückwärts krabbeln'],e:'Po zwischendurch absetzen.'},
  {id:'frog',n:'Froschsprünge',c:'cardio',j:1,cue:['Tiefe Hocke','Nach vorn springen, umdrehen, zurück'],e:'Kleine Sprünge.'},
+ // Rumpf, zusätzlich
+ {id:'birddog',n:'Vierfüßler-Strecker',c:'core',cue:['Vierfüßlerstand, Rücken flach wie ein Tisch','Gegenüberliegenden Arm und Bein lang strecken','Kurz halten, dann Seite wechseln'],e:'Nur das Bein strecken.'},
+ {id:'legraise',n:'Beinheben',c:'core',cue:['Rückenlage, Hände neben dem Po','Gestreckte Beine langsam bis senkrecht heben','Langsam senken, unterer Rücken bleibt am Boden'],e:'Knie gebeugt lassen.'},
+ {id:'twist',n:'Sitzende Rumpfdrehung',c:'core',cue:['Sitzen, Oberkörper leicht zurücklehnen, Rücken lang','Füße am Boden oder leicht angehoben','Hände von Seite zu Seite neben die Hüfte führen'],e:'Füße am Boden lassen.'},
+ {id:'revcrunch',n:'Umgekehrter Crunch',c:'core',cue:['Rückenlage, Knie über der Hüfte','Knie Richtung Brust ziehen, Po hebt leicht ab','Langsam zurück, nicht schwingen'],e:'Bewegung kleiner, Po bleibt fast liegen.'},
+ // Dehnen gegen langes Sitzen
+ {id:'hipflex',n:'Hüftbeuger-Dehnung',c:'stretch',h:1,side:1,cool:1,cue:['Kniender Ausfallschritt, hinteres Knie am Boden','Becken nach vorn schieben, Po anspannen','Oberkörper aufrecht, zur Hälfte Seite wechseln'],e:'Hände auf das vordere Knie stützen.'},
+ {id:'chestop',n:'Brustöffner',c:'stretch',h:1,cool:1,cue:['Hände hinter dem Rücken verschränken','Schulterblätter zusammen, Brust nach vorn','Arme langsam etwas anheben'],e:'Hände nur an den Po legen, Ellbogen nach hinten ziehen.'},
+ {id:'child',n:'Kindhaltung',c:'stretch',h:1,cool:1,cue:['Auf die Fersen setzen, Knie leicht geöffnet','Oberkörper ablegen, Arme weit nach vorn','Ruhig in den Rücken atmen'],e:'Kissen unter den Po legen.'},
+ {id:'sphinx',n:'Sphinx',c:'stretch',h:1,cool:1,cue:['Bauchlage, Unterarme aufstellen','Ellbogen unter den Schultern','Brust nach vorn-oben, Schultern weg von den Ohren'],e:'Ellbogen weiter nach vorn setzen.'},
+ {id:'kneechest',n:'Knie zur Brust',c:'stretch',h:1,side:1,cool:1,cue:['Rückenlage','Ein Knie mit beiden Händen zur Brust ziehen','Anderes Bein lang, zur Hälfte wechseln'],e:'Anderes Bein aufstellen.'},
+ {id:'hamlie',n:'Beinrückseite liegend',c:'stretch',h:1,side:1,cool:1,cue:['Rückenlage','Ein Bein gestreckt nach oben, Hände hinter den Oberschenkel','Fußspitze zu dir ziehen, zur Hälfte wechseln'],e:'Knie leicht beugen.'},
+ {id:'quadst',n:'Oberschenkel vorn stehend',c:'stretch',h:1,side:1,cool:1,cue:['Auf einem Bein stehen','Ferse zum Po ziehen, Knie zeigt nach unten','Hüfte nach vorn, zur Hälfte wechseln'],e:'An der Wand abstützen.'},
+ {id:'tneedle',n:'Brustwirbel-Rotation',c:'stretch',side:1,cool:1,cue:['Vierfüßlerstand','Einen Arm zur Decke aufdrehen, Blick folgt der Hand','Dann unter dem Körper durchfädeln, zur Hälfte wechseln'],e:'Bewegung kleiner halten.'},
+ {id:'calfwall',n:'Wadendehnung an der Wand',c:'stretch',h:1,side:1,cool:1,cue:['Hände an die Wand, großer Schritt zurück','Hintere Ferse fest am Boden, Bein gestreckt','Hüfte nach vorn, zur Hälfte wechseln'],e:'Kleinerer Schritt.'},
+ {id:'neck',n:'Nacken-Seitneigung',c:'stretch',h:1,side:1,cool:1,cue:['Aufrecht, Schultern locker nach unten','Ohr langsam Richtung Schulter neigen','Ruhig atmen, zur Hälfte wechseln'],e:'Nur halb so weit neigen.'},
+ {id:'sidebend',n:'Seitliche Rumpfdehnung',c:'stretch',h:1,side:1,cool:1,cue:['Hüftbreit stehen','Einen Arm über den Kopf, zur Seite neigen','Nicht nach vorn kippen, zur Hälfte wechseln'],e:'Hand an die Hüfte statt Arm über den Kopf.'},
+ {id:'ytw',n:'Y-T-W Schulterblätter',c:'stretch',cue:['Leicht vorgebeugt stehen, Rücken gerade','Arme nacheinander als Y, T und W führen','Schulterblätter jedes Mal zusammenziehen'],e:'Arme nur halb so hoch.'},
+ {id:'fold',n:'Vorbeuge im Stand',c:'stretch',h:1,cool:1,cue:['Hüftbreit stehen, Knie leicht gebeugt','Aus der Hüfte nach vorn hängen lassen','Kopf und Arme locker, ruhig atmen'],e:'Hände auf die Oberschenkel stützen.'},
 ];
+// Diese Übungen passen auch ins Dehn-Programm
+['katz','wgs','bridge','hueft'].forEach(id=>{const x=EX.find(e=>e.id===id);x.st=1});
+// Häufigster Fehler je Übung
+const FEHLER={
+ armk:'Schultern zu den Ohren hochziehen und hektisch kreisen.',hamp:'Hart auf den Fersen landen.',hueft:'Den Oberkörper mitschwingen statt nur das Becken zu bewegen.',
+ katz:'Bewegung nur im Nacken, der Rücken bleibt starr.',wgs:'Vorderes Knie knickt nach innen, Rücken wird rund.',inch:'Im Liegestütz hängt die Hüfte durch.',
+ march:'Nach hinten lehnen, um das Knie höher zu bekommen.',push:'Hüfte hängt durch (Hohlkreuz). Körper muss vom Kopf bis zur Ferse eine Linie bilden.',
+ diam:'Hüfte hängt durch, Ellbogen gehen weit nach außen.',pike:'Rücken rund statt Po hoch und Rücken lang.',stap:'Hüfte schaukelt bei jedem Tap von links nach rechts.',
+ dips:'Schultern zu den Ohren hochziehen und zu tief gehen.',tpush:'Hüfte sackt bei der Drehung ab.',squat:'Fersen heben ab, Knie schieben weit nach vorn, Oberkörper kippt.',
+ lunge:'Vorderes Knie schiebt sich weit über die Zehen, Ferse hebt ab.',sumo:'Knie fallen nach innen.',wall:'Knie weiter vorn als die Zehen, Oberschenkel nicht waagerecht.',
+ bridge:'Ins Hohlkreuz drücken statt den Po anzuspannen.',sqj:'Steif und laut landen, Knie fallen nach innen.',calf:'Mit Schwung wippen statt kontrolliert hoch und runter.',
+ bulg:'Vorderes Knie knickt nach innen.',plank:'Hüfte hängt durch. Bauch und Po fest, dann bleibt der Rücken gerade.',side:'Hüfte sackt Richtung Boden.',
+ mc:'Po ragt hoch, die Übung wird leicht und unwirksam.',dbug:'Unterer Rücken hebt sich vom Boden, Hohlkreuz.',hollow:'Unterer Rücken hebt ab, Hohlkreuz.',
+ bike:'Am Kopf ziehen, Ellbogen klappen nach vorn.',super:'Kopf in den Nacken werfen. Blick bleibt zum Boden.',bear:'Po schiebt sich hoch, Rücken wird rund.',
+ burpee:'Im Liegestütz hängt die Hüfte durch.',skate:'Mit durchgestrecktem Knie landen.',box:'Ellbogen durchschlagen lassen, die Deckung fällt.',
+ knees:'Nach hinten lehnen statt aufrecht zu bleiben.',crawl:'Po ragt hoch, Knie berühren den Boden.',crab:'Po hängt durch.',frog:'Mit gestreckten Knien landen.',
+ birddog:'Bein zu hoch heben, dann kippt das Becken ins Hohlkreuz.',legraise:'Unterer Rücken hebt beim Absenken ab.',twist:'Rücken rund machen und nur die Arme schwingen.',
+ revcrunch:'Mit Schwung arbeiten statt aus dem Bauch.',hipflex:'Oberkörper kippt nach vorn und ins Hohlkreuz: Die Dehnung landet im Rücken statt in der Hüfte.',
+ chestop:'Kopf nach vorn schieben und Schultern hochziehen.',child:'Po hebt sich von den Fersen, dann fehlt die Dehnung im Rücken.',
+ sphinx:'Kopf in den Nacken werfen und Schultern hochziehen.',kneechest:'Kopf und Schultern heben sich vom Boden. Der Nacken bleibt locker liegen.',
+ hamlie:'Bein mit Gewalt ziehen, bis das Becken abhebt.',quadst:'Knie wandert nach vorn, Oberkörper kippt.',tneedle:'Aus der Hüfte drehen statt aus der Brustwirbelsäule.',
+ calfwall:'Hintere Ferse hebt ab, dann ist die Wade kaum gedehnt.',neck:'Schulter zum Ohr hochziehen statt den Kopf zu neigen.',
+ sidebend:'Oberkörper kippt nach vorn oder dreht sich.',ytw:'Schultern hochziehen und ins Hohlkreuz fallen.',fold:'Knie durchdrücken und mit Schwung tiefer wippen.',
+};
+EX.forEach(x=>{if(FEHLER[x.id])x.f=FEHLER[x.id]});
 const EXM = Object.fromEntries(EX.map(x=>[x.id,x]));
 
 const MODS = {
- speed:{n:'Speedrun',tag:'Sechs Runden, kurze Pausen, keine Gnade.',hint:'Morgen zählt jede Sekunde.',col:'#3de0b5'},
- boss:{n:'Boss-Kampf',tag:'Jede Sekunde Arbeit trifft den Boss. Am Ende kommt der Finalschlag.',hint:'Morgen wartet am Ende etwas Großes.',col:'#ff5d73'},
- blind:{n:'Blindflug',tag:'Du siehst die nächste Übung erst 3 Sekunden vorher.',hint:'Morgen siehst du nichts kommen.',col:'#8f7bff'},
- wheel:{n:'Glücksrad',tag:'Das Rad wählt jede Übung, live, kurz bevor es losgeht.',hint:'Morgen entscheidet der Zufall.',col:'#ffc23d'},
- ladder:{n:'Himmelsleiter',tag:'Jede Runde dauert 10 Sekunden länger als die davor.',hint:'Morgen geht es Stufe für Stufe nach oben.',col:'#4ea8ff'},
- dice:{n:'Würfel-Tag',tag:'Ein Würfel bestimmt, wie lange jede Runde dauert.',hint:'Morgen rollen die Würfel.',col:'#ff9b3d'},
- slow:{n:'Zeitlupe',tag:'Alles in Zeitlupe: 4 Sekunden runter, 1 Sekunde hoch.',hint:'Morgen wird es langsam. Und gemein.',col:'#c86bff'},
- double:{n:'Doppelpack',tag:'Zwei Übungen im Wechsel, zwei Durchgänge.',hint:'Morgen kommt alles doppelt.',col:'#5ce07a'},
+ speed:{n:'Speedrun',tag:'Kurze Runden, kurze Pausen, hohes Tempo.',col:'#3de0b5'},
+ boss:{n:'Boss-Kampf',tag:'Jede Sekunde Arbeit trifft den Boss. Am Ende kommt der Finalschlag.',col:'#ff5d73'},
+ blind:{n:'Blindflug',tag:'Du siehst die nächste Übung erst 3 Sekunden vorher.',col:'#8f7bff'},
+ wheel:{n:'Glücksrad',tag:'Das Rad wählt jede Übung, live, kurz bevor es losgeht.',col:'#ffc23d'},
+ ladder:{n:'Himmelsleiter',tag:'Jede Runde dauert 10 Sekunden länger, dann geht es von vorn los.',col:'#4ea8ff'},
+ dice:{n:'Würfel-Modus',tag:'Ein Würfel bestimmt, wie lange jede Runde dauert.',col:'#ff9b3d'},
+ slow:{n:'Zeitlupe',tag:'Alles in Zeitlupe: 4 Sekunden runter, 1 Sekunde hoch.',col:'#c86bff'},
+ double:{n:'Doppelpack',tag:'Zwei Übungen im Wechsel, immer paarweise.',col:'#5ce07a'},
+ flow:{n:'Fluss',tag:'Eine Dehnung fließt in die nächste. 40 Sekunden halten, kurz wechseln.',col:'#3de0b5'},
+ breath:{n:'Tiefenatmung',tag:'Lange Halte-Phasen mit ruhigem Atem: 4 Sekunden ein, 6 aus.',col:'#7fb8ff'},
 };
+const THEMES={
+ full:{n:'Ganzkörper',d:'Kraft und Puls: Beine, Oberkörper und Rumpf im Wechsel.',mods:['speed','boss','blind','wheel','ladder','dice','slow','double']},
+ stretch:{n:'Anti-Sitzen-Stretching',d:'Hüfte, Brust, Rücken und Nacken lösen. Ruhig, ohne Springen.',mods:['flow','blind','wheel','dice','breath']},
+ core:{n:'Core-Workout',d:'Bauch, Rücken und tiefe Rumpfmuskeln: die Basis für eine stabile Wirbelsäule.',mods:['speed','boss','blind','wheel','ladder','dice','slow']},
+};
+const PRINCIPLES=[
+ ['Aufwärmen vor Belastung','Ein bis zwei Minuten lockere Bewegung bereiten Muskeln, Sehnen und Gelenke vor. Deshalb startet jedes Kraft-Workout ab 2 Minuten mit Aufwärmen.'],
+ ['Saubere Ausführung vor Tempo','Lieber langsamer und korrekt als schnell und schlampig. Schau dir bei jeder Übung den häufigsten Fehler an.'],
+ ['Atmen statt pressen','Bei der Anstrengung ausatmen, beim Zurückgehen einatmen. Luft anhalten treibt den Blutdruck hoch.'],
+ ['Regelmäßig schlägt lang','Fünf bis zehn Minuten an vielen Tagen bringen mehr als eine lange Einheit pro Woche.'],
+ ['Rumpf als Basis','Starke Bauch- und Rückenmuskeln stabilisieren die Wirbelsäule bei fast jeder Bewegung im Alltag.'],
+ ['Sitzen unterbrechen','Spätestens nach 30 bis 60 Minuten Sitzen kurz aufstehen und bewegen. Hüftbeuger, Brust und Brustwirbelsäule leiden am meisten.'],
+ ['Ruhig dehnen','Dehnungen ruhig halten und nicht wippen. Ein deutliches Ziehen ist richtig, Schmerz nicht.'],
+ ['Abwechslung','Unterschiedliche Übungen und Bewegungsrichtungen fordern Muskeln und Bindegewebe vielseitiger als immer dasselbe Programm.'],
+];
 const MOD_IDS = Object.keys(MODS);
 const BOSSES = ['Snooze-Golem','Sofa-Krake','Graf Müdula','Scroll-Dämon','Kissen-Titan','Lord Später'];
 
@@ -394,10 +524,12 @@ function shuffle(arr,r){const a=arr.slice();for(let i=a.length-1;i>0;i--){const 
 /* ---------- Zustand ---------- */
 const KEY='tammo-morgen-quest-v1';
 const FRESH = ()=>({xp:0,level:1,streak:0,best:0,lastDone:null,shields:1,potion:false,splitter:0,sinceEpic:0,sinceLeg:0,relics:{},plans:{},opened:{},done:{},pending:null,dayOffset:0,total:0,sound:true,
+  gen:{min:10,theme:'full',test:false},cur:null,curOpened:false,recent:[],lastMod:null,chestDay:{k:null,n:0},
   bench:{},alarm:{on:true,time:'07:50',days:[1,1,1,1,1,1,1],fired:null,firedAt:0,snoozed:false}});
 const BENCH='push';
 let st = FRESH();
 try{const raw=localStorage.getItem(KEY);if(raw)st=Object.assign(FRESH(),JSON.parse(raw))}catch(e){}
+st.dayOffset=0; // Testmodus gibt es nicht mehr
 function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
 
 /* ---------- Tage (Tageswechsel um 4 Uhr) ---------- */
@@ -408,62 +540,54 @@ function addDays(k,n){return keyOf(new Date(Date.parse(k)+n*DAY))}
 function diffDays(a,b){return Math.round((Date.parse(b)-Date.parse(a))/DAY)}
 function dayIndex(k){return Math.round(Date.parse(k)/DAY)}
 
-/* Mutator: alle 8 kommen in jedem 8-Tage-Block genau einmal vor, Reihenfolge zufällig */
-function blockOrder(b){return shuffle(MOD_IDS,rngOf('blk'+b))}
-function modFor(k){
-  const i=dayIndex(k),b=Math.floor(i/8),p=i%8;let o=blockOrder(b);
-  const prevLast=blockOrder(b-1)[7];
-  if(o[0]===prevLast){[o[0],o[1]]=[o[1],o[0]]}
-  return o[p];
-}
 function luckyDay(k){return rngOf('luck'+k)()<0.2}
 
-/* ---------- Plan bauen ---------- */
-function buildPlan(k){
-  if(st.plans[k]&&(st.plans[k].v===2||st.done[k]))return st.plans[k];
-  const r=rngOf('tammo'+k), mod=modFor(k);
-  const recent=new Set([1,2].flatMap(n=>(st.plans[addDays(k,-n)]||{ex:[]}).ex));
-  const used=new Set();
-  const take=(cat,filter=()=>true)=>{
-    let pool=shuffle(EX.filter(x=>x.c===cat&&x.id!==BENCH&&filter(x)&&!used.has(x.id)),r);
-    const fresh=pool.filter(x=>!recent.has(x.id));
-    const x=(fresh.length?fresh:pool)[0];used.add(x.id);return x.id;
+/* ---------- Plan bauen: jedes Mal neu und zufällig, passend zur gewählten Dauer ---------- */
+function genPlan(min,theme,test){
+  const r=Math.random,T=THEMES[theme],stretch=theme==='stretch';
+  let mods=T.mods.filter(m=>m!==st.lastMod);
+  if(min<4)mods=mods.filter(m=>!['boss','double','ladder'].includes(m));
+  const mod=mods[Math.floor(r()*mods.length)];
+  const recent=new Set(st.recent||[]),used=new Set();
+  const pick=f=>{const pool=shuffle(EX.filter(x=>f(x)&&x.id!==BENCH),r);
+    const x=pool.find(x=>!recent.has(x.id)&&!used.has(x.id))||pool.find(x=>!used.has(x.id))||pool[0];used.add(x.id);return x.id};
+  const steps=[],rest=(d,lab='PAUSE')=>steps.push({k:'r',d,lab}),work=(id,d,lab,main=true,extra={})=>steps.push(Object.assign({k:'w',ex:id,d,lab,main},extra));
+  let budget=min*60;
+  rest(5,'BEREIT MACHEN');budget-=5;
+  if(stretch){if(min>=5){work(pick(x=>x.id==='hueft'||x.id==='armk'),30,'LOCKER WERDEN',false);budget-=30}}
+  else if(min>=4){work(pick(x=>x.c==='warm'),30,'AUFWÄRMEN',false);rest(5,'WECHSEL');work(pick(x=>x.c==='warm'),30,'AUFWÄRMEN',false);budget-=65}
+  else if(min>=2){work(pick(x=>x.c==='warm'),20,'AUFWÄRMEN',false);budget-=20}
+  if(test&&!stretch&&budget>=60){rest(10,'TAGESTEST');work(BENCH,30,'TAGESTEST',false,{test:1});budget-=40}
+  const cool=stretch?0:min>=8?2:min>=5?1:0;budget-=cool*38;
+  let boss=null;if(mod==='boss'&&budget>=130){boss=BOSSES[Math.floor(r()*BOSSES.length)];budget-=65}
+  const cfg=stretch?{flow:[40,8],blind:[40,10],wheel:[40,10],dice:[0,8],breath:[60,10]}[mod]
+    :{speed:[20,10],boss:[40,20],blind:[35,15],wheel:[30,15],ladder:[0,15],dice:[0,15],slow:[45,15],double:[30,10]}[mod];
+  const [wd,rd]=cfg,ok=x=>!(mod==='slow'&&x.j);
+  const cats=shuffle(['push','legs','core','cardio'],r),sel=[],maxU=stretch?12:8;
+  const fresh=i=>theme==='full'?pick(x=>x.c===cats[i%4]&&ok(x)):theme==='core'?pick(x=>x.c==='core'&&ok(x)):pick(x=>x.c==='stretch'||x.st);
+  const exAt=i=>{
+    if(mod==='double'){const pair=Math.floor(i/4)%Math.ceil(maxU/2),j=pair*2+(i%2);while(sel.length<=j)sel.push(fresh(sel.length));return sel[j]}
+    if(i<maxU){sel.push(fresh(i));return sel[i]}
+    if(i%sel.length===0)sel.splice(0,sel.length,...shuffle(sel,r)); // neue Runde, neue Reihenfolge
+    return sel[i%sel.length];
   };
-  const mainCats=n=>{const order=[];let cats=shuffle(['push','legs','core','cardio'],r);
-    if(mod==='slow')cats=cats.filter(c=>c!=='cardio');
-    while(order.length<n){order.push(cats[order.length%cats.length])}return order};
-  const noJump=x=>!x.j;
-  const steps=[];
-  const rest=(d,lab='PAUSE')=>steps.push({k:'r',d,lab});
-  const work=(id,d,lab,main=true,extra={})=>steps.push(Object.assign({k:'w',ex:id,d,lab,main},extra));
-  // Aufwärmen
-  const w1=take('warm'),w2=take('warm');
-  rest(5,'BEREIT MACHEN');work(w1,30,'AUFWÄRMEN',false);rest(5,'WECHSEL');work(w2,30,'AUFWÄRMEN',false);
-  // Fester Tagestest direkt nach dem Aufwärmen: immer gleiche Übung, gleiche Position, vergleichbar
-  rest(10,'TAGESTEST');work(BENCH,30,'TAGESTEST',false,{test:1});
-  let boss=null;
-  if(mod==='double'){
-    const ids=mainCats(4).map(c=>take(c));
-    [[0,1],[2,3]].forEach((pr,pi)=>{for(let rd=0;rd<2;rd++)pr.forEach((ix,j)=>{rest(10);work(ids[ix],30,'SUPERSATZ '+'AB'[pi]+(rd*2+j+1))})});
-  }else{
-    const cfg={speed:[6,20,10],boss:[4,40,20],blind:[5,35,15],wheel:[5,30,15],ladder:[4,0,15],dice:[5,0,15],slow:[4,45,15]}[mod];
-    const [n,wd,rd]=cfg;
-    const ids=mainCats(n).map(c=>take(c,mod==='slow'?noJump:undefined));
-    ids.forEach((id,i)=>{
-      let d=wd,extra={};
-      if(mod==='ladder')d=20+i*10;
-      if(mod==='dice'){const roll=1+Math.floor(r()*6);d=15+roll*5;extra.dice=roll}
-      rest(rd);work(id,d,'RUNDE '+(i+1)+'/'+n,true,extra);
-    });
-    if(mod==='boss'){boss=BOSSES[Math.floor(r()*BOSSES.length)];rest(20,'BOSS ERSCHEINT');work(take('cardio'),45,'FINALSCHLAG',true,{fin:1})}
+  for(let i=0;;i++){
+    let d=wd,extra={};
+    if(mod==='ladder')d=20+(i%4)*10;
+    if(mod==='dice'){const roll=1+Math.floor(r()*6);d=(stretch?25:15)+roll*5;extra.dice=roll}
+    if(budget<rd+15)break;
+    if(budget<rd+d){d=budget-rd;delete extra.dice}
+    rest(rd,i===0?'LOS GEHT\'S':stretch?'WECHSEL':'PAUSE');work(exAt(i),d,'',true,extra);budget-=rd+d;
   }
-  const plan={v:2,mod,boss,steps,ex:[...used]};
-  st.plans[k]=plan;
-  // alte Pläne aufräumen
-  Object.keys(st.plans).forEach(p=>{if(diffDays(p,k)>10)delete st.plans[p]});
-  save();return plan;
+  const mains=steps.filter(x=>x.k==='w'&&x.main);
+  if(mains.length&&budget>0){const last=mains[mains.length-1];last.d+=budget;delete last.dice;budget=0} // Restzeit auffüllen
+  mains.forEach((x,i)=>x.lab=(mod==='double'?'DOPPELPACK ':stretch?'DEHNUNG ':'ÜBUNG ')+(i+1)+'/'+mains.length);
+  if(boss){rest(20,'BOSS ERSCHEINT');work(pick(x=>x.c==='cardio'),45,'FINALSCHLAG',true,{fin:1})}
+  for(let c=0;c<cool;c++){rest(8,'COOL-DOWN');work(pick(x=>x.c==='stretch'&&x.cool),30,'COOL-DOWN',false)}
+  st.recent=[...used];st.lastMod=mod;
+  return{v:3,mod,boss,theme,min,steps,ex:[...used]};
 }
-function planMinutes(p){return Math.round(p.steps.reduce((s,x)=>s+x.d,0)/60)}
+function planMinutes(p){return Math.max(1,Math.round(p.steps.reduce((s,x)=>s+x.d,0)/60))}
 
 /* ---------- Ton & Vibration ---------- */
 let ac=null;
@@ -493,7 +617,7 @@ function setAccent(c){document.documentElement.style.setProperty('--accent',c)}
 
 /* ---------- Helfer ---------- */
 const $=id=>document.getElementById(id);
-function show(id){['home','sess','res','col'].forEach(s=>$(s).hidden=s!==id);scrollTo(0,0)}
+function show(id){['home','sess','res','col','know'].forEach(s=>$(s).hidden=s!==id);scrollTo(0,0)}
 function need(l){return 80+l*40}
 function title(l){return TITLES[Math.min(TITLES.length-1,Math.floor((l-1)/3))]}
 function fmtDate(k){return new Date(Date.parse(k)).toLocaleDateString('de-DE',{weekday:'long',day:'numeric',month:'long',timeZone:'UTC'})}
@@ -506,71 +630,93 @@ function streakState(k){
   const gap=diffDays(st.lastDone,k),missed=Math.max(0,gap-1);
   return{gap,missed,saved:missed>0&&st.shields>=missed,broken:missed>0&&st.shields<missed};
 }
-function teaserHTML(k){
-  const m=MODS[modFor(k)],lucky=luckyDay(k);
-  return `<span class="label">Morgen</span><p class="hint">${m.hint}</p>${lucky?'<p class="rumor">Gerücht: Morgen ist ein Glückstag. Epische Funde sind doppelt so wahrscheinlich.</p>':''}<span class="count" data-count>${countdown()}</span>`;
+function tipHTML(i){
+  const t=PRINCIPLES[(i??Math.floor(Math.random()*PRINCIPLES.length))%PRINCIPLES.length];
+  return `<span class="label">Tipp</span><p><b>${t[0]}.</b> ${t[1]}</p><button class="linkbtn" data-know>Alle Grundlagen</button>`;
 }
-
 /* ---------- Basis ---------- */
 let taps=0;
 function renderHome(){
-  const k=todayKey(),plan=buildPlan(k),m=MODS[plan.mod],opened=st.opened[k],done=st.done[k];
-  setAccent(opened?m.col:'#ffc23d');
-  $('h-date').textContent=fmtDate(k)+(st.dayOffset?' · Test':'');
+  const k=todayKey(),done=st.done[k],h=new Date().getHours();
+  setAccent(st.cur&&st.curOpened?MODS[st.cur.mod].col:'#ffc23d');
+  $('h-date').textContent=fmtDate(k);
+  $('h-greet').textContent=(h<11?'Guten Morgen':h<18?'Hallo':'Guten Abend')+', Tammo';
   $('h-lvl').textContent=st.level;$('h-title').textContent=title(st.level);
   $('h-xp').textContent=`${st.xp} / ${need(st.level)} XP`;$('h-xpbar').style.width=(st.xp/need(st.level)*100)+'%';
   $('h-streak').textContent=st.streak;$('h-shield').textContent=st.shields;$('h-col').textContent=owned()+'/'+RELICS.length;
-  // Woche
   const wd=(new Date(Date.parse(k)).getUTCDay()+6)%7,names=['Mo','Di','Mi','Do','Fr','Sa','So'];
-  $('h-week').innerHTML=names.map((n,i)=>{const dk=addDays(k,i-wd);return`<span class="${st.done[dk]?'on':''} ${dk===k?'today':''}">${n}</span>`}).join('');
-  // Hinweis Serie
+  $('h-week').innerHTML=names.map((n,i)=>{const dk=addDays(k,i-wd);return`<span class="${st.done[dk]?'on':''} ${dk===k?'now':''}">${n}</span>`}).join('');
   const ss=streakState(k),note=$('h-note');note.hidden=true;
-  if(!done&&ss.broken){note.hidden=false;note.className='note';note.textContent=`Serie gerissen. Dafür wartet heute ein Comeback-Bonus: 1,5× XP.`}
+  if(!done&&ss.broken){note.hidden=false;note.className='note';note.textContent='Serie gerissen. Dafür gibt es beim nächsten Workout einen Comeback-Bonus: 1,5× XP.'}
   else if(!done&&ss.saved){note.hidden=false;note.className='note good';note.textContent=`${ss.missed} Tag verpasst. Ein Serien-Schild fängt das ab, wenn du heute trainierst.`}
-  else if(!done&&st.potion){note.hidden=false;note.className='note good';note.textContent='XP-Trank aktiv: heute 1,5× XP.'}
-  const card=$('t-card'),tz=$('t-teaser');tz.hidden=true;
-  if(!opened){
+  else if(!done&&st.potion){note.hidden=false;note.className='note good';note.textContent='XP-Trank aktiv: Das nächste Workout bringt 1,5× XP.'}
+  renderGen();renderCard();
+  $('h-tip').innerHTML=tipHTML(dayIndex(k));
+  renderBench(k);renderAlarm();
+}
+function renderGen(){
+  const G=st.gen;$('g-min').textContent=G.min;$('g-range').value=G.min;
+  $('g-quick').querySelectorAll('button').forEach(b=>b.classList.toggle('on',+b.dataset.m===G.min));
+  $('g-themes').innerHTML=Object.entries(THEMES).map(([id,t])=>`<button class="theme ${G.theme===id?'on':''}" data-t="${id}" aria-pressed="${G.theme===id}"><b>${t.n}</b><span>${t.d}</span></button>`).join('');
+  $('g-themes').querySelectorAll('.theme').forEach(b=>b.onclick=()=>{G.theme=b.dataset.t;save();renderGen()});
+  $('g-testrow').hidden=G.theme==='stretch';$('g-test').checked=!!G.test;
+}
+$('g-range').oninput=e=>{st.gen.min=+e.target.value;save();renderGen()};
+$('g-quick').querySelectorAll('button').forEach(b=>b.onclick=()=>{st.gen.min=+b.dataset.m;save();renderGen()});
+$('g-test').onchange=e=>{st.gen.test=e.target.checked;save()};
+$('g-go').onclick=()=>{audio();tone(520,.1,'triangle');
+  st.cur=genPlan(st.gen.min,st.gen.theme,st.gen.test&&st.gen.theme!=='stretch');st.curOpened=false;save();renderHome();
+  $('t-card').scrollIntoView({behavior:'smooth',block:'center'})};
+function renderCard(){
+  const card=$('t-card'),gen=$('gen');
+  if(st.pending){gen.hidden=true;card.hidden=false;
+    card.innerHTML=`<span class="label">Erledigt</span><h2 class="mod-name">Truhe wartet</h2><p class="mod-tag">Du hast deine Belohnung noch nicht geöffnet.</p><button class="cta" id="b-loot">Zur Truhe</button>`;
+    $('b-loot').onclick=()=>{renderResults(st.pending.summary);show('res')};return}
+  if(!st.cur){gen.hidden=false;card.hidden=true;return}
+  gen.hidden=true;card.hidden=false;const p=st.cur,m=MODS[p.mod],T=THEMES[p.theme];
+  if(!st.curOpened){
     taps=0;
-    card.innerHTML=`<span class="label">Mystery-Kiste von heute</span>
+    card.innerHTML=`<span class="label">${p.min} Min · ${T.n}</span>
       <button class="box" id="box" aria-label="Kiste öffnen"><div class="body"></div><div class="lid"></div><div class="rib"></div><div class="q">?</div></button>
       <div class="taps"><i></i><i></i><i></i></div>
-      <p style="color:var(--muted)">Tippe dreimal, um zu sehen, was heute auf dich wartet.</p>`;
+      <p style="color:var(--muted)">Tippe dreimal, um dein Überraschungs-Workout zu öffnen.</p>
+      <div class="tiny"><button id="b-cancel">Anderes Workout wählen</button></div>`;
     $('box').onclick=tapBox;
-  }else if(!done){
-    const works=plan.steps.filter(s=>s.k==='w'&&s.main).length;
-    card.innerHTML=`<span class="label">Heutiger Mutator</span><h2 class="mod-name">${m.n}</h2><p class="mod-tag">${m.tag}</p>
-      ${plan.boss?`<p><b>Gegner: ${plan.boss}</b></p>`:''}
-      <div class="chips"><span class="chip">ca. ${planMinutes(plan)} Min</span><span class="chip">${works} Runden + Aufwärmen</span>${luckyDay(k)?'<span class="chip" style="color:var(--gold)">Glückstag</span>':''}</div>
-      <div class="slots">${plan.steps.filter(s=>s.k==='w'&&s.main).map(s=>`<span class="${s.fin?'boss':''}">${s.fin?'B':'?'}</span>`).join('')}</div>
-      <p style="color:var(--muted);font-size:14px">Welche Übungen kommen, erfährst du erst unterwegs.</p>
-      <button class="cta" id="b-start">Quest starten</button>`;
-    $('b-start').onclick=()=>startSession(k);
-  }else if(st.pending){
-    card.innerHTML=`<span class="label">Erledigt</span><h2 class="mod-name">Truhe wartet</h2><p class="mod-tag">Du hast deine Belohnung noch nicht geöffnet.</p><button class="cta" id="b-loot">Zur Truhe</button>`;
-    $('b-loot').onclick=()=>{renderResults(st.pending.summary);show('res')};
   }else{
-    card.innerHTML=`<span class="label">Heute erledigt</span><h2 class="mod-name">${m.n} besiegt</h2><p class="mod-tag">Serie: ${st.streak} ${st.streak===1?'Tag':'Tage'}. Rekord: ${st.best}.</p>`;
-    tz.hidden=false;tz.innerHTML=teaserHTML(addDays(k,1));
+    const mains=p.steps.filter(s=>s.k==='w'&&s.main),shown=mains.slice(0,24);
+    card.innerHTML=`<span class="label">${T.n} · Überraschungs-Modus</span><h2 class="mod-name">${m.n}</h2><p class="mod-tag">${m.tag}</p>
+      ${p.boss?`<p><b>Gegner: ${p.boss}</b></p>`:''}
+      <div class="chips"><span class="chip">${planMinutes(p)} Min</span><span class="chip">${mains.length} ${p.theme==='stretch'?'Dehnungen':'Runden'}</span>${p.steps.some(s=>s.test)?'<span class="chip">mit Tagestest</span>':''}</div>
+      <div class="slots">${shown.map(s=>`<span class="${s.fin?'boss':''}">${s.fin?'B':'?'}</span>`).join('')}${mains.length>shown.length?`<span>+${mains.length-shown.length}</span>`:''}</div>
+      <p style="color:var(--muted);font-size:14px">Welche Übungen kommen, erfährst du erst unterwegs.</p>
+      <button class="cta" id="b-start">Workout starten</button>
+      <div class="tiny"><button id="b-reroll">Andere Überraschung</button><button id="b-cancel">Anderes Workout wählen</button></div>`;
+    $('b-start').onclick=()=>startSession();
+    $('b-reroll').onclick=()=>{st.cur=genPlan(p.min,p.theme,p.steps.some(s=>s.test));st.curOpened=false;save();renderHome()};
   }
-  renderBench(k);renderAlarm();
+  $('b-cancel').onclick=()=>{st.cur=null;save();renderHome()};
 }
 function tapBox(){
   const b=$('box');taps++;audio();tone(300+taps*160,.15,'square',.12);buzz(30*taps);
   b.classList.remove('shake');void b.offsetWidth;b.classList.add('shake','c'+Math.min(taps,2));
   document.querySelectorAll('.taps i').forEach((d,i)=>d.classList.toggle('on',i<taps));
   if(taps>=3){
-    const k=todayKey(),m=MODS[buildPlan(k).mod];
+    const m=MODS[st.cur.mod];
     b.classList.add('open');b.onclick=null;
     setTimeout(()=>{setAccent(m.col);flash(m.col);confetti(110,[m.col,'#fff','#ffc23d']);arp([523,659,784,1047]);buzz([60,40,120]);
-      st.opened[k]=true;save();setTimeout(renderHome,450)},380);
+      st.curOpened=true;save();setTimeout(renderHome,450)},380);
   }
 }
+document.addEventListener('click',e=>{if(e.target.closest('[data-know]')){renderKnow();show('know')}});
+function renderKnow(){$('k-list').innerHTML=PRINCIPLES.map(t=>`<li><b>${t[0]}</b>${t[1]}</li>`).join('')}
+$('b-know').onclick=()=>{renderKnow();show('know')};
+$('k-back').onclick=()=>{renderHome();show('home')};
 
 /* ---------- Session ---------- */
 let S=null,timer=null;
-function startSession(k){
+function startSession(){
   audio();keepAwake();
-  const plan=buildPlan(k);
+  const plan=st.cur,k=todayKey();
   S={k,plan,steps:plan.steps.map(s=>Object.assign({},s)),i:0,run:true,end:0,left:0,done:0,xp:0,bonus:[],events:0,dbl:false,revealed:{},lastSec:null,
     bossMax:plan.steps.filter(s=>s.k==='w'&&s.main).reduce((a,s)=>a+s.d,0),bossDone:0,started:Date.now(),shown:new Set()};
   demoCur=null;
@@ -588,7 +734,8 @@ function enterStep(){
 }
 function rollFor(nw){
   const idx=S.i;S.revealed[idx]='rolling';
-  const el=$('s-name'),names=EX.filter(x=>x.c!=='warm').map(x=>x.n);let t=0;
+  const pool=S.plan.theme==='stretch'?EX.filter(x=>x.c==='stretch'||x.st):S.plan.theme==='core'?EX.filter(x=>x.c==='core'):EX.filter(x=>!['warm','stretch'].includes(x.c));
+  const el=$('s-name'),names=pool.map(x=>x.n);let t=0;
   const iv=setInterval(()=>{t++;
     el.textContent=S.plan.mod==='dice'?'Würfel: '+(1+Math.floor(Math.random()*6)):names[Math.floor(Math.random()*names.length)];
     tone(500+Math.random()*400,.04,'square',.06);
@@ -599,7 +746,8 @@ function tick(){
   if(!S||!S.run)return;
   const s=cur(),left=S.end-Date.now(),sec=Math.ceil(left/1000);
   if(sec!==S.lastSec){S.lastSec=sec;if(sec<=3&&sec>0){tone(s.k==='r'?660:440,.1,'sine',.16);buzz(40)}
-    if(s.k==='r'&&S.plan.mod==='blind'&&sec===3){arp([392,523],.06)}}
+    if(s.k==='r'&&S.plan.mod==='blind'&&sec===3){arp([392,523],.06)}
+    if(s.k==='w'&&EXM[s.ex].side&&s.d>=20&&sec===Math.ceil(s.d/2)&&!s.sw){s.sw=1;arp([523,784],.08);buzz([80,60,80]);const b=$('s-badge');b.hidden=false;b.textContent='Seite wechseln!'}}
   if(left<=0){advance(true);return}
   S.left=left;renderTime();
 }
@@ -624,7 +772,8 @@ function showEvent(){
     {h:'Mini-Challenge',p:'10 Sekunden Unterarmstütz extra. +25 XP.',b:[['Her damit',()=>insertBonus('plank',10,25,'MINI-CHALLENGE')],['Lieber nicht',()=>{}]]},
     {h:'Glückskeks',p:COOKIES[Math.floor(Math.random()*COOKIES.length)]+' +10 XP.',b:[['Danke',()=>{S.xp+=10;S.bonus.push(['Glückskeks','+10'])}]]},
   ];
-  const ev=evs[Math.floor(Math.random()*evs.length)];
+  const pool=S.plan.theme==='stretch'?[evs[0],evs[2],evs[4]]:evs;
+  const ev=pool[Math.floor(Math.random()*pool.length)];
   $('ov-card').innerHTML=`<span class="label">Zufallsereignis</span><h2>${ev.h}</h2><p>${ev.p}</p><div class="btns">${ev.b.map((b,i)=>`<button class="${i?'ghost':'cta'}" data-i="${i}">${b[0]}</button>`).join('')}</div>`;
   $('ov').hidden=false;
   $('ov-card').querySelectorAll('button').forEach(btn=>btn.onclick=()=>{ev.b[+btn.dataset.i][1]();$('ov').hidden=true;
@@ -639,8 +788,17 @@ function renderTime(){
   if(s.k==='r'&&S.plan.mod==='blind'){const nw=nextWork();if(nw&&!nw.test){const show=sec<=3;const nm=show?EXM[nw.ex].n:'???';if($('s-name').textContent!==nm){$('s-name').textContent=nm;if(show){$('s-name').classList.remove('land');void $('s-name').offsetWidth;$('s-name').classList.add('land');renderCues(nw);showDemo(nw.ex)}}}}
 }
 function renderCues(s){
-  const c=$('s-cues');if(!s){c.hidden=true;return}c.hidden=false;const x=EXM[s.ex];
-  c.innerHTML=`<ul>${x.cue.map(t=>`<li>${t}</li>`).join('')}</ul><p class="easy">Leichter: ${x.e}</p>`;
+  const c=$('s-cues');if(!s){c.hidden=true;return}c.hidden=false;const x=EXM[s.ex],wr=WR[s.ex];
+  c.innerHTML=`<p class="ch ok">✓ SO GEHT'S RICHTIG</p><ul>${x.cue.map(t=>`<li>${t}</li>`).join('')}</ul><p class="easy">Leichter: ${x.e}</p>`
+    +(x.f?`<div class="wrong ${wr?'':'txt'}">${wr?'<canvas id="s-wrong" width="240" height="152" role="img" aria-label="So nicht"></canvas>':''}<div><p class="ch bad">✗ HÄUFIGER FEHLER</p><p>${x.f}</p></div></div>`:'');
+  if(wr)drawWrong(s.ex);
+}
+function drawWrong(id){
+  const mv=MOVES[id],wp=WR[id],c=$('s-wrong');if(!mv||!wp||!c)return;
+  const ctx=c.getContext('2d'),col=figColors();ctx.setTransform(c.width/FW,0,0,c.width/FW,0,0);
+  drawPose(ctx,mv,wp,fitMove({f:mv.f,prop:mv.prop,fr:[...mv.fr,wp]}),col,null,1);
+  ctx.strokeStyle=col.hot;ctx.lineWidth=7;ctx.lineCap='round';ctx.beginPath();
+  ctx.moveTo(FW-44,16);ctx.lineTo(FW-16,44);ctx.moveTo(FW-16,16);ctx.lineTo(FW-44,44);ctx.stroke();
 }
 function render(){
   const s=cur(),m=MODS[S.plan.mod];
@@ -652,6 +810,8 @@ function render(){
     $('s-phase').textContent=s.lab;$('s-sub').textContent='Sekunden';$('s-name').textContent=EXM[s.ex].n;renderCues(s);showDemo(s.ex);
     if(s.test){badge.hidden=false;badge.textContent='Zähl mit! Immer dieselbe Variante.'}
     else if(S.dbl&&s.main){badge.hidden=false;badge.textContent='Doppelte XP'}
+    else if(S.plan.mod==='breath'&&s.main){badge.hidden=false;badge.textContent='Ruhig atmen: 4 Sek. ein, 6 Sek. aus'}
+    else if(EXM[s.ex].side&&s.d>=20&&!s.sw){badge.hidden=false;badge.textContent='Seitenwechsel zur Hälfte'}
     else if(S.plan.mod==='slow'&&s.main){badge.hidden=false;badge.textContent=EXM[s.ex].h?'Statisch: extra fest anspannen':'Tempo: 4 Sek. runter, 1 Sek. hoch'}
     else if(s.fin){badge.hidden=false;badge.textContent='Alles geben. Der Boss wankt.'}
     else if(s.dice){badge.hidden=false;badge.textContent='Gewürfelt: '+s.dice}
@@ -669,7 +829,7 @@ $('s-pause').onclick=()=>{if(!S)return;if(S.run){S.run=false;S.left=S.end-Date.n
 $('s-skip').onclick=()=>{if(S)advance(false)};
 $('s-quit').onclick=()=>{
   if(!S)return;S.run=false;
-  $('ov-card').innerHTML=`<span class="label">Quest abbrechen?</span><h2>Wirklich aufhören?</h2><p>Der Fortschritt von heute geht verloren. Die Kiste bleibt offen, du kannst neu starten.</p><div class="btns"><button class="cta" id="q-no">Weitermachen</button><button class="ghost" id="q-yes">Abbrechen</button></div>`;
+  $('ov-card').innerHTML=`<span class="label">Workout abbrechen?</span><h2>Wirklich aufhören?</h2><p>Der Fortschritt dieses Workouts geht verloren. Du kannst es danach neu starten.</p><div class="btns"><button class="cta" id="q-no">Weitermachen</button><button class="ghost" id="q-yes">Abbrechen</button></div>`;
   $('ov').hidden=false;
   $('q-no').onclick=()=>{$('ov').hidden=true;S.run=true;S.end=Date.now()+S.left};
   $('q-yes').onclick=()=>{$('ov').hidden=true;clearInterval(timer);stopDemo();S=null;release();renderHome();show('home')};
@@ -691,47 +851,61 @@ function finish(){
   stopDemo();
   clearInterval(timer);release();
   const k=S.k,ss=streakState(k);let note='';
-  if(ss.gap===null||ss.gap===0){st.streak=Math.max(1,st.streak)}
-  else if(ss.gap===1){st.streak++}
-  else if(ss.saved){st.shields-=ss.missed;st.streak++;note=`Ein Serien-Schild hat deine Serie gerettet.`}
-  else{st.streak=1}
-  const comeback=!!ss.broken;st.best=Math.max(st.best,st.streak);
-  const lines=[[`Runden geschafft (${S.done})`,'+'+S.xp],['Quest-Abschluss','+60']];
+  // Zählt nur, wenn mindestens die Hälfte der Übungen wirklich gemacht wurde (nicht übersprungen)
+  const mainsT=S.steps.filter(x=>x.k==='w'&&(x.main||x.test)).length,valid=!mainsT||S.done/mainsT>=.5;
+  if(valid){
+    if(ss.gap===null||ss.gap===0){st.streak=Math.max(1,st.streak)}
+    else if(ss.gap===1){st.streak++}
+    else if(ss.saved){st.shields-=ss.missed;st.streak++;note=`Ein Serien-Schild hat deine Serie gerettet.`}
+    else{st.streak=1}
+  }else note='Zu viele Übungen übersprungen. Truhe und Serie gibt es ab der Hälfte.';
+  const comeback=valid&&!!ss.broken;st.best=Math.max(st.best,st.streak);
+  const P=S.plan,fin=valid?20+P.min*4:0;
+  const lines=[[`Übungen geschafft (${S.done})`,'+'+S.xp],[`Workout beendet (${P.min} Min)`,'+'+fin]];
   S.bonus.forEach(b=>lines.push(b));
   let early=0;const fa=st.alarm.firedAt;
   if(fa&&S.started>=fa&&S.started-fa<=20*60e3){early=30;lines.push(['Pünktlich aufgestanden','+30'])}
   if(fa)st.alarm.firedAt=0;
-  let base=S.xp+60+early,mult=1+Math.min(st.streak,10)*.05;
+  let base=S.xp+fin+early,mult=1+Math.min(st.streak,10)*.05;
   lines.push([`Serien-Bonus (${st.streak} ${st.streak===1?'Tag':'Tage'})`,'×'+mult.toFixed(2).replace('.',',')]);
   if(comeback){mult*=1.5;lines.push(['Comeback-Bonus','×1,5'])}
   if(st.potion){mult*=1.5;lines.push(['XP-Trank','×1,5']);st.potion=false}
   const total=Math.round(base*mult);
   const before={lvl:st.level,xp:st.xp};
   st.xp+=total;let ups=0;while(st.xp>=need(st.level)){st.xp-=need(st.level);st.level++;ups++}
-  st.done[k]=true;st.lastDone=k;st.total++;
-  const chests=[rollLoot(k)];
-  if(st.splitter>=3){st.splitter-=3;chests.push(rollLoot(k))}
-  const summary={k,mod:S.plan.mod,boss:S.plan.boss,lines,total,before,ups,note,chests,opened:0};
+  if(valid){st.done[k]=true;st.lastDone=k}st.total++;
+  // Truhe ab 3 Minuten, höchstens 3 pro Tag
+  if(st.chestDay.k!==k)st.chestDay={k,n:0};
+  const chests=[];let chestNote='';
+  if(!valid)chestNote='Schaff beim nächsten Mal mindestens die Hälfte der Übungen, dann gibt es eine Truhe.';
+  else if(P.min<3)chestNote='Truhen gibt es ab 3 Minuten Training.';
+  else if(st.chestDay.n>=3)chestNote='Heute gab es schon 3 Truhen. Morgen geht es weiter.';
+  else{st.chestDay.n++;chests.push(rollLoot(k));if(st.splitter>=3){st.splitter-=3;chests.push(rollLoot(k))}}
+  const summary={k,mod:P.mod,boss:P.boss,theme:P.theme,min:P.min,lines,total,before,ups,note,chests,chestNote,opened:0};
+  st.cur=null;st.curOpened=false;
   st.pending={summary};save();S=null;
   renderResults(summary);show('res');confetti(140);arp([523,659,784,1047,1319],.09);buzz([80,60,160]);
 }
 function renderResults(sm){
   const m=MODS[sm.mod];setAccent(m.col);
-  $('r-mod').textContent=m.n;$('r-head').textContent=sm.boss?sm.boss+' besiegt':'Quest geschafft';
-  $('r-sub').textContent=sm.note||`Tag ${st.total} deiner Morgen-Quest.`;
+  $('r-mod').textContent=m.n+(sm.theme?' · '+THEMES[sm.theme].n:'');$('r-head').textContent=sm.boss?sm.boss+' besiegt':'Workout geschafft';
+  $('r-sub').textContent=sm.note||`${sm.min||''} Minuten geschafft. Workout Nr. ${st.total}.`;
   $('r-ledger').innerHTML=sm.lines.map(l=>`<div><span>${l[0]}</span><b>${l[1]}</b></div>`).join('')+`<div><span>Gesamt</span><b id="r-total">+0 XP</b></div>`;
   let n=0;const tgt=sm.total,iv=setInterval(()=>{n=Math.min(tgt,n+Math.ceil(tgt/30));$('r-total').textContent='+'+n+' XP';if(n%3===0)tone(900+n,.03,'square',.04);if(n>=tgt)clearInterval(iv)},35);
   $('r-title').textContent='Level '+st.level+' · '+title(st.level);$('r-xp').textContent=`${st.xp} / ${need(st.level)} XP`;
   $('r-xpbar').style.width='0';requestAnimationFrame(()=>requestAnimationFrame(()=>$('r-xpbar').style.width=(st.xp/need(st.level)*100)+'%'));
   $('r-lvup').hidden=!sm.ups;if(sm.ups)$('r-lvup').textContent=`Level up! Jetzt Level ${st.level}`;
-  $('r-teaser').innerHTML=teaserHTML(addDays(sm.k,1));
+  $('r-teaser').innerHTML=tipHTML();
   renderChest(sm);
 }
 function renderChest(sm){
   const box=$('r-chest');
   if(sm.opened>=sm.chests.length){
-    box.innerHTML=sm.chests.map(c=>relicHTML(c,false)).join('');$('r-home').hidden=false;return;
+    box.hidden=!sm.chests.length&&!sm.chestNote;
+    box.innerHTML=sm.chests.length?sm.chests.map(c=>relicHTML(c,false)).join(''):`<p style="color:var(--muted)">${sm.chestNote||''}</p>`;
+    $('r-home').hidden=false;if(!sm.chests.length){st.pending=null;save()}return;
   }
+  box.hidden=false;
   $('r-home').hidden=true;
   const isBonus=sm.opened>0;let t=0;
   box.innerHTML=`<span class="label">${isBonus?'Bonus-Truhe aus 3 Splittern':'Deine Truhe'}${sm.chests[sm.opened].lucky?' · Glückstag':''}</span>
@@ -776,7 +950,6 @@ $('b-col').onclick=()=>{renderCol();show('col')};
 $('c-back').onclick=()=>show('home');
 $('b-sound').onclick=()=>{st.sound=!st.sound;save();$('b-sound').textContent='Ton: '+(st.sound?'an':'aus');if(st.sound)tone(880)};
 $('b-sound').textContent='Ton: '+(st.sound?'an':'aus');
-$('b-next').onclick=()=>{st.dayOffset++;save();renderHome()};
 let resetArm=false;
 $('b-reset').onclick=()=>{if(!resetArm){resetArm=true;$('b-reset').textContent='Sicher? Nochmal tippen';setTimeout(()=>{resetArm=false;$('b-reset').textContent='Alles zurücksetzen'},3000);return}
   st=FRESH();save();resetArm=false;$('b-reset').textContent='Alles zurücksetzen';renderHome()};
@@ -840,9 +1013,52 @@ const MOVES={
  crawl:{fr:[BE,V(BE,{x:5,a:[20,15],d:[20,-70]}),V(BE,{x:10,b:[20,15],c:[20,-70]}),V(BE,{x:15})]},
  crab:{fr:[P({t:-115,a:[-10,-10],b:[-10,-10],c:[100,0],d:[100,0]}),P({t:-115,x:8,a:[-10,-10],b:[0,0],c:[110,5],d:[100,0]}),P({t:-115,x:16,a:[-10,-10],b:[-10,-10],c:[100,0],d:[100,0]})]},
  frog:{fr:[ST,P({t:130,a:[15,15],b:[15,15],c:[115,-35],d:[115,-35]}),P({x:28,lift:18,t:150,a:[150,150],b:[150,150],c:[-15,-15],d:[-15,-15],toe:-40,toe2:-40}),P({x:50,t:130,a:[15,15],b:[15,15],c:[115,-35],d:[115,-35]})]},
+ birddog:{fr:[QUAD,V(QUAD,{a:[95,95],d:[-92,-92]}),QUAD,V(QUAD,{b:[95,95],c:[-92,-92]}),QUAD]},
+ legraise:{fr:(()=>{const b=P({t:-90,a:[90,90],b:[90,90],c:[95,95],d:[95,95]});return[b,V(b,{c:[178,178],d:[178,178]}),b]})()},
+ twist:{fr:(()=>{const b=P({t:-158,a:[60,70],b:[60,70],c:[120,50],d:[120,50]});return[b,V(b,{a:[25,10],b:[25,10]}),b,V(b,{a:[110,120],b:[110,120]}),b]})()},
+ revcrunch:{fr:(()=>{const b=P({t:-90,a:[90,90],b:[90,90],c:[180,90],d:[180,90]});return[b,P({t:-72,a:[90,90],b:[90,90],c:[215,125],d:[215,125]}),b]})()},
+ hipflex:{fr:[P({c:[90,0],d:[0,-90]}),P({t:184,a:[175,178],b:[175,178],c:[95,0],d:[-22,-90]}),P({t:184,a:[175,178],b:[175,178],c:[95,0],d:[-22,-90]})]},
+ chestop:{fr:[ST,P({t:182,a:[-30,-15],b:[-30,-15],hd:6}),P({t:184,a:[-45,-30],b:[-45,-30],hd:8})]},
+ child:{fr:[P({a:[0,0],b:[0,0],c:[0,-90],d:[0,-90]}),P({t:92,a:[85,92],b:[85,92],c:[75,-90],d:[75,-90],hd:-45}),P({t:92,a:[85,92],b:[85,92],c:[75,-90],d:[75,-90],hd:-45})]},
+ sphinx:{fr:[P({t:90,a:[95,90],b:[95,90],c:[-90,-90],d:[-90,-90]}),P({t:118,a:[0,90],b:[0,90],c:[-90,-90],d:[-90,-90],hd:10}),P({t:118,a:[0,90],b:[0,90],c:[-90,-90],d:[-90,-90],hd:10})]},
+ kneechest:{fr:(()=>{const b=P({t:-90,a:[90,90],b:[90,90],c:[90,90],d:[90,90]}),k=V(b,{c:[200,95],a:[125,125],b:[125,125]});return[b,k,k]})()},
+ hamlie:{fr:(()=>{const b=P({t:-90,a:[90,90],b:[90,90],c:[90,90],d:[90,90]}),k=V(b,{c:[180,180],a:[121,121],b:[121,121]});return[b,k,k]})()},
+ quadst:{fr:[ST,P({c:[0,-170],a:[-10,-5],b:[70,80]}),P({c:[0,-170],a:[-10,-5],b:[70,80]})]},
+ tneedle:{fr:[QUAD,V(QUAD,{a:[175,178],hd:45}),QUAD,V(QUAD,{a:[-35,-80],hd:-35,t:104}),QUAD]},
+ calfwall:{prop:'wallFront',fr:[ST,P({t:150,a:[110,95],b:[110,95],c:[25,-12],d:[-28,-28]}),P({t:150,a:[110,95],b:[110,95],c:[25,-12],d:[-28,-28]})]},
+ neck:{f:1,fr:[STF,V(STF,{hd:-42}),V(STF,{hd:-42})]},
+ sidebend:{f:1,fr:[STF,P({t:163,a:[150,140],b:[-25,-15],c:[8,8],d:[-8,-8]}),P({t:163,a:[150,140],b:[-25,-15],c:[8,8],d:[-8,-8]})]},
+ ytw:{f:1,fr:[STF,P({a:[152,152],b:[-152,-152],c:[6,6],d:[-6,-6]}),P({a:[90,90],b:[-90,-90],c:[6,6],d:[-6,-6]}),P({a:[55,170],b:[-55,-170],c:[6,6],d:[-6,-6]}),STF]},
+ fold:{fr:[ST,P({t:35,a:[50,90],b:[50,90],c:[8,-5],d:[8,-5],hd:-20}),P({t:35,a:[50,90],b:[50,90],c:[8,-5],d:[8,-5],hd:-20})]},
+};
+/* So nicht: typische Fehlhaltung als Standbild */
+const PSAG=V(PL,{t:130,c:[-77,-77],d:[-77,-77],k:5}); // Hüfte hängt durch
+const WR={
+ push:PSAG,diam:PSAG,burpee:PSAG,inch:PSAG,tpush:PSAG,
+ plank:P({t:114,a:[0,90],b:[0,90],c:[-86,-86],d:[-86,-86],k:5}),
+ side:P({t:114,a:[175,175],b:[0,90],c:[-86,-86],d:[-86,-86],k:5}),
+ mc:P({t:75,a:[0,0],b:[0,0],c:[-45,-45],d:[-45,-45]}),
+ squat:P({t:118,a:[90,90],b:[90,90],c:[70,-35],d:[70,-35],toe:-45,toe2:-45}),
+ lunge:P({t:168,c:[55,-40],d:[-15,-85],toe:-35}),
+ sumo:P({a:[30,-150],b:[-30,150],c:[55,-25],d:[-55,25]}),
+ wall:P({t:172,a:[90,90],b:[90,90],c:[65,-35],d:[65,-35]}),
+ bridge:P({t:-52,a:[85,85],b:[85,85],c:[100,0],d:[100,0]}),
+ super:P({t:102,a:[103,103],b:[103,103],c:[-100,-100],d:[-100,-100],hd:50}),
+ bear:P({t:72,a:[0,0],b:[0,0],c:[-25,-80],d:[-25,-80],k:-5}),
+ hollow:P({t:-100,a:[-110,-110],b:[-110,-110],c:[95,95],d:[95,95],k:7}),
+ dbug:P({t:-90,a:[180,180],b:[180,180],c:[180,90],d:[180,90],k:7}),
+ hipflex:P({t:158,c:[90,0],d:[0,-90],k:6}),
+ calfwall:P({t:150,a:[110,95],b:[110,95],c:[25,-12],d:[-28,-28],toe2:-55}),
+ quadst:P({t:168,c:[40,-140],a:[-10,-5],b:[70,80]}),
+ fold:P({t:30,a:[50,90],b:[50,90],k:-9,hd:-20}),
+ legraise:P({t:-90,a:[90,90],b:[90,90],c:[110,110],d:[110,110],k:8}),
+ birddog:V(QUAD,{a:[125,125],d:[-125,-125],k:7}),
+ crab:P({t:-128,a:[-10,-10],b:[-10,-10],c:[70,0],d:[70,0]}),
+ chestop:P({t:172,a:[-30,-15],b:[-30,-15],hd:-30}),
+ sphinx:P({t:118,a:[0,90],b:[0,90],c:[-90,-90],d:[-90,-90],hd:55}),
 };
 /* Arbeitende Muskeln je Übung: [stark, hilft mit, Puls hoch?] */
-const MNAME={brust:'Brust',schulter:'Schultern',trizeps:'Trizeps',bauch:'Bauch',ruecken:'Rücken',po:'Po',beinv:'Oberschenkel vorn',beinh:'Oberschenkel hinten',waden:'Waden'};
+const MNAME={hueftb:'Hüftbeuger',nacken:'Nacken',flanke:'Seitlicher Rumpf',brust:'Brust',schulter:'Schultern',trizeps:'Trizeps',bauch:'Bauch',ruecken:'Rücken',po:'Po',beinv:'Oberschenkel vorn',beinh:'Oberschenkel hinten',waden:'Waden'};
 const MUS={
  armk:[['schulter'],['ruecken']],hamp:[['waden','schulter'],['beinv'],1],hueft:[['bauch'],['po','ruecken']],katz:[['ruecken'],['bauch']],
  wgs:[['po','beinh'],['ruecken','schulter']],inch:[['beinh','schulter'],['bauch']],march:[['beinv'],['bauch'],1],
@@ -854,6 +1070,10 @@ const MUS={
  hollow:[['bauch'],['beinv']],bike:[['bauch'],[]],super:[['ruecken','po'],['beinh','schulter']],bear:[['bauch','schulter'],['beinv']],
  burpee:[['beinv','brust'],['schulter','bauch'],1],skate:[['po','beinv'],['waden'],1],box:[['schulter'],['bauch'],1],
  knees:[['beinv'],['bauch'],1],crawl:[['schulter','bauch'],['beinv'],1],crab:[['trizeps','po'],['schulter']],frog:[['beinv','po'],['waden'],1],
+ birddog:[['ruecken','po'],['bauch','schulter']],legraise:[['bauch'],['hueftb']],twist:[['bauch','flanke'],[]],revcrunch:[['bauch'],[]],
+ hipflex:[['hueftb'],['beinv'],0,'d'],chestop:[['brust'],['schulter'],0,'d'],child:[['ruecken'],['schulter'],0,'d'],sphinx:[['bauch'],['hueftb'],0,'d'],
+ kneechest:[['po','ruecken'],[],0,'d'],hamlie:[['beinh'],['waden'],0,'d'],quadst:[['beinv'],['hueftb'],0,'d'],tneedle:[['ruecken'],['schulter'],0,'d'],
+ calfwall:[['waden'],[],0,'d'],neck:[['nacken'],[],0,'d'],sidebend:[['flanke'],['ruecken'],0,'d'],ytw:[['ruecken','schulter'],[]],fold:[['beinh','ruecken'],['waden'],0,'d'],
 };
 function dv(a){const r=a*Math.PI/180;return[Math.sin(r),Math.cos(r)]}
 function mvp(p,a,l){const d=dv(a);return[p[0]+d[0]*l,p[1]+d[1]*l]}
@@ -870,6 +1090,7 @@ function fk(p,front){
 function lerpPose(p,q,u){const o={};for(const k in p)o[k]=Array.isArray(p[k])?p[k].map((v,i)=>v+(q[k][i]-v)*u):p[k]+(q[k]-p[k])*u;return o}
 function propOf(mv){
   if(!mv.prop)return null;
+  if(mv.prop==='wallFront'){const g=fk(mv.fr[mv.fr.length-1],mv.f);const x=Math.max(g.A[1][0],g.B[1][0])+2;return{x,y:g.Hd[1]-30,w:7,h:-(g.Hd[1]-30)}}
   if(mv.prop==='wall'){const g=fk(mv.fr[mv.fr.length-1],mv.f);const x=Math.min(g.H[0],g.S[0])-4;return{x:x-7,y:g.Hd[1]-24,w:7,h:-(g.Hd[1]-24)}}
   const g=fk(mv.fr[0],mv.f);
   if(mv.prop==='benchHand'){const h=g.A[1];return{x:h[0]-22,y:h[1]+3,w:28,h:-(h[1]+3)}}
@@ -883,48 +1104,65 @@ function fitMove(mv){
     pts.forEach(q=>{x0=Math.min(x0,q[0]);x1=Math.max(x1,q[0]);y0=Math.min(y0,q[1])});
     x0=Math.min(x0,g.Hd[0]-LEN.HR);x1=Math.max(x1,g.Hd[0]+LEN.HR);y0=Math.min(y0,g.Hd[1]-LEN.HR)});
   const pr=propOf(mv);if(pr){x0=Math.min(x0,pr.x);x1=Math.max(x1,pr.x+pr.w);y0=Math.min(y0,pr.y)}
-  x0-=7;x1+=7;y0-=5;
+  x0-=10;x1+=10;y0-=7;
   const s=Math.min(1.25,(FW-28)/(x1-x0),(GY-16)/(-y0));
   return{s,ox:FW/2-(x0+x1)/2*s,pr};
 }
 function figColors(){const cs=getComputedStyle(document.documentElement),g=n=>cs.getPropertyValue(n).trim();
-  return{fg:g('--text'),far:g('--muted'),line:g('--line'),prop:g('--panel2'),acc:g('--accent'),bg:g('--panel'),body:g('--body'),body2:g('--body2'),hot:g('--hot'),warm:g('--warm')}}
+  return{fg:g('--text'),far:g('--muted'),line:g('--line'),prop:g('--panel2'),acc:g('--accent'),bg:g('--panel'),body:g('--body'),body2:g('--body2'),outline:g('--outline'),hot:g('--hot'),warm:g('--warm')}}
 function figCtx(){const c=$('s-fig'),x=c.getContext('2d');x.setTransform(c.width/FW,0,0,c.width/FW,0,0);return x}
-// Figur mit Volumen; arbeitende Muskeln rot (stark) bzw. gelb (hilft mit), glow = Pulsstärke 0..1
+// Figur mit Körperform: verjüngte Glieder, Rumpf mit Brust und Rücken, Muskelbäuche leuchten rot (stark) bzw. gelb (hilft mit)
 function drawPose(ctx,mv,pose,fi,col,mus,glow=1){
   ctx.clearRect(0,0,FW,200);
-  const s=fi.s,M=q=>[fi.ox+q[0]*s,GY+q[1]*s],front=!!mv.f;
+  const s=fi.s,front=!!mv.f,M=q=>[fi.ox+q[0]*s,GY+q[1]*s];
   ctx.strokeStyle=col.line;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(12,GY+1);ctx.lineTo(FW-12,GY+1);ctx.stroke();
   if(fi.pr){const a=M([fi.pr.x,fi.pr.y]);ctx.fillStyle=col.prop;ctx.fillRect(a[0],a[1],fi.pr.w*s,fi.pr.h*s)}
-  const g=fk(pose,front);ctx.lineCap='round';ctx.lineJoin='round';
-  const P=new Set(mus?mus[0]:[]),W=new Set(mus?mus[1]:[]);
-  const mc=k=>P.has(k)?col.hot:W.has(k)?col.warm:null;
-  const seg=(a,b,w,c,al=1)=>{ctx.globalAlpha=al;ctx.strokeStyle=c;ctx.lineWidth=w*s;ctx.beginPath();const p=M(a),q=M(b);ctx.moveTo(p[0],p[1]);ctx.lineTo(q[0],q[1]);ctx.stroke();ctx.globalAlpha=1};
-  const part=(a,b,u0,u1)=>[[a[0]+(b[0]-a[0])*u0,a[1]+(b[1]-a[1])*u0],[a[0]+(b[0]-a[0])*u1,a[1]+(b[1]-a[1])*u1]];
-  const dot=(q,r,c,al)=>{const p=M(q);ctx.globalAlpha=al;ctx.fillStyle=c;ctx.beginPath();ctx.arc(p[0],p[1],r*s,0,7);ctx.fill();ctx.globalAlpha=1};
-  const limb=(root,L,arm,base,far)=>{
-    const w1=arm?8:10.5,w2=arm?6.5:8.5,al=(far?.6:1)*glow;
-    seg(root,L[0],w1,base);seg(L[0],L[1],w2,base);if(!arm&&!front)seg(L[1],L[2],4.5,base);
-    if(arm){const c=mc('trizeps');if(c)seg(...part(root,L[0],.18,.82),w1-3.4,c,al)}
-    else{const c=mc('beinv')||mc('beinh');if(c)seg(...part(root,L[0],.15,.85),w1-3.6,c,al);
-      const w=mc('waden');if(w)seg(...part(L[0],L[1],.14,.6),w2-3,w,al)}
-  };
-  const farBase=front?col.body:col.body2;
-  limb(g.H,g.D,false,farBase,!front);limb(g.S,g.B,true,farBase,!front);
-  // Rumpf als Kurve, vorne/hinten getrennt einfärbbar
-  const H=g.H,C=g.C,S=g.S,dx=S[0]-H[0],dy=S[1]-H[1],len=Math.hypot(dx,dy)||1,n=[-dy/len,dx/len];
-  const qp=u=>[(1-u)*(1-u)*H[0]+2*(1-u)*u*C[0]+u*u*S[0],(1-u)*(1-u)*H[1]+2*(1-u)*u*C[1]+u*u*S[1]];
-  const curve=(u0,u1,off,w,c,al=1)=>{ctx.globalAlpha=al;ctx.strokeStyle=c;ctx.lineWidth=w*s;ctx.beginPath();
-    for(let i=0;i<=12;i++){const p=qp(u0+(u1-u0)*i/12),m=M([p[0]+n[0]*off,p[1]+n[1]*off]);i?ctx.lineTo(m[0],m[1]):ctx.moveTo(m[0],m[1])}ctx.stroke();ctx.globalAlpha=1};
-  curve(0,1,0,15,col.body);
-  const fo=front?0:3.6;
-  if(!front&&mc('ruecken'))curve(.15,.9,-fo,6.5,mc('ruecken'),glow);
-  if(mc('bauch'))curve(.1,.5,fo,front?8:6.5,mc('bauch'),glow);
-  if(mc('brust'))curve(.6,.92,fo,front?9:6.5,mc('brust'),glow);
-  if(mc('po'))dot([H[0]-n[0]*(front?0:4),H[1]-n[1]*(front?0:4)],front?6:5.5,mc('po'),glow);
-  dot(g.Hd,LEN.HR,col.acc,1);
-  limb(g.H,g.Cl,false,col.body,false);limb(g.S,g.A,true,col.body,false);
-  if(mc('schulter'))dot(S,4.8,mc('schulter'),glow);
+  const g=fk(pose,front);
+  const PS=new Set(mus?mus[0]:[]),WS=new Set(mus?mus[1]:[]),mc=k=>PS.has(k)?col.hot:WS.has(k)?col.warm:null;
+  const nrm=(a,b)=>{const dx=b[0]-a[0],dy=b[1]-a[1],L=Math.hypot(dx,dy)||1;return[-dy/L,dx/L]},dot=(u,v)=>u[0]*v[0]+u[1]*v[1];
+  const tn=nrm(g.H,g.S); // zeigt zur Körpervorderseite
+  // Seite, zu der ein Gelenk einknickt; bei gestrecktem Glied: Vorder- bzw. Rückseite des Rumpfs
+  const sideOf=(a,b,c,dflt)=>{const n=nrm(a,b),v=[c[0]-b[0],c[1]-b[1]],d=dot(n,v)/(Math.hypot(v[0],v[1])||1);return Math.abs(d)>.18?Math.sign(d):(Math.sign(dot(n,tn))||1)*dflt};
+  const disc=(q,r)=>{const p=M(q);ctx.beginPath();ctx.arc(p[0],p[1],Math.max(.5,r*s),0,Math.PI*2);ctx.fill()};
+  const quad=(a,b,ra,rb)=>{const pa=M(a),pb=M(b),n=nrm(pa,pb);ctx.beginPath();ctx.moveTo(pa[0]+n[0]*ra*s,pa[1]+n[1]*ra*s);ctx.lineTo(pb[0]+n[0]*rb*s,pb[1]+n[1]*rb*s);
+    ctx.lineTo(pb[0]-n[0]*rb*s,pb[1]-n[1]*rb*s);ctx.lineTo(pa[0]-n[0]*ra*s,pa[1]-n[1]*ra*s);ctx.closePath();ctx.fill()};
+  const limb=(parts,fill)=>{ctx.fillStyle=col.outline;parts.forEach(([a,b,ra,rb])=>{quad(a,b,ra+1,rb+1);disc(a,ra+1);disc(b,rb+1)});
+    ctx.fillStyle=fill;parts.forEach(([a,b,ra,rb])=>{quad(a,b,ra,rb);disc(a,ra);disc(b,rb)})};
+  const belly=(a,b,u0,u1,side,off,ry,c,alpha,lit)=>{const pa=M(a),pb=M(b),dx=pb[0]-pa[0],dy=pb[1]-pa[1],L=Math.hypot(dx,dy)||1,n=[-dy/L,dx/L],um=(u0+u1)/2;
+    ctx.save();ctx.globalAlpha=alpha;ctx.fillStyle=c;if(lit){ctx.shadowColor=c;ctx.shadowBlur=(3+9*glow)*s}
+    ctx.beginPath();ctx.ellipse(pa[0]+dx*um+n[0]*side*off*s,pa[1]+dy*um+n[1]*side*off*s,Math.max(1.5,L*(u1-u0)/2),ry*s,Math.atan2(dy,dx),0,Math.PI*2);ctx.fill();ctx.restore()};
+  const ma=far=>(far?.55:1)*(.6+.4*glow),A1=ma(false),mb=(k,f)=>{const c=mc(k);if(c)f(c)};
+  const leg=(L,far)=>{const [K,A,T]=L,base=far?col.body2:col.body,parts=[[g.H,K,6.3,4.5],[K,A,4.5,2.8]];if(!front)parts.push([A,T,2.6,1.6]);limb(parts,base);
+    const bk=front?0:sideOf(g.H,K,A,-1),a=ma(far);
+    if(!front)belly(K,A,.12,.55,bk,2.1,2.7,base,1,false); // Wadenform
+    mb('beinv',c=>belly(g.H,K,.14,.86,-bk,2.2,3,c,a,true));
+    mb('beinh',c=>belly(g.H,K,.14,.86,bk,2.2,3,c,a,true));
+    mb('hueftb',c=>belly(g.H,K,.02,.4,-bk,2.4,2.8,c,a,true));
+    mb('waden',c=>belly(K,A,.1,.55,bk,2.3,2.7,c,a,true))};
+  const arm=(L,far)=>{const [E,Wr]=L,base=far?col.body2:col.body;limb([[g.S,E,4.3,3.3],[E,Wr,3.3,2.3],[Wr,Wr,2.7,2.7]],base);
+    const bi=front?0:sideOf(g.S,E,Wr,1);mb('trizeps',c=>belly(g.S,E,.15,.85,-bi,1.7,2.4,c,ma(far),true))};
+  leg(g.D,!front);arm(g.B,!front);
+  // Rumpf als Körperform entlang der (gebogenen) Wirbelsäule
+  const H=g.H,S=g.S,C=g.C,qp=u=>[(1-u)*(1-u)*H[0]+2*(1-u)*u*C[0]+u*u*S[0],(1-u)*(1-u)*H[1]+2*(1-u)*u*C[1]+u*u*S[1]];
+  const lw=(u,pts)=>{for(let i=1;i<pts.length;i++)if(u<=pts[i][0]){const[a,wa]=pts[i-1],[b,wb]=pts[i];return wa+(wb-wa)*(u-a)/(b-a)}return pts[pts.length-1][1]};
+  const WF=front?[[0,8],[.35,6.6],[.75,8.6],[1,7.6]]:[[0,6.4],[.35,5],[.72,7.8],[1,5.4]],WB=front?WF:[[0,7.6],[.35,5.4],[.7,7],[1,6]];
+  const tor=[];for(let i=0;i<=12;i++){const q=qp(i/12),w=lw(i/12,WF);tor.push([q[0]+tn[0]*w,q[1]+tn[1]*w])}
+  for(let i=12;i>=0;i--){const q=qp(i/12),w=lw(i/12,WB);tor.push([q[0]-tn[0]*w,q[1]-tn[1]*w])}
+  ctx.beginPath();tor.map(M).forEach((p,i)=>i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]));ctx.closePath();
+  ctx.lineJoin='round';ctx.strokeStyle=col.outline;ctx.lineWidth=2*s;ctx.stroke();ctx.fillStyle=col.body;ctx.fill();
+  mb('ruecken',c=>{if(!front)belly(H,S,.3,.9,-1,4,3,c,A1,true)});
+  mb('bauch',c=>belly(H,S,.1,.5,front?0:1,front?0:2.6,front?4.4:2.8,c,A1,true));
+  mb('brust',c=>belly(H,S,.6,.9,front?0:1,front?0:4,front?5.5:3.2,c,A1,true));
+  mb('flanke',c=>belly(H,S,.22,.72,0,0,front?3:3.4,c,A1,true));
+  mb('po',c=>belly(H,S,-.1,.2,front?0:-1,front?0:4.6,front?5:4.2,c,A1,true));
+  // Hals und Kopf
+  const nd=dv(pose.t+pose.hd),nt=[S[0]+nd[0]*LEN.N,S[1]+nd[1]*LEN.N];
+  limb([[S,nt,2.9,2.7]],col.body);
+  mb('nacken',c=>belly(S,nt,-.3,1.3,0,0,2.4,c,A1,true));
+  ctx.fillStyle=col.outline;disc(g.Hd,LEN.HR-.2);ctx.fillStyle=col.body;disc(g.Hd,LEN.HR-1.2);
+  if(!front){let hn=nrm(S,g.Hd);if(dot(hn,tn)<0)hn=[-hn[0],-hn[1]];ctx.fillStyle=col.outline;disc([g.Hd[0]+hn[0]*3.6+nd[0]*1.2,g.Hd[1]+hn[1]*3.6+nd[1]*1.2],1.1)}
+  leg(g.Cl,false);arm(g.A,false);
+  mb('schulter',c=>belly(S,g.A[0],-.08,.45,0,0,3.6,c,A1,true));
   // Herz für "Puls hoch"
   if(mus&&mus[2]){const k=.75+.25*glow,x=26,y=42;ctx.fillStyle=col.hot;ctx.globalAlpha=.5+.5*glow;ctx.beginPath();
     ctx.moveTo(x,y+6*k);ctx.bezierCurveTo(x-11*k,y-2*k,x-5*k,y-11*k,x,y-5*k);ctx.bezierCurveTo(x+5*k,y-11*k,x+11*k,y-2*k,x,y+6*k);ctx.fill();ctx.globalAlpha=1}
@@ -932,7 +1170,7 @@ function drawPose(ctx,mv,pose,fi,col,mus,glow=1){
 function renderMus(id){
   const m=MUS[id],el=$('s-mus');if(!m){el.innerHTML='';return}
   el.innerHTML=m[0].map(k=>`<span><i></i>${MNAME[k]}</span>`).join('')+m[1].map(k=>`<span class="s"><i></i>${MNAME[k]}</span>`).join('')
-    +(m[2]?'<span class="puls">♥ Puls hoch</span>':'')+'<span class="key">rot: arbeitet stark · gelb: hilft mit</span>';
+    +(m[2]?'<span class="puls">♥ Puls hoch</span>':'')+(m[3]==='d'?'<span class="key">rot: wird gedehnt · gelb: auch beteiligt</span>':'<span class="key">rot: arbeitet stark · gelb: hilft mit</span>');
 }
 let anim=0,demoCur=null;
 const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -985,7 +1223,7 @@ function showBenchInput(){
     card.innerHTML=`<span class="label">Tagestest</span><h2>${rec?'Neuer Rekord!':'Eingetragen'}</h2>
       <div class="stepper"><span class="num mono">${v}</span></div>
       <p>${rec?`Vorher ${best}. +25 XP.`:diff||'Erster Wert gespeichert.'}</p>
-      <div class="btns"><button class="cta" id="bn-go">Weiter zur Quest</button></div>`;
+      <div class="btns"><button class="cta" id="bn-go">Weiter</button></div>`;
     $('bn-go').onclick=resumeAfterOverlay;
   };
 }
@@ -994,7 +1232,7 @@ function renderBench(k){
   const el=$('bench'),wd=(new Date(Date.parse(k)).getUTCDay()+6)%7,mon=addDays(k,-wd);
   const head=`<div><span class="label">Tagestest · jeden Tag gleich</span><h3>Liegestütze in 30 Sekunden</h3></div>`;
   if(!Object.keys(st.bench).length){
-    el.innerHTML=head+`<p style="color:var(--muted)">Noch kein Wert. Der Test kommt in jeder Quest direkt nach dem Aufwärmen. Mach immer dieselbe Variante, normal oder auf den Knien, sonst ist der Vergleich wertlos.</p>`;return}
+    el.innerHTML=head+`<p style="color:var(--muted)">Noch kein Wert. Du kannst ihn beim Erstellen eines Workouts einbauen. Er kommt dann direkt nach dem Aufwärmen. Mach immer dieselbe Variante, normal oder auf den Knien, sonst ist der Vergleich wertlos.</p>`;return}
   const days=['Mo','Di','Mi','Do','Fr','Sa','So'],vals=days.map((_,i)=>st.bench[addDays(mon,i)]);
   const best=bestBench(null),now=weekAvg(mon),prev=weekAvg(addDays(mon,-7));
   const max=Math.max(best||0,...vals.filter(v=>v!=null),5)*1.18,base=100,hh=78,slot=300/7;
@@ -1035,7 +1273,7 @@ function renderAlarm(){
     <div class="days">${DAYN.map((d,i)=>`<button class="${A.days[i]?'on':''}" data-d="${i}" aria-pressed="${!!A.days[i]}">${d}</button>`).join('')}</div>
     <p class="al-next" id="al-next">${nextAlarmText()}</p>
     <button class="cta" id="al-night">Nachtmodus starten</button>
-    <p class="al-note">Der Wecker klingelt nur, solange diese Seite offen ist. Starte abends den Nachtmodus und leg das Handy ans Ladekabel. Wer innerhalb von 20 Minuten nach dem Klingeln die Quest startet, bekommt +30 XP.</p>
+    <p class="al-note">Der Wecker klingelt nur, solange diese Seite offen ist. Starte abends den Nachtmodus und leg das Handy ans Ladekabel. Wer innerhalb von 20 Minuten nach dem Klingeln ein Workout startet, bekommt +30 XP.</p>
     <div class="tiny"><button id="al-test">Wecker testen (klingelt in 5 Sekunden)</button></div>`;
   $('al-time').onchange=e=>{if(!e.target.value)return;A.time=e.target.value;const now=new Date();if(alarmAt(now)>now)A.fired=null;save();$('al-next').textContent=nextAlarmText()};
   $('al-on').onclick=()=>{A.on=!A.on;save();renderAlarm()};
@@ -1085,7 +1323,7 @@ if(NATIVE){
         const d=new Date(now);d.setDate(d.getDate()+i);const at=alarmAt(d),wd=(d.getDay()+6)%7;
         if(!A.days[wd])continue;
         const base={channelId:'wecker',smallIcon:'ic_stat_quest',iconColor:'#FFC23D',autoCancel:true};
-        if(at>now)list.push(Object.assign({id:3000+i*2,title:'Guten Morgen, Tammo',body:'Deine Mystery-Kiste wartet. Starte in 20 Minuten für +30 XP.',schedule:{at,allowWhileIdle:true},extra:{alarm:1}},base));
+        if(at>now)list.push(Object.assign({id:3000+i*2,title:'Guten Morgen, Tammo',body:'Dein Überraschungs-Workout wartet. Starte in 20 Minuten für +30 XP.',schedule:{at,allowWhileIdle:true},extra:{alarm:1}},base));
         const f=new Date(+at+FOLLOW);
         if(f>now&&A.fired!==realKey(d))list.push(Object.assign({id:3001+i*2,title:'Zweiter Weckruf',body:'Die Kiste wird ungeduldig. Aufstehen!',schedule:{at:f,allowWhileIdle:true},extra:{alarm:1}},base));
       }
@@ -1113,8 +1351,7 @@ if(NATIVE){
     scheduleSoon();
   };
   $('a-up').onclick=()=>{stopRing();renderHome();show('home');confetti(70);arp([523,659,784],.08);scheduleSoon()};
-  $('a-snooze').onclick=()=>{stopRing();st.alarm.snoozed=true;save();adhoc(3990,5*60e3,'Schlummern vorbei','Jetzt aber: Die Kiste wartet.')};
-  $('b-next').parentElement.hidden=true; // kein Vorspulen in der echten App
+  $('a-snooze').onclick=()=>{stopRing();st.alarm.snoozed=true;save();adhoc(3990,5*60e3,'Schlummern vorbei','Jetzt aber: Dein Workout wartet.')};
   (async()=>{
     try{
       await LN.createChannel({id:'wecker',name:'Wecker',description:'Morgen-Quest Wecker',importance:5,visibility:1,sound:'wecker.wav',vibration:true,lights:true,lightColor:'#FFC23D'});

@@ -1,7 +1,7 @@
 # Morgen-Quest
 
-Tammos tägliches Überraschungs-Workout als Android-App (Capacitor 8).
-Jeden Morgen gibt es eine Mystery-Kiste, eine zufällige Spielregel, einen festen Tagestest (Liegestütze), Beute-Truhen und einen Wecker.
+Tammos Überraschungs-Workout für zu Hause als Android-App (Capacitor 8).
+Dauer (1–30 Min) und Thema (Ganzkörper, Anti-Sitzen-Stretching, Core) wählen, dann erzeugt die App jedes Mal ein neues Workout mit zufälliger Spielregel. Dazu animierte Figuren mit markierten Muskeln, Richtig/Falsch-Hinweise, optionaler Tagestest, Beute-Truhen, Grundlagen-Seite und Wecker.
 
 ## Aufbau
 
