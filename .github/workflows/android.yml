@@ -55,7 +55,7 @@ jobs:
       - uses: softprops/action-gh-release@v2
         with:
           tag_name: v1.0.${{ github.run_number }}
-          name: Morgen-Quest 1.0.${{ github.run_number }}
+          name: MoveWell 1.0.${{ github.run_number }}
           body: |
             Zum Installieren auf dem Handy: morgen-quest.apk antippen.
             Ein Update wird einfach über die alte Version installiert, der Spielstand bleibt.

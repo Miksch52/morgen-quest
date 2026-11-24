@@ -13,8 +13,8 @@ const head=`<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
-<meta name="theme-color" content="#130f22">
-<title>Morgen-Quest</title>
+<meta name="theme-color" content="#06191e">
+<title>MoveWell</title>
 <style>
 ${fonts}
 *,*::before,*::after{box-sizing:border-box}

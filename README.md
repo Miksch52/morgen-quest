@@ -1,7 +1,11 @@
-# Morgen-Quest
+# MoveWell
+
+*Train smart. Move better. Feel stronger.*
 
 Tammos Überraschungs-Workout für zu Hause als Android-App (Capacitor 8).
-Dauer (1–30 Min) und Thema (Ganzkörper, Anti-Sitzen-Stretching, Core) wählen, dann erzeugt die App jedes Mal ein neues Workout mit zufälliger Spielregel. Dazu animierte Figuren mit markierten Muskeln, Richtig/Falsch-Hinweise, optionaler Tagestest, Beute-Truhen, Grundlagen-Seite und Wecker.
+Dauer (1–30 Min) und Thema (Ganzkörper, Anti-Sitzen-Stretching, Core) wählen, dann erzeugt die App jedes Mal ein neues Workout mit zufälliger Spielregel. Dazu animierte Figuren mit markierten Muskeln, Richtig/Falsch-Hinweise, optionaler Tagestest, Schwierigkeit in drei Stufen, die sich dem Trainingsverlauf anpasst, Tagesform, Knie-/Wadenschonung, Steh-Erinnerung, Beute-Truhen, Grundlagen-Seite und Wecker.
+
+Hinweis: Intern heißt das Projekt weiter `morgen-quest` (App-ID `de.tammo.morgenquest`, Repository, APK-Dateiname), damit Updates über die installierte App funktionieren und der Download-Link gleich bleibt.
 
 ## Aufbau
 

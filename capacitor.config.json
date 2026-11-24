@@ -1,10 +1,10 @@
 {
   "appId": "de.tammo.morgenquest",
-  "appName": "Morgen-Quest",
+  "appName": "MoveWell",
   "webDir": "www",
-  "backgroundColor": "#130f22",
+  "backgroundColor": "#06191e",
   "android": {
-    "backgroundColor": "#130f22"
+    "backgroundColor": "#06191e"
   },
   "plugins": {
     "SystemBars": {
@@ -14,7 +14,7 @@
     },
     "LocalNotifications": {
       "smallIcon": "ic_stat_quest",
-      "iconColor": "#FFC23D",
+      "iconColor": "#4FE3A1",
       "sound": "wecker.wav"
     }
   }

@@ -3,25 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
-<meta name="theme-color" content="#130f22">
-<title>Morgen-Quest</title>
+<meta name="theme-color" content="#06191e">
+<title>MoveWell</title>
 <style>
-@font-face {
-  font-family: 'Bungee';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(fonts/Bungee-400-latin-ext.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-@font-face {
-  font-family: 'Bungee';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(fonts/Bungee-400-latin.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
 @font-face {
   font-family: 'JetBrains Mono';
   font-style: normal;
@@ -118,22 +102,70 @@
   src: url(fonts/Rubik-800-latin.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
+@font-face {
+  font-family: 'Sora';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(fonts/Sora-600-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Sora';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(fonts/Sora-600-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Sora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(fonts/Sora-700-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Sora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(fonts/Sora-700-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Sora';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(fonts/Sora-800-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Sora';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(fonts/Sora-800-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 *,*::before,*::after{box-sizing:border-box}
 :root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 body{margin:0;-webkit-user-select:none;user-select:none;overscroll-behavior:none}
 img{max-width:100%}
 </style>
 <style>
-/* Layout: eine schmale Handy-Spalte, Spielbildschirme statt Seiten. Bewusst nur dunkel (Arcade-Nacht). */
+/* MoveWell: eine schmale Handy-Spalte. Bewusst nur dunkel: tiefes Petrol, Weiß, helles Grün als Akzent. */
 :root{
   color-scheme: dark;
-  --ink:#130f22; --panel:#1e1934; --panel2:#2a2347; --line:#3a3160;
-  --text:#f4effd; --muted:#a69cc6;
-  --gold:#ffc23d; --coral:#ff5d73; --mint:#3de0b5;
-  --accent:var(--gold);
-  --body:#958bc8; --body2:#5e5591; --outline:#29224a; --hot:#ff5d73; --warm:#ffb547;
-  --r-common:#b8b0d4; --r-rare:#4ea8ff; --r-epic:#b46bff; --r-leg:#ffc23d;
-  --f-display:"Bungee","Arial Black",Impact,sans-serif;
+  --ink:#06191e; --panel:#0e2a31; --panel2:#15373f; --line:#22505a;
+  --text:#ecf7f5; --muted:#8db2ae;
+  --gold:#f2c14e; --coral:#ff6b6b; --mint:#4fe3a1;
+  --accent:var(--mint);
+  --body:#a7cdc7; --body2:#5d8a86; --outline:#08232a; --hot:#ff6b6b; --warm:#f2c14e;
+  --r-common:#a9c5c1; --r-rare:#4cc3ff; --r-epic:#b48cff; --r-leg:#f2c14e;
+  --f-display:"Sora","Segoe UI",system-ui,sans-serif;
   --f-body:"Rubik",system-ui,-apple-system,"Segoe UI",sans-serif;
   --f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
 }
@@ -141,11 +173,11 @@ img{max-width:100%}
 html,body{height:100%}
 body{background:var(--ink);color:var(--text);font-family:var(--f-body);font-size:16px;line-height:1.45;
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
-  background-image:radial-gradient(circle at 50% -10%,color-mix(in srgb,var(--accent) 22%,transparent),transparent 55%);
+  background-image:radial-gradient(120% 60% at 50% -20%,color-mix(in srgb,var(--accent) 16%,transparent),transparent 60%);
   background-attachment:fixed;-webkit-tap-highlight-color:transparent}
 .app{max-width:460px;margin:0 auto;padding-block:18px 40px}
 .screen{display:flex;flex-direction:column;gap:16px}
-h1,h2,h3{margin:0;font-family:var(--f-display);font-weight:400;letter-spacing:.01em;text-wrap:balance}
+h1,h2,h3{margin:0;font-family:var(--f-display);font-weight:700;letter-spacing:-.01em;text-wrap:balance}
 p{margin:0}
 button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
 button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
@@ -156,19 +188,20 @@ button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 .top{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .hello h1{font-size:22px;line-height:1.1}
 .hello .label{margin-bottom:4px}
-.lvl{display:grid;place-items:center;width:58px;height:58px;flex:none;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);
-  background:linear-gradient(160deg,var(--accent),color-mix(in srgb,var(--accent) 40%,var(--ink)));color:var(--ink);font-family:var(--f-display);font-size:22px}
+.lvl{display:grid;place-items:center;width:54px;height:54px;flex:none;border-radius:50%;border:3px solid var(--accent);
+  background:var(--panel);color:var(--text);font-family:var(--f-display);font-weight:800;font-size:20px}
+.brand{font-family:var(--f-display);font-weight:800;letter-spacing:.18em;font-size:12px;color:var(--accent)}
 .xpbar{display:flex;flex-direction:column;gap:6px}
 .xpbar .row{display:flex;justify-content:space-between;font-size:13px;color:var(--muted)}
 .xpbar .row b{color:var(--text);font-weight:700}
 .bar{height:10px;background:var(--panel2);border-radius:99px;overflow:hidden}
-.bar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--coral));border-radius:99px;transition:width .9s cubic-bezier(.2,.8,.2,1)}
+.bar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,color-mix(in srgb,var(--accent) 70%,#38c6d9),var(--accent));border-radius:99px;transition:width .9s cubic-bezier(.2,.8,.2,1)}
 
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 .stat{background:var(--panel);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:2px;min-width:0}
-.stat .v{font-family:var(--f-display);font-size:24px;line-height:1}
+.stat .v{font-family:var(--f-display);font-weight:800;font-size:24px;line-height:1}
 .stat .k{font-size:12px;color:var(--muted)}
-.stat.flame .v{color:var(--coral)}
+.stat.flame .v{color:var(--gold)}
 .week{display:flex;gap:6px;justify-content:space-between}
 .week span{flex:1;height:30px;border-radius:8px;background:var(--panel);display:grid;place-items:center;font-size:11px;color:var(--muted);font-weight:700}
 .week span.on{background:color-mix(in srgb,var(--mint) 25%,var(--panel));color:var(--mint)}
@@ -189,13 +222,13 @@ button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 .box.open .lid{transform:translateY(-70px) rotate(-18deg);opacity:0}
 @keyframes shake{0%,100%{translate:0}20%{translate:-6px 0}40%{translate:6px 0}60%{translate:-4px 0}80%{translate:4px 0}}
 .taps{display:flex;gap:8px}.taps i{width:10px;height:10px;border-radius:50%;background:var(--panel2)}.taps i.on{background:var(--accent)}
-.mod-name{font-size:34px;line-height:1;color:var(--accent)}
+.mod-name{font-size:32px;line-height:1.05;font-weight:800;color:var(--accent)}
 .mod-tag{color:var(--muted);max-width:32ch}
 .chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
 .chip{font-size:13px;padding:6px 10px;border-radius:99px;background:var(--panel2);color:var(--text);font-weight:500}
-.cta{width:100%;padding:16px 18px;border-radius:16px;background:var(--accent);color:var(--ink);font-family:var(--f-display);font-size:18px;letter-spacing:.02em;
-  box-shadow:0 6px 0 color-mix(in srgb,var(--accent) 45%,var(--ink));transition:transform .08s,box-shadow .08s}
-.cta:active{transform:translateY(4px);box-shadow:0 2px 0 color-mix(in srgb,var(--accent) 45%,var(--ink))}
+.cta{width:100%;padding:16px 18px;border-radius:14px;background:var(--accent);color:var(--ink);font-family:var(--f-display);font-weight:700;font-size:17px;letter-spacing:.01em;
+  box-shadow:0 10px 28px -12px var(--accent);transition:transform .08s,filter .08s}
+.cta:active{transform:scale(.98);filter:brightness(.95)}
 .ghost{padding:12px 14px;border-radius:14px;background:var(--panel2);font-weight:700;font-size:15px}
 .slots{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
 .slots span{width:34px;height:42px;border-radius:9px;background:var(--panel2);display:grid;place-items:center;font-family:var(--f-display);color:var(--muted);font-size:16px}
@@ -207,10 +240,15 @@ button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 .count{font-family:var(--f-mono);font-size:14px;color:var(--muted)}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 /* Generator */
-.gen{background:var(--panel);border-radius:22px;padding:18px;display:flex;flex-direction:column;gap:14px}
+.gen{background:var(--panel);border-radius:22px;padding:18px;display:flex;flex-direction:column;gap:14px;border:1px solid var(--line)}
+.lvrow{display:flex;flex-direction:column;gap:6px;background:var(--panel2);border-radius:12px;padding:10px 12px}
+.lvtop{display:flex;justify-content:space-between;gap:8px;font-size:14px;flex-wrap:wrap}
+.lvtop span{color:var(--muted);font-size:13px}
+.lvrow p{font-size:12px;color:var(--muted)}
+.lvrow .bar{height:6px}
 .gen h2{font-size:22px}
 .durrow{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
-.durv{font-family:var(--f-display);font-size:44px;line-height:1;color:var(--accent)}
+.durv{font-family:var(--f-display);font-weight:800;font-size:44px;line-height:1;color:var(--accent)}
 .durv small{font-family:var(--f-body);font-size:16px;color:var(--muted);font-weight:700;margin-left:6px}
 .gen input[type=range]{width:100%;accent-color:var(--accent);height:28px}
 .quick{display:flex;gap:6px;flex-wrap:wrap}
@@ -245,7 +283,7 @@ button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 
 /* Session */
 .sess-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
-.phase{font-family:var(--f-display);font-size:15px;color:var(--accent)}
+.phase{font-family:var(--f-display);font-weight:700;font-size:14px;letter-spacing:.06em;color:var(--accent)}
 .prog{display:flex;gap:4px;flex:1;max-width:220px}
 .prog i{flex:1;height:6px;border-radius:9px;background:var(--panel2)}
 .prog i.done{background:var(--accent)}.prog i.cur{background:var(--text)}
@@ -255,7 +293,7 @@ button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 .ringwrap{position:relative;width:min(50vw,200px);aspect-ratio:1;max-width:100%;margin:0 auto}
 .ringwrap svg{width:100%;height:100%;transform:rotate(-90deg)}
 .ringwrap .t{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
-.ringwrap .big{font-family:var(--f-display);font-size:56px;line-height:1}
+.ringwrap .big{font-family:var(--f-display);font-weight:800;font-size:56px;line-height:1}
 .ringwrap .sub{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;font-weight:700}
 .ringwrap.rest .big{color:var(--muted)}
 .exname{font-size:28px;text-align:center;line-height:1.1;min-height:1.1em}
@@ -271,7 +309,7 @@ button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 /* Overlay */
 .ov{position:fixed;inset:0;background:color-mix(in srgb,var(--ink) 80%,transparent);display:grid;place-items:center;z-index:20;
   padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));backdrop-filter:blur(4px)}
-.card{background:var(--panel);border:2px solid var(--accent);border-radius:22px;padding:22px;max-width:380px;width:100%;display:flex;flex-direction:column;gap:12px;text-align:center;animation:pop .35s cubic-bezier(.2,1.4,.4,1)}
+.card{background:var(--panel);border:1px solid color-mix(in srgb,var(--accent) 60%,var(--line));border-radius:22px;padding:22px;max-width:380px;width:100%;display:flex;flex-direction:column;gap:12px;text-align:center;animation:pop .35s cubic-bezier(.2,1.4,.4,1)}
 @keyframes pop{0%{transform:scale(.7);opacity:0}100%{transform:scale(1);opacity:1}}
 .card h2{font-size:26px;color:var(--accent)}
 .card .btns{display:flex;flex-direction:column;gap:10px;margin-top:6px}
@@ -283,7 +321,7 @@ button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 .ledger div{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:15px}
 .ledger div:last-child{border:0;font-weight:800;font-size:18px}
 .ledger b{font-family:var(--f-mono)}
-.lvup{font-family:var(--f-display);font-size:22px;color:var(--gold);text-align:center;animation:pop .5s}
+.lvup{font-family:var(--f-display);font-weight:800;font-size:20px;color:var(--gold);text-align:center;animation:pop .5s}
 .chest{display:flex;flex-direction:column;align-items:center;gap:10px;background:var(--panel);border-radius:22px;padding:20px}
 .relic{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
 .glyph{width:110px;height:124px;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);display:grid;place-items:center;
@@ -373,7 +411,7 @@ canvas#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-in
 <!-- BASIS -->
 <section class="screen" id="home">
   <div class="top">
-    <div class="hello"><div class="label" id="h-date"></div><h1 id="h-greet">Hallo Tammo</h1></div>
+    <div class="hello"><div class="brand">MOVEWELL</div><div class="label" id="h-date"></div><h1 id="h-greet">Hallo Tammo</h1></div>
     <div class="lvl" id="h-lvl" aria-label="Level">1</div>
   </div>
   <div class="xpbar">
@@ -396,6 +434,7 @@ canvas#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-in
     <span class="label">Thema</span>
     <div class="themes" id="g-themes"></div>
     <span class="label">Tagesform</span>
+    <div class="lvrow" id="g-level"></div>
     <div class="quick" id="g-form"><button data-f="tired">Müde</button><button data-f="ok">Normal</button><button data-f="fit">Fit</button></div>
     <label class="chk"><input type="checkbox" id="g-knee"> Knie schonen (keine Sprünge, keine tiefen Ausfallschritte)</label>
     <label class="chk"><input type="checkbox" id="g-calf"> Wade schonen (keine Sprünge, kein Wadenheben)</label>
@@ -600,6 +639,7 @@ const EX = [
  {id:'anfersen',n:'Anfersen',c:'cardio',j:1,cue:['Lauf-ABC: auf der Stelle locker laufen','Fersen abwechselnd Richtung Po','Aufrecht bleiben, Arme schwingen mit'],e:'Gehen statt laufen, Ferse langsam zum Po.'},
  {id:'skipping',n:'Fußgelenk-Skippings',c:'cardio',j:1,cue:['Lauf-ABC: kleine, schnelle Schritte auf der Stelle','Nur über die Fußballen abrollen, Knie kaum heben','Leise und federnd, Oberkörper aufrecht'],e:'Langsamer und im Wechsel nur auf die Zehen.'},
  // Knie- und Faszien-Übungen nach den Buch-Protokollen
+ {id:'wallpush',n:'Wand-Liegestütze',c:'push',cue:['Hände schulterbreit an die Wand, Füße einen großen Schritt zurück','Körper gerade, Brust Richtung Wand','Kraftvoll zurückdrücken'],e:'Näher an die Wand stellen.'},
  {id:'einbein',n:'Einbeinstand mit Knieachse',c:'legs',side:1,cue:['Auf einem Bein stehen, gern auf einem gefalteten Handtuch','Knie ganz leicht gebeugt, nicht durchgedrückt','Kniescheibe bleibt genau über der zweiten Zehe, zur Hälfte wechseln'],e:'Mit einer Hand an der Wand abstützen.'},
  {id:'vmo',n:'Kniekehle drücken',c:'legs',cue:['Sitzen, Beine lang, Hände hinter dem Po aufstützen','Zehen kräftig zum Schienbein ziehen, Kniekehle fest in den Boden drücken','6–8 Sekunden drücken, 5 Sekunden locker, immer im Wechsel'],e:'Mit weniger Kraft drücken.'},
  {id:'pendel',n:'Beinpendeln im Sitzen',c:'stretch',cool:1,cue:['Auf einen hohen Tisch oder eine Kommode setzen, Unterschenkel hängen frei','Beine ganz locker vor und zurück pendeln lassen','Keine Muskelspannung, ruhig atmen'],e:'Auf der Bettkante, wenn die Füße dort frei hängen.'},
@@ -643,7 +683,7 @@ const FEHLER={
  burpee:'Im Liegestütz hängt die Hüfte durch.',skate:'Mit durchgestrecktem Knie landen.',box:'Ellbogen durchschlagen lassen, die Deckung fällt.',
  knees:'Nach hinten lehnen statt aufrecht zu bleiben.',crawl:'Po ragt hoch, Knie berühren den Boden.',crab:'Po hängt durch.',frog:'Mit gestreckten Knien landen.',
  birddog:'Bein zu hoch heben, dann kippt das Becken ins Hohlkreuz.',legraise:'Unterer Rücken hebt beim Absenken ab.',twist:'Rücken rund machen und nur die Arme schwingen.',
- revcrunch:'Mit Schwung arbeiten statt aus dem Bauch.',einbein:'Knie kippt nach innen oder wird durchgedrückt.',
+ revcrunch:'Mit Schwung arbeiten statt aus dem Bauch.',einbein:'Knie kippt nach innen oder wird durchgedrückt.',wallpush:'Hüfte knickt nach hinten ab, nur die Arme bewegen sich.',
  vmo:'Luft anhalten und mit dem ganzen Körper pressen statt nur den Oberschenkel anzuspannen.',pendel:'Die Beine aktiv hochschwingen statt sie locker pendeln zu lassen.',
  stufen:'Unterschenkel zu hoch oder zu tief: Hüfte und Knie sollen etwa im rechten Winkel stehen.',apfel:'Ins Hohlkreuz fallen statt sich lang nach oben zu ziehen.',
  federn:'Ruckartig mit Schwung wippen. Die Bewegung bleibt klein und weich.',anfersen:'Oberkörper kippt nach vorn, Knie wandert nach vorn statt nach unten zu zeigen.',
@@ -655,18 +695,23 @@ const FEHLER={
  sidebend:'Oberkörper kippt nach vorn oder dreht sich.',ytw:'Schultern hochziehen und ins Hohlkreuz fallen.',fold:'Knie durchdrücken und mit Schwung tiefer wippen.',
 };
 EX.forEach(x=>{if(FEHLER[x.id])x.f=FEHLER[x.id]});
+// Schwierigkeit je Übung: 1 Mobilisieren, 2 Aktivieren, 3 Fordern (nicht gelistet = 1)
+const LV2=['inch','push','stap','dips','sumo','lunge','wall','side','mc','bike','bear','skate','crawl','crab','knees','legraise','twist','revcrunch'];
+const LV3=['diam','pike','tpush','bulg','sqj','hollow','burpee','frog'];
+EX.forEach(x=>{x.lv=LV3.includes(x.id)?3:LV2.includes(x.id)?2:1});
+const LVN={1:'Mobilisieren',2:'Aktivieren',3:'Fordern'};
 const EXM = Object.fromEntries(EX.map(x=>[x.id,x]));
 
 const MODS = {
- speed:{n:'Speedrun',tag:'Kurze Runden, kurze Pausen, hohes Tempo.',col:'#3de0b5'},
- boss:{n:'Boss-Kampf',tag:'Jede Sekunde Arbeit trifft den Boss. Am Ende kommt der Finalschlag.',col:'#ff5d73'},
- blind:{n:'Blindflug',tag:'Du siehst die nächste Übung erst 3 Sekunden vorher.',col:'#8f7bff'},
- wheel:{n:'Glücksrad',tag:'Das Rad wählt jede Übung, live, kurz bevor es losgeht.',col:'#ffc23d'},
- ladder:{n:'Himmelsleiter',tag:'Jede Runde dauert 10 Sekunden länger, dann geht es von vorn los.',col:'#4ea8ff'},
- dice:{n:'Würfel-Modus',tag:'Ein Würfel bestimmt, wie lange jede Runde dauert.',col:'#ff9b3d'},
- slow:{n:'Zeitlupe',tag:'Alles in Zeitlupe: 4 Sekunden runter, 1 Sekunde hoch.',col:'#c86bff'},
- double:{n:'Doppelpack',tag:'Zwei Übungen im Wechsel, immer paarweise.',col:'#5ce07a'},
- flow:{n:'Fluss',tag:'Eine Dehnung fließt in die nächste. 40 Sekunden halten, kurz wechseln.',col:'#3de0b5'},
+ speed:{n:'Speedrun',tag:'Kurze Runden, kurze Pausen, hohes Tempo.',col:'#4fe3a1'},
+ boss:{n:'Boss-Kampf',tag:'Jede Sekunde Arbeit trifft den Boss. Am Ende kommt der Finalschlag.',col:'#ff8a6b'},
+ blind:{n:'Blindflug',tag:'Du siehst die nächste Übung erst 3 Sekunden vorher.',col:'#7fb7ff'},
+ wheel:{n:'Glücksrad',tag:'Das Rad wählt jede Übung, live, kurz bevor es losgeht.',col:'#f2c14e'},
+ ladder:{n:'Himmelsleiter',tag:'Jede Runde dauert 10 Sekunden länger, dann geht es von vorn los.',col:'#38c6d9'},
+ dice:{n:'Würfel-Modus',tag:'Ein Würfel bestimmt, wie lange jede Runde dauert.',col:'#ffa95e'},
+ slow:{n:'Zeitlupe',tag:'Alles in Zeitlupe: 4 Sekunden runter, 1 Sekunde hoch.',col:'#a99bff'},
+ double:{n:'Doppelpack',tag:'Zwei Übungen im Wechsel, immer paarweise.',col:'#8be38a'},
+ flow:{n:'Fluss',tag:'Eine Dehnung fließt in die nächste. 40 Sekunden halten, kurz wechseln.',col:'#4fe3a1'},
  breath:{n:'Tiefenatmung',tag:'Lange Halte-Phasen mit ruhigem Atem: 4 Sekunden ein, 6 aus.',col:'#7fb8ff'},
 };
 const THEMES={
@@ -705,7 +750,7 @@ const RELICS = [
  ['phoenix','Phönixfeder','e'],['tee','Drachenatem-Tee','e'],['uhr','Zeitstopp-Uhr','e'],['umhang','Schattenumhang','e'],['faust','Titan-Faust','e'],
  ['krone','Krone des Frühaufstehers','l'],['licht','Das Erste Licht','l'],
 ].map(([id,n,r])=>({id,n,r}));
-const TITLES = ['Schlafwandler','Frühaufsteher','Morgen-Krieger','Sonnenjäger','Dämmerungs-Ninja','Tagesbezwinger','Legende des Morgens'];
+const TITLES = ['Einsteiger','Beweger','Aktiv','Stabil','Stark','Athlet','MoveWell-Profi'];
 const COOKIES = ['Dein zukünftiges Ich hat gerade gelächelt.','Jede Wiederholung ist ein Speicherpunkt.','Der Boss von morgen hat schon Angst.','Gamer wissen: Grinding lohnt sich.','Du bist heute schon weiter als dein Bett.'];
 
 /* ---------- Zufall ---------- */
@@ -716,7 +761,7 @@ function shuffle(arr,r){const a=arr.slice();for(let i=a.length-1;i>0;i--){const 
 /* ---------- Zustand ---------- */
 const KEY='tammo-morgen-quest-v1';
 const FRESH = ()=>({xp:0,level:1,streak:0,best:0,lastDone:null,shields:1,potion:false,splitter:0,sinceEpic:0,sinceLeg:0,relics:{},plans:{},opened:{},done:{},pending:null,dayOffset:0,total:0,sound:true,
-  gen:{min:10,theme:'full',test:false,form:'ok',knee:false,calf:false},
+  gen:{min:10,theme:'full',test:false,form:'ok',knee:false,calf:false},prog:{score:1.8,decayK:null},
   stand:{on:true,every:60,from:'09:00',to:'18:00',days:[1,1,1,1,1,0,0],skip:null},cur:null,curOpened:false,recent:[],lastMod:null,chestDay:{k:null,n:0},hist:[],
   bench:{},alarm:{on:true,time:'07:50',days:[1,1,1,1,1,1,1],fired:null,firedAt:0,snoozed:false}});
 const BENCH='push';
@@ -738,16 +783,18 @@ function luckyDay(k){return rngOf('luck'+k)()<0.2}
 /* ---------- Plan bauen: jedes Mal neu und zufällig, passend zur gewählten Dauer ---------- */
 // Bei Knie- bzw. Wadenschonung ausgeschlossen (zusätzlich zu allen Sprüngen)
 const KNEE_X=['lunge','bulg','sumo','frog','sqj','pike'],CALF_X=['calf','skipping','anfersen','calfwall'];
+// Trainingsniveau aus dem Verlauf (score 1.0–3.99), Tagesform verschiebt es um eine Stufe
+function trainLevel(form){const sc=st.prog.score;let L=Math.floor(sc);if(form==='tired')L--;else if(form==='fit'&&sc%1>=.5)L++;return Math.max(1,Math.min(3,L))}
 function genPlan(min,theme,test,opt=st.gen){
-  const r=Math.random,T=THEMES[theme],stretch=theme==='stretch';
+  const r=Math.random,T=THEMES[theme],stretch=theme==='stretch',L=opt.level||trainLevel(opt.form);
   let mods=T.mods.filter(m=>m!==st.lastMod);
   if(min<4)mods=mods.filter(m=>!['boss','double','ladder'].includes(m));
-  if(opt.form==='tired')mods=mods.filter(m=>!['boss','speed','ladder'].includes(m));
+  if(L===1)mods=mods.filter(m=>!['boss','speed','ladder'].includes(m));
   if(!mods.length)mods=['flow'].filter(m=>T.mods.includes(m)).concat(['blind']);
   const mod=mods[Math.floor(r()*mods.length)];
   const recent=new Set(st.recent||[]),used=new Set();
   const blocked=x=>((opt.knee||opt.calf)&&x.j)||(opt.knee&&KNEE_X.includes(x.id))||(opt.calf&&CALF_X.includes(x.id));
-  const pick=f=>{let pool=shuffle(EX.filter(x=>f(x)&&x.id!==BENCH&&!blocked(x)),r);if(!pool.length)pool=shuffle(EX.filter(x=>(x.c==='stretch'||x.st)&&!blocked(x)),r);
+  const pick=f=>{const base=EX.filter(x=>f(x)&&x.id!==BENCH&&!blocked(x));let pool=shuffle(base.filter(x=>x.lv<=L),r);if(!pool.length)pool=shuffle(base.filter(x=>x.lv<=L+1),r);if(!pool.length)pool=shuffle(base,r);if(!pool.length)pool=shuffle(EX.filter(x=>(x.c==='stretch'||x.st)&&!blocked(x)),r);
     const x=pool.find(x=>!recent.has(x.id)&&!used.has(x.id))||pool.find(x=>!used.has(x.id))||pool[0];used.add(x.id);return x.id};
   const steps=[],rest=(d,lab='PAUSE')=>steps.push({k:'r',d,lab}),work=(id,d,lab,main=true,extra={})=>steps.push(Object.assign({k:'w',ex:id,d,lab,main},extra));
   let budget=min*60;
@@ -760,7 +807,7 @@ function genPlan(min,theme,test,opt=st.gen){
   let boss=null;if(mod==='boss'&&budget>=130){boss=BOSSES[Math.floor(r()*BOSSES.length)];budget-=65}
   const cfg=stretch?{flow:[40,8],blind:[40,10],wheel:[40,10],dice:[0,8],breath:[60,10]}[mod]
     :{speed:[20,10],boss:[40,20],blind:[35,15],wheel:[30,15],ladder:[0,15],dice:[0,15],slow:[45,15],double:[30,10]}[mod];
-  const [wd,rd0]=cfg,rd=rd0+(opt.form==='tired'?5:0),fs=opt.form==='tired'?.75:opt.form==='fit'?1.15:1,ok=x=>!(mod==='slow'&&x.j);
+  const [wd,rd0]=cfg,rd=Math.max(5,rd0+(L===1?5:L===3?-3:0)),fs={1:.8,2:1,3:1.15}[L],ok=x=>!(mod==='slow'&&x.j);
   const cats=shuffle(['push','legs','core','cardio'],r),sel=[],maxU=stretch?12:8;
   const fresh=i=>theme==='full'?pick(x=>x.c===cats[i%4]&&ok(x)):theme==='core'?pick(x=>x.c==='core'&&ok(x)):pick(x=>x.c==='stretch'||x.st);
   const exAt=i=>{
@@ -784,7 +831,7 @@ function genPlan(min,theme,test,opt=st.gen){
   if(boss){rest(20,'BOSS ERSCHEINT');work(pick(x=>x.c==='cardio'),45,'FINALSCHLAG',true,{fin:1})}
   for(let c=0;c<cool;c++){rest(8,'COOL-DOWN');work(pick(x=>x.c==='stretch'&&x.cool),30,'COOL-DOWN',false)}
   st.recent=[...used];st.lastMod=mod;
-  return{v:3,mod,boss,theme,min,steps,ex:[...used],form:opt.form||'ok',knee:!!opt.knee,calf:!!opt.calf};
+  return{v:3,mod,boss,theme,min,steps,ex:[...used],form:opt.form||'ok',knee:!!opt.knee,calf:!!opt.calf,level:L};
 }
 function planMinutes(p){return Math.max(1,Math.round(p.steps.reduce((s,x)=>s+x.d,0)/60))}
 
@@ -804,14 +851,14 @@ function release(){try{if(NATIVE)plug('KeepAwake').allowSleep();else wake&&wake.
 /* ---------- Effekte ---------- */
 const fx=document.getElementById('fx'),fctx=fx.getContext('2d');let parts=[],fxOn=false;
 function confetti(n=90,cols){fx.width=innerWidth*devicePixelRatio;fx.height=innerHeight*devicePixelRatio;
-  cols=cols||[getAccent(),'#ff5d73','#3de0b5','#ffc23d','#4ea8ff'];
+  cols=cols||[getAccent(),'#4fe3a1','#38c6d9','#f2c14e','#ecf7f5'];
   for(let i=0;i<n;i++)parts.push({x:fx.width/2,y:fx.height*.42,vx:(Math.random()-.5)*16*devicePixelRatio,vy:(-Math.random()*14-4)*devicePixelRatio,s:(4+Math.random()*6)*devicePixelRatio,c:cols[i%cols.length],a:1,r:Math.random()*6});
   if(!fxOn){fxOn=true;requestAnimationFrame(fxLoop)}}
 function fxLoop(){fctx.clearRect(0,0,fx.width,fx.height);parts.forEach(p=>{p.vy+=.45*devicePixelRatio;p.x+=p.vx;p.y+=p.vy;p.a-=.012;p.r+=.2;
   fctx.globalAlpha=Math.max(p.a,0);fctx.fillStyle=p.c;fctx.save();fctx.translate(p.x,p.y);fctx.rotate(p.r);fctx.fillRect(-p.s/2,-p.s/2,p.s,p.s*.6);fctx.restore()});
   parts=parts.filter(p=>p.a>0&&p.y<fx.height+50);if(parts.length)requestAnimationFrame(fxLoop);else{fxOn=false;fctx.clearRect(0,0,fx.width,fx.height)}}
 function flash(col){const f=document.getElementById('flash');f.style.setProperty('--rc',col);f.classList.remove('go');void f.offsetWidth;f.classList.add('go')}
-function getAccent(){return getComputedStyle(document.documentElement).getPropertyValue('--accent').trim()||'#ffc23d'}
+function getAccent(){return getComputedStyle(document.documentElement).getPropertyValue('--accent').trim()||'#4fe3a1'}
 function setAccent(c){document.documentElement.style.setProperty('--accent',c)}
 
 /* ---------- Helfer ---------- */
@@ -837,7 +884,8 @@ function tipHTML(i){
 let taps=0;
 function renderHome(){
   const k=todayKey(),done=st.done[k],h=new Date().getHours();
-  setAccent(st.cur&&st.curOpened?MODS[st.cur.mod].col:'#ffc23d');
+  if(st.lastDone&&diffDays(st.lastDone,k)>7&&st.prog.decayK!==k){st.prog.score=Math.max(1,st.prog.score-.25);st.prog.decayK=k;save()}
+  setAccent(st.cur&&st.curOpened?MODS[st.cur.mod].col:'#4fe3a1');
   $('h-date').textContent=fmtDate(k);
   $('h-greet').textContent=(h<11?'Guten Morgen':h<18?'Hallo':'Guten Abend')+', Tammo';
   $('h-lvl').textContent=st.level;$('h-title').textContent=title(st.level);
@@ -867,6 +915,10 @@ function renderGen(){
   $('g-testrow').hidden=G.theme==='stretch';$('g-test').checked=!!G.test;
   $('g-form').querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.f===(G.form||'ok')));
   $('g-knee').checked=!!G.knee;$('g-calf').checked=!!G.calf;
+  const L=trainLevel(G.form),sc=st.prog.score,base=Math.floor(sc);
+  $('g-level').innerHTML=`<div class="lvtop"><b>Heute: Stufe ${L} · ${LVN[L]}</b><span>${base<3?`${Math.round((sc-base)*100)} % bis Stufe ${base+1}`:'Höchste Stufe'}</span></div>
+    <div class="bar"><i style="width:${base<3?(sc-base)*100:100}%"></i></div>
+    <p>Passt sich automatisch an: geschaffte Workouts heben dein Niveau, übersprungene Übungen senken es.${L!==base?' Deine Tagesform verschiebt es heute um eine Stufe.':''}</p>`;
 }
 $('g-range').oninput=e=>{st.gen.min=+e.target.value;save();renderGen()};
 $('g-quick').querySelectorAll('button').forEach(b=>b.onclick=()=>{st.gen.min=+b.dataset.m;save();renderGen()});
@@ -905,7 +957,7 @@ function renderCard(){
     const mains=p.steps.filter(s=>s.k==='w'&&s.main),shown=mains.slice(0,24);
     card.innerHTML=`<span class="label">${T.n} · Überraschungs-Modus</span><h2 class="mod-name">${m.n}</h2><p class="mod-tag">${m.tag}</p>
       ${p.boss?`<p><b>Gegner: ${p.boss}</b></p>`:''}
-      <div class="chips"><span class="chip">${planMinutes(p)} Min</span><span class="chip">${mains.length} ${p.theme==='stretch'?'Dehnungen':'Runden'}</span>${p.steps.some(s=>s.test)?'<span class="chip">mit Tagestest</span>':''}${p.form==='tired'?'<span class="chip">sanfter</span>':p.form==='fit'?'<span class="chip">länger</span>':''}${p.knee?'<span class="chip">Knie-Schonung</span>':''}${p.calf?'<span class="chip">Waden-Schonung</span>':''}</div>
+      <div class="chips"><span class="chip">${planMinutes(p)} Min</span><span class="chip">${mains.length} ${p.theme==='stretch'?'Dehnungen':'Runden'}</span>${p.steps.some(s=>s.test)?'<span class="chip">mit Tagestest</span>':''}${p.level?`<span class="chip">Stufe ${p.level} · ${LVN[p.level]}</span>`:''}${p.knee?'<span class="chip">Knie-Schonung</span>':''}${p.calf?'<span class="chip">Waden-Schonung</span>':''}</div>
       <div class="slots">${shown.map(s=>`<span class="${s.fin?'boss':''}">${s.fin?'B':'?'}</span>`).join('')}${mains.length>shown.length?`<span>+${mains.length-shown.length}</span>`:''}</div>
       <p style="color:var(--muted);font-size:14px">Welche Übungen kommen, erfährst du erst unterwegs.</p>
       <button class="cta" id="b-start">Workout starten</button>
@@ -922,7 +974,7 @@ function tapBox(){
   if(taps>=3){
     const m=MODS[st.cur.mod];
     b.classList.add('open');b.onclick=null;
-    setTimeout(()=>{setAccent(m.col);flash(m.col);confetti(110,[m.col,'#fff','#ffc23d']);arp([523,659,784,1047]);buzz([60,40,120]);
+    setTimeout(()=>{setAccent(m.col);flash(m.col);confetti(110,[m.col,'#fff','#4fe3a1']);arp([523,659,784,1047]);buzz([60,40,120]);
       st.curOpened=true;save();setTimeout(renderHome,450)},380);
   }
 }
@@ -956,6 +1008,7 @@ function rollFor(nw){
   const pool=S.plan.theme==='stretch'?EX.filter(x=>x.c==='stretch'||x.st):S.plan.theme==='core'?EX.filter(x=>x.c==='core'):EX.filter(x=>!['warm','stretch'].includes(x.c));
   const el=$('s-name'),names=pool.map(x=>x.n);let t=0;
   const iv=setInterval(()=>{t++;
+    if(!S||S.i!==idx){clearInterval(iv);return} // schon weitergetippt: Namen nicht mehr überschreiben
     el.textContent=S.plan.mod==='dice'?'Würfel: '+(1+Math.floor(Math.random()*6)):names[Math.floor(Math.random()*names.length)];
     tone(500+Math.random()*400,.04,'square',.06);
     if(t>18||!S||S.i!==idx){clearInterval(iv);if(S&&S.i===idx){S.revealed[idx]=true;render();el.classList.remove('land');void el.offsetWidth;el.classList.add('land');arp([660,880],.07)}}
@@ -1102,7 +1155,12 @@ function finish(){
   else if(P.min<3)chestNote='Truhen gibt es ab 3 Minuten Training.';
   else if(st.chestDay.n>=3)chestNote='Heute gab es schon 3 Truhen. Morgen geht es weiter.';
   else{st.chestDay.n++;chests.push(rollLoot(k));if(st.splitter>=3){st.splitter-=3;chests.push(rollLoot(k))}}
-  const summary={k,mod:P.mod,boss:P.boss,theme:P.theme,min:P.min,lines,total,before,ups,note,chests,chestNote,opened:0};
+  const ratio=mainsT?S.done/mainsT:1,oldStage=Math.floor(st.prog.score);
+  let dlt=!valid?-.2:ratio>=.9?(P.form==='tired'?.04:(P.level||1)>=oldStage?.1:.05):ratio>=.7?.03:-.05;
+  if(P.min<3)dlt=Math.min(dlt,.03);
+  st.prog.score=Math.max(1,Math.min(3.99,st.prog.score+dlt));
+  const stage={old:oldStage,new:Math.floor(st.prog.score)};
+  const summary={stage,k,mod:P.mod,boss:P.boss,theme:P.theme,min:P.min,lines,total,before,ups,note,chests,chestNote,opened:0};
   st.cur=null;st.curOpened=false;
   st.pending={summary};save();S=null;
   renderResults(summary);show('res');confetti(140);arp([523,659,784,1047,1319],.09);buzz([80,60,160]);
@@ -1116,6 +1174,8 @@ function renderResults(sm){
   $('r-title').textContent='Level '+st.level+' · '+title(st.level);$('r-xp').textContent=`${st.xp} / ${need(st.level)} XP`;
   $('r-xpbar').style.width='0';requestAnimationFrame(()=>requestAnimationFrame(()=>$('r-xpbar').style.width=(st.xp/need(st.level)*100)+'%'));
   $('r-lvup').hidden=!sm.ups;if(sm.ups)$('r-lvup').textContent=`Level up! Jetzt Level ${st.level}`;
+  if(sm.stage&&sm.stage.new!==sm.stage.old){$('r-lvup').hidden=false;
+    $('r-lvup').textContent=(sm.ups?$('r-lvup').textContent+' · ':'')+(sm.stage.new>sm.stage.old?'Neue Trainingsstufe: ':'Stufe angepasst: ')+LVN[sm.stage.new]}
   $('r-teaser').innerHTML=tipHTML();
   renderChest(sm);
 }
@@ -1139,7 +1199,7 @@ function renderChest(sm){
     if(t<3)return;b.onclick=null;b.classList.add('open');
     const c=sm.chests[sm.opened];
     setTimeout(()=>{
-      const col={c:'#b8b0d4',r:'#4ea8ff',e:'#b46bff',l:'#ffc23d'}[c.r];
+      const col={c:'#a9c5c1',r:'#4cc3ff',e:'#b48cff',l:'#f2c14e'}[c.r];
       flash(col);confetti(c.r==='l'?260:c.r==='e'?180:c.r==='r'?110:60,[col,'#fff']);
       ({c:()=>arp([523,659]),r:()=>arp([523,659,784]),e:()=>arp([523,659,784,1047,1319],.07),l:()=>{arp([392,523,659,784,1047,1319,1568],.07);setTimeout(()=>arp([1047,1319,1568],.1),600)}})[c.r]();
       buzz(c.r==='l'?[100,50,100,50,300]:c.r==='e'?[80,40,200]:[80]);
@@ -1236,6 +1296,7 @@ const MOVES={
  frog:{fr:[ST,P({t:130,a:[15,15],b:[15,15],c:[115,-35],d:[115,-35]}),P({x:28,lift:18,t:150,a:[150,150],b:[150,150],c:[-15,-15],d:[-15,-15],toe:-40,toe2:-40}),P({x:50,t:130,a:[15,15],b:[15,15],c:[115,-35],d:[115,-35]})]},
  anfersen:{fr:[ST,P({c:[-8,-160],a:[50,110],b:[-35,-20],lift:3,toe2:-30}),P({d:[-8,-160],b:[50,110],a:[-35,-20],lift:3,toe:-30}),P({c:[-8,-160],a:[50,110],b:[-35,-20],lift:3,toe2:-30}),ST]},
  skipping:{fr:[ST,P({c:[30,-15],a:[40,100],b:[-25,-10],toe2:-50,lift:1}),P({d:[30,-15],b:[40,100],a:[-25,-10],toe:-50,lift:1}),P({c:[30,-15],a:[40,100],b:[-25,-10],toe2:-50,lift:1}),ST]},
+ wallpush:{prop:'wallFront',fr:[P({t:158,a:[100,95],b:[100,95],c:[-10,-10],d:[-10,-10]}),P({t:150,a:[45,140],b:[45,140],c:[-14,-14],d:[-14,-14]}),P({t:158,a:[100,95],b:[100,95],c:[-10,-10],d:[-10,-10]})]},
  einbein:{f:1,fr:[STF,P({a:[45,35],b:[-45,-35],c:[15,60],d:[-4,2]}),P({a:[45,35],b:[-45,-35],c:[15,60],d:[-4,2]})]},
  vmo:{fr:(()=>{const b=P({t:180,a:[-25,-5],b:[-25,-5],c:[90,90],d:[90,90],toe:15,toe2:15});return[b,V(b,{toe:-30,toe2:-30}),b]})()},
  pendel:{prop:'seat',fr:(()=>{const b=P({t:178,a:[8,8],b:[8,8],c:[88,-25],d:[88,20],lift:16});return[b,V(b,{c:[88,20],d:[88,-25]}),b]})()},
@@ -1300,7 +1361,7 @@ const MUS={
  hollow:[['bauch'],['beinv']],bike:[['bauch'],[]],super:[['ruecken','po'],['beinh','schulter']],bear:[['bauch','schulter'],['beinv']],
  burpee:[['beinv','brust'],['schulter','bauch'],1],skate:[['po','beinv'],['waden'],1],box:[['schulter'],['bauch'],1],
  knees:[['beinv'],['bauch'],1],crawl:[['schulter','bauch'],['beinv'],1],crab:[['trizeps','po'],['schulter']],frog:[['beinv','po'],['waden'],1],
- anfersen:[['beinh'],['waden'],1],einbein:[['beinv','po'],['waden']],vmo:[['beinv'],[]],pendel:[[],[],0,'l'],stufen:[[],['ruecken'],0,'l'],
+ anfersen:[['beinh'],['waden'],1],einbein:[['beinv','po'],['waden']],wallpush:[['brust','trizeps'],['schulter','bauch']],vmo:[['beinv'],[]],pendel:[[],[],0,'l'],stufen:[[],['ruecken'],0,'l'],
  apfel:[['flanke'],['schulter','waden'],0,'d'],federn:[['beinh','ruecken'],['waden'],0,'d'],skipping:[['waden'],['beinv'],1],
  birddog:[['ruecken','po'],['bauch','schulter']],legraise:[['bauch'],['hueftb']],twist:[['bauch','flanke'],[]],revcrunch:[['bauch'],[]],
  hipflex:[['hueftb'],['beinv'],0,'d'],chestop:[['brust'],['schulter'],0,'d'],child:[['ruecken'],['schulter'],0,'d'],sphinx:[['bauch'],['hueftb'],0,'d'],
@@ -1422,7 +1483,7 @@ function playMove(id,animate){
   anim=requestAnimationFrame(step);
 }
 function drawQ(){const ctx=figCtx(),col=figColors();ctx.clearRect(0,0,FW,200);ctx.strokeStyle=col.line;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(12,GY+1);ctx.lineTo(FW-12,GY+1);ctx.stroke();
-  ctx.fillStyle=col.far;ctx.font='56px Bungee, Impact, sans-serif';ctx.textAlign='center';ctx.fillText('?',FW/2,GY-34);
+  ctx.fillStyle=col.far;ctx.font='800 56px Sora, sans-serif';ctx.textAlign='center';ctx.fillText('?',FW/2,GY-34);
   $('s-mus').innerHTML='<span class="key">Muskeln: Überraschung</span>'}
 // Die Übung läuft in Schleife, solange sie angezeigt wird; "Anhalten" friert sie als Standbild ein.
 let demoPaused=false;
@@ -1648,7 +1709,7 @@ if(NATIVE){
   (async()=>{
     try{
       await LN.createChannel({id:'steh',name:'Steh-Erinnerung',description:'Erinnert daran, langes Sitzen zu unterbrechen',importance:3,visibility:1,vibration:true});
-      await LN.createChannel({id:'wecker',name:'Wecker',description:'Morgen-Quest Wecker',importance:5,visibility:1,sound:'wecker.wav',vibration:true,lights:true,lightColor:'#FFC23D'});
+      await LN.createChannel({id:'wecker',name:'Wecker',description:'MoveWell Wecker',importance:5,visibility:1,sound:'wecker.wav',vibration:true,lights:true,lightColor:'#FFC23D'});
       let p=await LN.checkPermissions();if(p.display!=='granted')p=await LN.requestPermissions();
       const ex=await LN.checkExactNotificationSetting();exactOk=ex.exact_alarm==='granted';
     }catch(e){}
