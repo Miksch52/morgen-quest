@@ -347,6 +347,9 @@ canvas#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-in
 .days button.on{background:color-mix(in srgb,var(--accent) 28%,var(--panel2));color:var(--text)}
 .al-next{font-weight:700}
 .al-note{font-size:13px;color:var(--muted)}
+.stand-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;font-size:14px;font-weight:700}
+.stand-row select,.stand-row input[type=time]{background:var(--panel2);color:var(--text);border:0;border-radius:10px;padding:8px 10px;font:inherit;font-weight:700}
+.stand-row select:focus-visible,.stand-row input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .full{position:fixed;inset:0;z-index:40;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;
   padding:max(24px,env(safe-area-inset-top,0px)) max(24px,env(safe-area-inset-right,0px)) max(24px,env(safe-area-inset-bottom,0px)) max(24px,env(safe-area-inset-left,0px))}
 .full .clock{font-family:var(--f-display);font-size:72px;line-height:1}
@@ -392,6 +395,11 @@ canvas#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-in
     <div class="quick" id="g-quick"><button data-m="3">3</button><button data-m="5">5</button><button data-m="10">10</button><button data-m="15">15</button><button data-m="20">20</button><button data-m="30">30</button></div>
     <span class="label">Thema</span>
     <div class="themes" id="g-themes"></div>
+    <span class="label">Tagesform</span>
+    <div class="quick" id="g-form"><button data-f="tired">Müde</button><button data-f="ok">Normal</button><button data-f="fit">Fit</button></div>
+    <label class="chk"><input type="checkbox" id="g-knee"> Knie schonen (keine Sprünge, keine tiefen Ausfallschritte)</label>
+    <label class="chk"><input type="checkbox" id="g-calf"> Wade schonen (keine Sprünge, kein Wadenheben)</label>
+    <button class="linkbtn" id="g-pain">Ich habe gerade Schmerzen</button>
     <label class="chk" id="g-testrow"><input type="checkbox" id="g-test"> Tagestest einbauen (30 Sek. Liegestütze)</label>
     <button class="cta" id="g-go">Überraschung erstellen</button>
   </div>
@@ -399,6 +407,7 @@ canvas#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-in
   <div class="tip" id="h-tip"></div>
   <div class="bench" id="bench"></div>
   <div class="alarmc" id="alarmc"></div>
+  <div class="alarmc" id="standc"></div>
 
   <div class="row2">
     <button class="ghost" id="b-col">Sammlung ansehen</button>
@@ -460,7 +469,7 @@ canvas#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-in
     </ul>
   </section>
   <section>
-    <h2>Zehn Grundprinzipien</h2>
+    <h2>Elf Grundprinzipien</h2>
     <ol id="k-list"></ol>
   </section>
   <section>
@@ -477,6 +486,31 @@ canvas#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-in
     </ol>
     <p><b>Wichtig:</b> Die Übungen und Tipps in dieser App stammen nicht aus seinen Büchern und sind nicht von ihm geprüft. Einige seiner Behandlungsmethoden, etwa bestimmte Injektionen, und seine Ansichten zu Nahrungsergänzungsmitteln sind unter Medizinern umstritten. Die App empfiehlt keine Präparate.</p>
     <p class="src">Quellen: Wikipedia, Artikel „Hans-Wilhelm Müller-Wohlfahrt“ (abgerufen November 2026); Buchthemen nach einer Zusammenfassung, nicht wörtlich.</p>
+  </section>
+  <section>
+    <h2>Aus seinen Büchern: Knie, Rücken, Faszien</h2>
+    <p class="src">Nach einer Zusammenfassung von „Bewegung“ und „Besser trainieren!“. Nicht wörtlich und von mir nicht am Buch geprüft.</p>
+    <ul>
+      <li><b>Knorpel lebt von Bewegung</b>Knorpel hat keine eigenen Blutgefäße und wird durch den Wechsel von Be- und Entlastung versorgt, wie ein Schwamm.<br><i>In der App:</i> „Beinpendeln im Sitzen“.</li>
+      <li><b>Beinachse halten</b>Die Kniescheibe bleibt über der zweiten Zehe und kippt nicht nach innen.<br><i>In der App:</i> „Einbeinstand mit Knieachse“ (mit Bild zur Fehlhaltung) und „Kniekehle drücken“ für den inneren Oberschenkelmuskel.</li>
+      <li><b>Leiser laufen</b>Kleine Schritte mit hoher Schrittfrequenz, Fuß nah unter dem Körper aufsetzen. Lange Schritte über die Ferse bremsen und belasten das Knie.</li>
+      <li><b>Rücken und Beine hängen zusammen</b>Viele Muskelprobleme in den Beinen gehen laut seinen Büchern von der Lendenwirbelsäule aus.<br><i>In der App:</i> „Stufenlagerung“ zur Entlastung, Hüftbeuger-Dehnung mit angespanntem Po, Vierfüßler-Strecker langsam und waagerecht.</li>
+      <li><b>Faszien mögen Federn und Vielfalt</b>Leichtes, weiches Federn am Ende einer Bewegung und Dehnungen in mehrere Richtungen.<br><i>In der App:</i> „Federnde Vorbeuge“ und „Äpfel pflücken“. Statische Dehnungen bleiben ruhig ohne Wippen.</li>
+      <li><b>Trinken</b>Nach dem Training ausreichend Wasser trinken.</li>
+      <li><b>Mit Hilfsmittel (nicht in der App)</b>Fußsohle über einen Tennisball rollen, 1–2 Minuten pro Fuß. Radfahren mit wenig Widerstand und hoher Trittfrequenz schont die Knie.</li>
+    </ul>
+  </section>
+  <section>
+    <h2>Nach einer Muskelverletzung: Stufenplan</h2>
+    <p>Nach der Zusammenfassung arbeitet seine Praxis in fünf Stufen. Die nächste Stufe kommt erst, wenn die aktuelle komplett schmerzfrei geht. Bei einer Verletzung zuerst ärztlich abklären lassen.</p>
+    <ol>
+      <li><b>Akut (Tag 1–2)</b>Kühlender Kompressionsverband, hochlagern. Keine Massage, keine Wärme.</li>
+      <li><b>Frühe Bewegung (ab Tag 2–3)</b>Schmerzfrei und ohne Last bewegen, zum Beispiel lockeres Gehen ohne Humpeln.</li>
+      <li><b>Koordination (ab etwa Tag 4–7)</b>Einbeinstand, sanfte Rumpfstabilisation, leichtes Joggen auf weichem Boden mit kurzen Schritten.</li>
+      <li><b>Belastung steigern</b>Langsam beschleunigen und lang auslaufen. Abruptes Stoppen und Sprintstarts sind die größte Rückfallgefahr.</li>
+      <li><b>Volle Belastung</b>Erst wenn Richtungswechsel, Sprints und Sprünge ohne jedes Ziehen gehen.</li>
+    </ol>
+    <p>Während dieser Zeit in der App „Knie schonen“ bzw. „Wade schonen“ einschalten oder nur Stretching machen.</p>
   </section>
   <section>
     <h2>Erste Hilfe bei Zerrung oder Prellung</h2>
@@ -565,13 +599,20 @@ const EX = [
  {id:'frog',n:'Froschsprünge',c:'cardio',j:1,cue:['Tiefe Hocke','Nach vorn springen, umdrehen, zurück'],e:'Kleine Sprünge.'},
  {id:'anfersen',n:'Anfersen',c:'cardio',j:1,cue:['Lauf-ABC: auf der Stelle locker laufen','Fersen abwechselnd Richtung Po','Aufrecht bleiben, Arme schwingen mit'],e:'Gehen statt laufen, Ferse langsam zum Po.'},
  {id:'skipping',n:'Fußgelenk-Skippings',c:'cardio',j:1,cue:['Lauf-ABC: kleine, schnelle Schritte auf der Stelle','Nur über die Fußballen abrollen, Knie kaum heben','Leise und federnd, Oberkörper aufrecht'],e:'Langsamer und im Wechsel nur auf die Zehen.'},
+ // Knie- und Faszien-Übungen nach den Buch-Protokollen
+ {id:'einbein',n:'Einbeinstand mit Knieachse',c:'legs',side:1,cue:['Auf einem Bein stehen, gern auf einem gefalteten Handtuch','Knie ganz leicht gebeugt, nicht durchgedrückt','Kniescheibe bleibt genau über der zweiten Zehe, zur Hälfte wechseln'],e:'Mit einer Hand an der Wand abstützen.'},
+ {id:'vmo',n:'Kniekehle drücken',c:'legs',cue:['Sitzen, Beine lang, Hände hinter dem Po aufstützen','Zehen kräftig zum Schienbein ziehen, Kniekehle fest in den Boden drücken','6–8 Sekunden drücken, 5 Sekunden locker, immer im Wechsel'],e:'Mit weniger Kraft drücken.'},
+ {id:'pendel',n:'Beinpendeln im Sitzen',c:'stretch',cool:1,cue:['Auf einen hohen Tisch oder eine Kommode setzen, Unterschenkel hängen frei','Beine ganz locker vor und zurück pendeln lassen','Keine Muskelspannung, ruhig atmen'],e:'Auf der Bettkante, wenn die Füße dort frei hängen.'},
+ {id:'stufen',n:'Stufenlagerung',c:'stretch',h:1,cool:1,cue:['Rückenlage, Unterschenkel auf Stuhl oder Sofa legen','Hüfte und Knie etwa im rechten Winkel, unterer Rücken liegt flach','Ganz locker lassen, ruhig in den Bauch atmen'],e:'Kissen unter den Kopf.'},
+ {id:'apfel',n:'Äpfel pflücken',c:'stretch',cue:['Hüftbreit stehen','Abwechselnd einen Arm weit nach oben ziehen, als würdest du Äpfel pflücken','Brustkorb leicht mitdrehen, Ferse der Seite hebt leicht ab'],e:'Fersen am Boden lassen.'},
+ {id:'federn',n:'Federnde Vorbeuge',c:'stretch',cue:['Vorbeuge, Knie leicht gebeugt','Am Ende ganz leicht und weich federn','Richtung wechseln: geradeaus, leicht links, leicht rechts'],e:'Hände auf den Oberschenkeln, nur minimal federn.'},
  // Rumpf, zusätzlich
- {id:'birddog',n:'Vierfüßler-Strecker',c:'core',cue:['Vierfüßlerstand, Rücken flach wie ein Tisch','Gegenüberliegenden Arm und Bein lang strecken','Kurz halten, dann Seite wechseln'],e:'Nur das Bein strecken.'},
+ {id:'birddog',n:'Vierfüßler-Strecker',c:'core',cue:['Hände unter den Schultern, Knie unter der Hüfte','Arm und Gegenbein waagerecht strecken, nicht höher','Bauchnabel leicht einziehen, 10 Sekunden halten, langsam wechseln'],e:'Nur das Bein strecken.'},
  {id:'legraise',n:'Beinheben',c:'core',cue:['Rückenlage, Hände neben dem Po','Gestreckte Beine langsam bis senkrecht heben','Langsam senken, unterer Rücken bleibt am Boden'],e:'Knie gebeugt lassen.'},
  {id:'twist',n:'Sitzende Rumpfdrehung',c:'core',cue:['Sitzen, Oberkörper leicht zurücklehnen, Rücken lang','Füße am Boden oder leicht angehoben','Hände von Seite zu Seite neben die Hüfte führen'],e:'Füße am Boden lassen.'},
  {id:'revcrunch',n:'Umgekehrter Crunch',c:'core',cue:['Rückenlage, Knie über der Hüfte','Knie Richtung Brust ziehen, Po hebt leicht ab','Langsam zurück, nicht schwingen'],e:'Bewegung kleiner, Po bleibt fast liegen.'},
  // Dehnen gegen langes Sitzen
- {id:'hipflex',n:'Hüftbeuger-Dehnung',c:'stretch',h:1,side:1,cool:1,cue:['Kniender Ausfallschritt, hinteres Knie am Boden','Becken nach vorn schieben, Po anspannen','Oberkörper aufrecht, zur Hälfte Seite wechseln'],e:'Hände auf das vordere Knie stützen.'},
+ {id:'hipflex',n:'Hüftbeuger-Dehnung',c:'stretch',h:1,side:1,cool:1,cue:['Kniender Ausfallschritt, hinteres Knie am Boden','Becken nach vorn schieben und den Po fest anspannen','Oberkörper aufrecht, kein Wippen, zur Hälfte Seite wechseln'],e:'Hände auf das vordere Knie stützen.'},
  {id:'chestop',n:'Brustöffner',c:'stretch',h:1,cool:1,cue:['Hände hinter dem Rücken verschränken','Schulterblätter zusammen, Brust nach vorn','Arme langsam etwas anheben'],e:'Hände nur an den Po legen, Ellbogen nach hinten ziehen.'},
  {id:'child',n:'Kindhaltung',c:'stretch',h:1,cool:1,cue:['Auf die Fersen setzen, Knie leicht geöffnet','Oberkörper ablegen, Arme weit nach vorn','Ruhig in den Rücken atmen'],e:'Kissen unter den Po legen.'},
  {id:'sphinx',n:'Sphinx',c:'stretch',h:1,cool:1,cue:['Bauchlage, Unterarme aufstellen','Ellbogen unter den Schultern','Brust nach vorn-oben, Schultern weg von den Ohren'],e:'Ellbogen weiter nach vorn setzen.'},
@@ -602,7 +643,10 @@ const FEHLER={
  burpee:'Im Liegestütz hängt die Hüfte durch.',skate:'Mit durchgestrecktem Knie landen.',box:'Ellbogen durchschlagen lassen, die Deckung fällt.',
  knees:'Nach hinten lehnen statt aufrecht zu bleiben.',crawl:'Po ragt hoch, Knie berühren den Boden.',crab:'Po hängt durch.',frog:'Mit gestreckten Knien landen.',
  birddog:'Bein zu hoch heben, dann kippt das Becken ins Hohlkreuz.',legraise:'Unterer Rücken hebt beim Absenken ab.',twist:'Rücken rund machen und nur die Arme schwingen.',
- revcrunch:'Mit Schwung arbeiten statt aus dem Bauch.',anfersen:'Oberkörper kippt nach vorn, Knie wandert nach vorn statt nach unten zu zeigen.',
+ revcrunch:'Mit Schwung arbeiten statt aus dem Bauch.',einbein:'Knie kippt nach innen oder wird durchgedrückt.',
+ vmo:'Luft anhalten und mit dem ganzen Körper pressen statt nur den Oberschenkel anzuspannen.',pendel:'Die Beine aktiv hochschwingen statt sie locker pendeln zu lassen.',
+ stufen:'Unterschenkel zu hoch oder zu tief: Hüfte und Knie sollen etwa im rechten Winkel stehen.',apfel:'Ins Hohlkreuz fallen statt sich lang nach oben zu ziehen.',
+ federn:'Ruckartig mit Schwung wippen. Die Bewegung bleibt klein und weich.',anfersen:'Oberkörper kippt nach vorn, Knie wandert nach vorn statt nach unten zu zeigen.',
  skipping:'Auf den Fersen landen und stampfen statt leise über den Ballen zu federn.',hipflex:'Oberkörper kippt nach vorn und ins Hohlkreuz: Die Dehnung landet im Rücken statt in der Hüfte.',
  chestop:'Kopf nach vorn schieben und Schultern hochziehen.',child:'Po hebt sich von den Fersen, dann fehlt die Dehnung im Rücken.',
  sphinx:'Kopf in den Nacken werfen und Schultern hochziehen.',kneechest:'Kopf und Schultern heben sich vom Boden. Der Nacken bleibt locker liegen.',
@@ -637,9 +681,10 @@ const PRINCIPLES=[
  ['Regelmäßig schlägt lang','Fünf bis zehn Minuten an vielen Tagen bringen mehr als eine lange Einheit pro Woche.'],
  ['Rumpf als Basis','Starke Bauch- und Rückenmuskeln stabilisieren die Wirbelsäule bei fast jeder Bewegung im Alltag.'],
  ['Sitzen unterbrechen','Spätestens nach 30 bis 60 Minuten Sitzen kurz aufstehen und bewegen. Hüftbeuger, Brust und Brustwirbelsäule leiden am meisten.'],
- ['Ruhig dehnen','Dehnungen ruhig halten und nicht wippen. Ein deutliches Ziehen ist richtig, Schmerz nicht.'],
+ ['Ruhig dehnen','Statische Dehnungen ruhig halten und nicht wippen. Ausnahme sind Faszien-Übungen mit ganz leichtem, weichem Federn. Ziehen ist richtig, Schmerz nicht.'],
  ['Abwechslung','Unterschiedliche Übungen und Bewegungsrichtungen fordern Muskeln und Bindegewebe vielseitiger als immer dasselbe Programm.'],
  ['Erholung gehört dazu','Muskeln werden in der Pause stärker, nicht während des Trainings. Nach mehreren harten Tagen ist ein ruhiger Dehn-Tag sinnvoll.'],
+ ['Trinken nach dem Training','Nach dem Training ein bis zwei Gläser Wasser. Das Bindegewebe besteht zu einem großen Teil aus Wasser.'],
  ['Auf den Körper hören','Ungewohnte Schmerzen oder ein Gelenk, das sich falsch anfühlt, sind ein Signal. Dann leichter machen oder pausieren statt durchziehen.'],
 ];
 const MOD_IDS = Object.keys(MODS);
@@ -671,7 +716,8 @@ function shuffle(arr,r){const a=arr.slice();for(let i=a.length-1;i>0;i--){const 
 /* ---------- Zustand ---------- */
 const KEY='tammo-morgen-quest-v1';
 const FRESH = ()=>({xp:0,level:1,streak:0,best:0,lastDone:null,shields:1,potion:false,splitter:0,sinceEpic:0,sinceLeg:0,relics:{},plans:{},opened:{},done:{},pending:null,dayOffset:0,total:0,sound:true,
-  gen:{min:10,theme:'full',test:false},cur:null,curOpened:false,recent:[],lastMod:null,chestDay:{k:null,n:0},hist:[],
+  gen:{min:10,theme:'full',test:false,form:'ok',knee:false,calf:false},
+  stand:{on:true,every:60,from:'09:00',to:'18:00',days:[1,1,1,1,1,0,0],skip:null},cur:null,curOpened:false,recent:[],lastMod:null,chestDay:{k:null,n:0},hist:[],
   bench:{},alarm:{on:true,time:'07:50',days:[1,1,1,1,1,1,1],fired:null,firedAt:0,snoozed:false}});
 const BENCH='push';
 let st = FRESH();
@@ -690,13 +736,18 @@ function dayIndex(k){return Math.round(Date.parse(k)/DAY)}
 function luckyDay(k){return rngOf('luck'+k)()<0.2}
 
 /* ---------- Plan bauen: jedes Mal neu und zufällig, passend zur gewählten Dauer ---------- */
-function genPlan(min,theme,test){
+// Bei Knie- bzw. Wadenschonung ausgeschlossen (zusätzlich zu allen Sprüngen)
+const KNEE_X=['lunge','bulg','sumo','frog','sqj','pike'],CALF_X=['calf','skipping','anfersen','calfwall'];
+function genPlan(min,theme,test,opt=st.gen){
   const r=Math.random,T=THEMES[theme],stretch=theme==='stretch';
   let mods=T.mods.filter(m=>m!==st.lastMod);
   if(min<4)mods=mods.filter(m=>!['boss','double','ladder'].includes(m));
+  if(opt.form==='tired')mods=mods.filter(m=>!['boss','speed','ladder'].includes(m));
+  if(!mods.length)mods=['flow'].filter(m=>T.mods.includes(m)).concat(['blind']);
   const mod=mods[Math.floor(r()*mods.length)];
   const recent=new Set(st.recent||[]),used=new Set();
-  const pick=f=>{const pool=shuffle(EX.filter(x=>f(x)&&x.id!==BENCH),r);
+  const blocked=x=>((opt.knee||opt.calf)&&x.j)||(opt.knee&&KNEE_X.includes(x.id))||(opt.calf&&CALF_X.includes(x.id));
+  const pick=f=>{let pool=shuffle(EX.filter(x=>f(x)&&x.id!==BENCH&&!blocked(x)),r);if(!pool.length)pool=shuffle(EX.filter(x=>(x.c==='stretch'||x.st)&&!blocked(x)),r);
     const x=pool.find(x=>!recent.has(x.id)&&!used.has(x.id))||pool.find(x=>!used.has(x.id))||pool[0];used.add(x.id);return x.id};
   const steps=[],rest=(d,lab='PAUSE')=>steps.push({k:'r',d,lab}),work=(id,d,lab,main=true,extra={})=>steps.push(Object.assign({k:'w',ex:id,d,lab,main},extra));
   let budget=min*60;
@@ -709,7 +760,7 @@ function genPlan(min,theme,test){
   let boss=null;if(mod==='boss'&&budget>=130){boss=BOSSES[Math.floor(r()*BOSSES.length)];budget-=65}
   const cfg=stretch?{flow:[40,8],blind:[40,10],wheel:[40,10],dice:[0,8],breath:[60,10]}[mod]
     :{speed:[20,10],boss:[40,20],blind:[35,15],wheel:[30,15],ladder:[0,15],dice:[0,15],slow:[45,15],double:[30,10]}[mod];
-  const [wd,rd]=cfg,ok=x=>!(mod==='slow'&&x.j);
+  const [wd,rd0]=cfg,rd=rd0+(opt.form==='tired'?5:0),fs=opt.form==='tired'?.75:opt.form==='fit'?1.15:1,ok=x=>!(mod==='slow'&&x.j);
   const cats=shuffle(['push','legs','core','cardio'],r),sel=[],maxU=stretch?12:8;
   const fresh=i=>theme==='full'?pick(x=>x.c===cats[i%4]&&ok(x)):theme==='core'?pick(x=>x.c==='core'&&ok(x)):pick(x=>x.c==='stretch'||x.st);
   const exAt=i=>{
@@ -722,6 +773,7 @@ function genPlan(min,theme,test){
     let d=wd,extra={};
     if(mod==='ladder')d=20+(i%4)*10;
     if(mod==='dice'){const roll=1+Math.floor(r()*6);d=(stretch?25:15)+roll*5;extra.dice=roll}
+    if(fs!==1&&!extra.dice)d=Math.max(15,Math.round(d*fs/5)*5);
     if(budget<rd+15)break;
     if(budget<rd+d){d=budget-rd;delete extra.dice}
     rest(rd,i===0?'LOS GEHT\'S':stretch?'WECHSEL':'PAUSE');work(exAt(i),d,'',true,extra);budget-=rd+d;
@@ -732,7 +784,7 @@ function genPlan(min,theme,test){
   if(boss){rest(20,'BOSS ERSCHEINT');work(pick(x=>x.c==='cardio'),45,'FINALSCHLAG',true,{fin:1})}
   for(let c=0;c<cool;c++){rest(8,'COOL-DOWN');work(pick(x=>x.c==='stretch'&&x.cool),30,'COOL-DOWN',false)}
   st.recent=[...used];st.lastMod=mod;
-  return{v:3,mod,boss,theme,min,steps,ex:[...used]};
+  return{v:3,mod,boss,theme,min,steps,ex:[...used],form:opt.form||'ok',knee:!!opt.knee,calf:!!opt.calf};
 }
 function planMinutes(p){return Math.max(1,Math.round(p.steps.reduce((s,x)=>s+x.d,0)/60))}
 
@@ -800,7 +852,7 @@ function renderHome(){
   renderGen();renderCard();
   $('h-tip').innerHTML=needsRest(k)?`<span class="label">Erholung</span><p><b>Drei harte Tage in Folge.</b> Muskeln werden in der Pause stärker. Heute passt ein ruhiges Anti-Sitzen-Stretching.</p><button class="linkbtn" id="b-rest">Stretching auswählen</button>`:tipHTML(dayIndex(k));
   if($('b-rest'))$('b-rest').onclick=()=>{st.gen.theme='stretch';save();renderGen();$('gen').scrollIntoView({behavior:'smooth',block:'center'})};
-  renderBench(k);renderAlarm();
+  renderBench(k);renderAlarm();renderStand();
 }
 // Drei Tage hintereinander mit mindestens 10 Min Kraft (Ganzkörper/Core)? Dann Erholung vorschlagen
 function needsRest(k){
@@ -813,10 +865,24 @@ function renderGen(){
   $('g-themes').innerHTML=Object.entries(THEMES).map(([id,t])=>`<button class="theme ${G.theme===id?'on':''}" data-t="${id}" aria-pressed="${G.theme===id}"><b>${t.n}</b><span>${t.d}</span></button>`).join('');
   $('g-themes').querySelectorAll('.theme').forEach(b=>b.onclick=()=>{G.theme=b.dataset.t;save();renderGen()});
   $('g-testrow').hidden=G.theme==='stretch';$('g-test').checked=!!G.test;
+  $('g-form').querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.f===(G.form||'ok')));
+  $('g-knee').checked=!!G.knee;$('g-calf').checked=!!G.calf;
 }
 $('g-range').oninput=e=>{st.gen.min=+e.target.value;save();renderGen()};
 $('g-quick').querySelectorAll('button').forEach(b=>b.onclick=()=>{st.gen.min=+b.dataset.m;save();renderGen()});
 $('g-test').onchange=e=>{st.gen.test=e.target.checked;save()};
+$('g-form').querySelectorAll('button').forEach(b=>b.onclick=()=>{st.gen.form=b.dataset.f;save();renderGen()});
+$('g-knee').onchange=e=>{st.gen.knee=e.target.checked;save()};
+$('g-calf').onchange=e=>{st.gen.calf=e.target.checked;save()};
+$('g-pain').onclick=()=>{
+  $('ov-card').innerHTML=`<span class="label">Schmerzen</span><h2>Heute kein Überraschungs-Workout</h2>
+    <p>Bei neuen, stechenden oder zunehmenden Schmerzen gilt: nicht hindurchtrainieren. Bei einer Verletzung, Schwellung oder wenn etwas nicht mehr richtig funktioniert, ärztlich abklären lassen.</p>
+    <p>Wenn es nur ein leichtes Ziehen oder Verspannung ist, hilft oft sanfte Bewegung ohne Belastung.</p>
+    <div class="btns"><button class="cta" id="pn-soft">Sanfte Entlastung (3 Min)</button><button class="ghost" id="pn-no">Lieber pausieren</button></div>`;
+  $('ov').hidden=false;
+  $('pn-no').onclick=()=>{$('ov').hidden=true};
+  $('pn-soft').onclick=()=>{$('ov').hidden=true;st.cur=genPlan(3,'stretch',false,{form:'tired',knee:true,calf:true});st.curOpened=true;save();renderHome();$('t-card').scrollIntoView({behavior:'smooth',block:'center'})};
+};
 $('g-go').onclick=()=>{audio();tone(520,.1,'triangle');
   st.cur=genPlan(st.gen.min,st.gen.theme,st.gen.test&&st.gen.theme!=='stretch');st.curOpened=false;save();renderHome();
   $('t-card').scrollIntoView({behavior:'smooth',block:'center'})};
@@ -839,13 +905,13 @@ function renderCard(){
     const mains=p.steps.filter(s=>s.k==='w'&&s.main),shown=mains.slice(0,24);
     card.innerHTML=`<span class="label">${T.n} · Überraschungs-Modus</span><h2 class="mod-name">${m.n}</h2><p class="mod-tag">${m.tag}</p>
       ${p.boss?`<p><b>Gegner: ${p.boss}</b></p>`:''}
-      <div class="chips"><span class="chip">${planMinutes(p)} Min</span><span class="chip">${mains.length} ${p.theme==='stretch'?'Dehnungen':'Runden'}</span>${p.steps.some(s=>s.test)?'<span class="chip">mit Tagestest</span>':''}</div>
+      <div class="chips"><span class="chip">${planMinutes(p)} Min</span><span class="chip">${mains.length} ${p.theme==='stretch'?'Dehnungen':'Runden'}</span>${p.steps.some(s=>s.test)?'<span class="chip">mit Tagestest</span>':''}${p.form==='tired'?'<span class="chip">sanfter</span>':p.form==='fit'?'<span class="chip">länger</span>':''}${p.knee?'<span class="chip">Knie-Schonung</span>':''}${p.calf?'<span class="chip">Waden-Schonung</span>':''}</div>
       <div class="slots">${shown.map(s=>`<span class="${s.fin?'boss':''}">${s.fin?'B':'?'}</span>`).join('')}${mains.length>shown.length?`<span>+${mains.length-shown.length}</span>`:''}</div>
       <p style="color:var(--muted);font-size:14px">Welche Übungen kommen, erfährst du erst unterwegs.</p>
       <button class="cta" id="b-start">Workout starten</button>
       <div class="tiny"><button id="b-reroll">Andere Überraschung</button><button id="b-cancel">Anderes Workout wählen</button></div>`;
     $('b-start').onclick=()=>startSession();
-    $('b-reroll').onclick=()=>{st.cur=genPlan(p.min,p.theme,p.steps.some(s=>s.test));st.curOpened=false;save();renderHome()};
+    $('b-reroll').onclick=()=>{st.cur=genPlan(p.min,p.theme,p.steps.some(s=>s.test),{form:p.form,knee:p.knee,calf:p.calf});st.curOpened=false;save();renderHome()};
   }
   $('b-cancel').onclick=()=>{st.cur=null;save();renderHome()};
 }
@@ -1001,6 +1067,7 @@ function rollLoot(k){
   return{id:rel.id,r,lvl,extra,lucky};
 }
 function finish(){
+  standLast=Date.now();
   stopDemo();
   clearInterval(timer);release();
   const k=S.k,ss=streakState(k);let note='';
@@ -1109,7 +1176,7 @@ $('b-reset').onclick=()=>{if(!resetArm){resetArm=true;$('b-reset').textContent='
   st=FRESH();save();resetArm=false;$('b-reset').textContent='Alles zurücksetzen';renderHome()};
 setInterval(()=>{
   document.querySelectorAll('[data-count]').forEach(e=>e.textContent=countdown());
-  alarmCheck();
+  alarmCheck();standCheck();
   if(nightOn)$('n-clock').textContent=hhmm(new Date());
   if(ringing)$('a-clock').textContent=hhmm(new Date());
 },1000);
@@ -1169,6 +1236,12 @@ const MOVES={
  frog:{fr:[ST,P({t:130,a:[15,15],b:[15,15],c:[115,-35],d:[115,-35]}),P({x:28,lift:18,t:150,a:[150,150],b:[150,150],c:[-15,-15],d:[-15,-15],toe:-40,toe2:-40}),P({x:50,t:130,a:[15,15],b:[15,15],c:[115,-35],d:[115,-35]})]},
  anfersen:{fr:[ST,P({c:[-8,-160],a:[50,110],b:[-35,-20],lift:3,toe2:-30}),P({d:[-8,-160],b:[50,110],a:[-35,-20],lift:3,toe:-30}),P({c:[-8,-160],a:[50,110],b:[-35,-20],lift:3,toe2:-30}),ST]},
  skipping:{fr:[ST,P({c:[30,-15],a:[40,100],b:[-25,-10],toe2:-50,lift:1}),P({d:[30,-15],b:[40,100],a:[-25,-10],toe:-50,lift:1}),P({c:[30,-15],a:[40,100],b:[-25,-10],toe2:-50,lift:1}),ST]},
+ einbein:{f:1,fr:[STF,P({a:[45,35],b:[-45,-35],c:[15,60],d:[-4,2]}),P({a:[45,35],b:[-45,-35],c:[15,60],d:[-4,2]})]},
+ vmo:{fr:(()=>{const b=P({t:180,a:[-25,-5],b:[-25,-5],c:[90,90],d:[90,90],toe:15,toe2:15});return[b,V(b,{toe:-30,toe2:-30}),b]})()},
+ pendel:{prop:'seat',fr:(()=>{const b=P({t:178,a:[8,8],b:[8,8],c:[88,-25],d:[88,20],lift:16});return[b,V(b,{c:[88,20],d:[88,-25]}),b]})()},
+ stufen:{prop:'shin',fr:[P({t:-90,a:[90,90],b:[90,90],c:[90,90],d:[90,90]}),P({t:-90,a:[110,110],b:[110,110],c:[180,90],d:[180,90]}),P({t:-90,a:[110,110],b:[110,110],c:[180,90],d:[180,90]})]},
+ apfel:{f:1,fr:[STF,P({t:175,a:[178,175],b:[-20,-10],c:[6,6],d:[-6,-6],lift:2}),STF,P({t:185,b:[-178,-175],a:[20,10],c:[6,6],d:[-6,-6],lift:2}),STF]},
+ federn:{fr:(()=>{const f=P({t:35,a:[50,90],b:[50,90],c:[8,-5],d:[8,-5],hd:-20}),g=V(f,{t:28,a:[45,85],b:[45,85]});return[ST,f,g,f,g,f]})()},
  birddog:{fr:[QUAD,V(QUAD,{a:[95,95],d:[-92,-92]}),QUAD,V(QUAD,{b:[95,95],c:[-92,-92]}),QUAD]},
  legraise:{fr:(()=>{const b=P({t:-90,a:[90,90],b:[90,90],c:[95,95],d:[95,95]});return[b,V(b,{c:[178,178],d:[178,178]}),b]})()},
  twist:{fr:(()=>{const b=P({t:-158,a:[60,70],b:[60,70],c:[120,50],d:[120,50]});return[b,V(b,{a:[25,10],b:[25,10]}),b,V(b,{a:[110,120],b:[110,120]}),b]})()},
@@ -1209,6 +1282,7 @@ const WR={
  fold:P({t:30,a:[50,90],b:[50,90],k:-9,hd:-20}),
  legraise:P({t:-90,a:[90,90],b:[90,90],c:[110,110],d:[110,110],k:8}),
  birddog:V(QUAD,{a:[125,125],d:[-125,-125],k:7}),
+ einbein:P({a:[45,35],b:[-45,-35],c:[15,60],d:[10,-14]}),
  crab:P({t:-128,a:[-10,-10],b:[-10,-10],c:[70,0],d:[70,0]}),
  chestop:P({t:172,a:[-30,-15],b:[-30,-15],hd:-30}),
  sphinx:P({t:118,a:[0,90],b:[0,90],c:[-90,-90],d:[-90,-90],hd:55}),
@@ -1226,7 +1300,8 @@ const MUS={
  hollow:[['bauch'],['beinv']],bike:[['bauch'],[]],super:[['ruecken','po'],['beinh','schulter']],bear:[['bauch','schulter'],['beinv']],
  burpee:[['beinv','brust'],['schulter','bauch'],1],skate:[['po','beinv'],['waden'],1],box:[['schulter'],['bauch'],1],
  knees:[['beinv'],['bauch'],1],crawl:[['schulter','bauch'],['beinv'],1],crab:[['trizeps','po'],['schulter']],frog:[['beinv','po'],['waden'],1],
- anfersen:[['beinh'],['waden'],1],skipping:[['waden'],['beinv'],1],
+ anfersen:[['beinh'],['waden'],1],einbein:[['beinv','po'],['waden']],vmo:[['beinv'],[]],pendel:[[],[],0,'l'],stufen:[[],['ruecken'],0,'l'],
+ apfel:[['flanke'],['schulter','waden'],0,'d'],federn:[['beinh','ruecken'],['waden'],0,'d'],skipping:[['waden'],['beinv'],1],
  birddog:[['ruecken','po'],['bauch','schulter']],legraise:[['bauch'],['hueftb']],twist:[['bauch','flanke'],[]],revcrunch:[['bauch'],[]],
  hipflex:[['hueftb'],['beinv'],0,'d'],chestop:[['brust'],['schulter'],0,'d'],child:[['ruecken'],['schulter'],0,'d'],sphinx:[['bauch'],['hueftb'],0,'d'],
  kneechest:[['po','ruecken'],[],0,'d'],hamlie:[['beinh'],['waden'],0,'d'],quadst:[['beinv'],['hueftb'],0,'d'],tneedle:[['ruecken'],['schulter'],0,'d'],
@@ -1247,6 +1322,8 @@ function fk(p,front){
 function lerpPose(p,q,u){const o={};for(const k in p)o[k]=Array.isArray(p[k])?p[k].map((v,i)=>v+(q[k][i]-v)*u):p[k]+(q[k]-p[k])*u;return o}
 function propOf(mv){
   if(!mv.prop)return null;
+  if(mv.prop==='seat'){const g=fk(mv.fr[0],mv.f);const y=g.H[1]+4;return{x:g.H[0]-16,y,w:22,h:-y}}
+  if(mv.prop==='shin'){const g=fk(mv.fr[mv.fr.length-1],mv.f);const k=g.Cl[0],an=g.Cl[1],y=Math.max(k[1],an[1])+5;return{x:Math.min(k[0],an[0])-2,y,w:Math.abs(an[0]-k[0])+10,h:-y}}
   if(mv.prop==='wallFront'){const g=fk(mv.fr[mv.fr.length-1],mv.f);const x=Math.max(g.A[1][0],g.B[1][0])+2;return{x,y:g.Hd[1]-30,w:7,h:-(g.Hd[1]-30)}}
   if(mv.prop==='wall'){const g=fk(mv.fr[mv.fr.length-1],mv.f);const x=Math.min(g.H[0],g.S[0])-4;return{x:x-7,y:g.Hd[1]-24,w:7,h:-(g.Hd[1]-24)}}
   const g=fk(mv.fr[0],mv.f);
@@ -1327,7 +1404,7 @@ function drawPose(ctx,mv,pose,fi,col,mus,glow=1){
 function renderMus(id){
   const m=MUS[id],el=$('s-mus');if(!m){el.innerHTML='';return}
   el.innerHTML=m[0].map(k=>`<span><i></i>${MNAME[k]}</span>`).join('')+m[1].map(k=>`<span class="s"><i></i>${MNAME[k]}</span>`).join('')
-    +(m[2]?'<span class="puls">♥ Puls hoch</span>':'')+(m[3]==='d'?'<span class="key">rot: wird gedehnt · gelb: auch beteiligt</span>':'<span class="key">rot: arbeitet stark · gelb: hilft mit</span>');
+    +(m[2]?'<span class="puls">♥ Puls hoch</span>':'')+(m[3]==='l'?'<span class="key">Ganz locker lassen: entlastet die Gelenke'+(m[1].length?' · gelb: wird entlastet':'')+'</span>':m[3]==='d'?'<span class="key">rot: wird gedehnt · gelb: auch beteiligt</span>':'<span class="key">rot: arbeitet stark · gelb: hilft mit</span>');
 }
 let anim=0,demoCur=null;
 const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1410,6 +1487,48 @@ function renderBench(k){
     </div>${svg}<div class="weeks">${weeks}</div>`;
 }
 
+/* ---------- Steh-Erinnerung ---------- */
+const STAND_TXT=['Kurz aufstehen: 2 Minuten für Hüfte und Rücken.','Dein Hüftbeuger meldet sich. Zeit für eine Steh-Pause.','Sitzen unterbrechen: Tippe für eine 2-Minuten-Pause.','Strecken, drehen, durchatmen: Deine Steh-Pause wartet.'];
+let standLast=0,onStandChange=()=>{};
+function startStandBreak(){
+  st.cur=genPlan(2,'stretch',false,{form:'ok',knee:st.gen.knee,calf:st.gen.calf});st.cur.stand=1;st.curOpened=true;save();
+  $('ov').hidden=true;renderHome();show('home');setTimeout(()=>$('t-card').scrollIntoView({behavior:'smooth',block:'center'}),50);
+}
+function showStandOverlay(){
+  tone(660,.12,'triangle');tone(880,.16,'triangle',.16,.12);buzz([60,40,60]);
+  $('ov-card').innerHTML=`<span class="label">Steh-Erinnerung</span><h2>Zeit aufzustehen</h2><p>Du sitzt vermutlich schon eine Weile. Zwei Minuten reichen, um Hüfte, Rücken und Nacken zu lösen.</p>
+    <div class="btns"><button class="cta" id="sb-go">Steh-Pause starten (2 Min)</button><button class="ghost" id="sb-later">In 15 Minuten erinnern</button><button class="ghost" id="sb-day">Heute nicht mehr</button></div>`;
+  $('ov').hidden=false;
+  $('sb-go').onclick=startStandBreak;
+  $('sb-later').onclick=()=>{standLast=Date.now()-(st.stand.every-15)*60e3;$('ov').hidden=true};
+  $('sb-day').onclick=()=>{st.stand.skip=realKey(new Date());save();onStandChange();$('ov').hidden=true};
+}
+function inStandWindow(d){const A=st.stand,wd=(d.getDay()+6)%7,m=d.getHours()*60+d.getMinutes(),[fh,fm]=A.from.split(':').map(Number),[th,tm]=A.to.split(':').map(Number);
+  return A.on&&A.days[wd]&&A.skip!==realKey(d)&&m>=fh*60+fm&&m<=th*60+tm}
+// Im Browser (App offen): prüfen, ob die nächste Steh-Pause fällig ist. In der Android-App plant das System die Erinnerungen.
+function standCheck(){
+  if(NATIVE||S||ringing||!$('ov').hidden||!inStandWindow(new Date()))return;
+  if(!standLast){standLast=Date.now();return}
+  if(Date.now()-standLast>=st.stand.every*60e3){standLast=Date.now();showStandOverlay()}
+}
+function renderStand(){
+  const A=st.stand,el=$('standc');
+  el.innerHTML=`<div class="al-head"><div><span class="label">Steh-Erinnerung</span><h3 style="font-size:18px">Sitzen unterbrechen</h3></div>
+      <button class="toggle ${A.on?'on':''}" id="st-on" aria-pressed="${A.on}">${A.on?'An':'Aus'}</button></div>
+    <div class="stand-row">alle <select id="st-every" aria-label="Abstand">${[30,45,60,90].map(v=>`<option value="${v}" ${v===A.every?'selected':''}>${v}</option>`).join('')}</select> Minuten</div>
+    <div class="stand-row"><label>von <input type="time" id="st-from" value="${A.from}"></label><label>bis <input type="time" id="st-to" value="${A.to}"></label></div>
+    <div class="days">${DAYN.map((d,i)=>`<button class="${A.days[i]?'on':''}" data-d="${i}" aria-pressed="${!!A.days[i]}">${d}</button>`).join('')}</div>
+    <p class="al-note">${NATIVE?'Android erinnert dich auch bei geschlossener App.':'Erinnert dich, solange diese Seite offen ist.'} Ein Tipp auf die Erinnerung startet eine 2-Minuten-Steh-Pause.</p>
+    <div class="tiny"><button id="st-test">Steh-Pause jetzt ausprobieren</button></div>`;
+  const ch=()=>{save();onStandChange()};
+  $('st-on').onclick=()=>{A.on=!A.on;ch();renderStand()};
+  $('st-every').onchange=e=>{A.every=+e.target.value;ch()};
+  $('st-from').onchange=e=>{if(e.target.value){A.from=e.target.value;ch()}};
+  $('st-to').onchange=e=>{if(e.target.value){A.to=e.target.value;ch()}};
+  el.querySelectorAll('.days button').forEach(b=>b.onclick=()=>{const i=+b.dataset.d;A.days[i]=A.days[i]?0:1;ch();renderStand()});
+  $('st-test').onclick=showStandOverlay;
+}
+
 /* ---------- Wecker ---------- */
 const DAYN=['Mo','Di','Mi','Do','Fr','Sa','So'];
 let ringing=false,ringT=0,ringStart=0,snoozeAt=0,testAt=0,nightOn=false,wasNight=false;
@@ -1488,6 +1607,23 @@ if(NATIVE){
     }catch(e){console.warn('Wecker planen fehlgeschlagen',e)}
   }
   const scheduleSoon=()=>{clearTimeout(schedTimer);schedTimer=setTimeout(scheduleAlarms,400)};
+  // Steh-Erinnerungen für die nächsten 7 Tage, ungenau (spart Akku, braucht keine Wecker-Berechtigung)
+  let standTimer=0;
+  async function scheduleStand(){
+    try{
+      const pend=await LN.getPending();
+      const old=pend.notifications.filter(n=>n.extra&&n.extra.stand).map(n=>({id:n.id}));
+      if(old.length)await LN.cancel({notifications:old});
+      const A=st.stand;if(!A.on)return;
+      const now=new Date(),list=[],[fh,fm]=A.from.split(':').map(Number),[th,tm]=A.to.split(':').map(Number);let id=5000;
+      for(let i=0;i<7;i++){const d=new Date(now);d.setDate(d.getDate()+i);const wd=(d.getDay()+6)%7;
+        if(!A.days[wd]||(i===0&&A.skip===realKey(now)))continue;
+        for(let m=fh*60+fm+A.every;m<=th*60+tm;m+=A.every){const at=new Date(d);at.setHours(0,m,0,0);if(at<=now)continue;
+          list.push({id:id++,title:'Steh-Pause',body:STAND_TXT[id%STAND_TXT.length],channelId:'steh',smallIcon:'ic_stat_quest',iconColor:'#3DE0B5',autoCancel:true,isExactNotification:false,schedule:{at},extra:{stand:1}})}}
+      if(list.length)await LN.schedule({notifications:list.slice(0,150)});
+    }catch(e){console.warn('Steh-Erinnerung planen fehlgeschlagen',e)}
+  }
+  onStandChange=()=>{clearTimeout(standTimer);standTimer=setTimeout(scheduleStand,400)};
   async function adhoc(id,ms,title,body){
     try{await LN.schedule({notifications:[{id,title,body,channelId:'wecker',smallIcon:'ic_stat_quest',iconColor:'#FFC23D',autoCancel:true,
       schedule:{at:new Date(Date.now()+ms),allowWhileIdle:true},extra:{alarm:1,adhoc:1}}]})}catch(e){}
@@ -1511,14 +1647,19 @@ if(NATIVE){
   $('a-snooze').onclick=()=>{stopRing();st.alarm.snoozed=true;save();adhoc(3990,5*60e3,'Schlummern vorbei','Jetzt aber: Dein Workout wartet.')};
   (async()=>{
     try{
+      await LN.createChannel({id:'steh',name:'Steh-Erinnerung',description:'Erinnert daran, langes Sitzen zu unterbrechen',importance:3,visibility:1,vibration:true});
       await LN.createChannel({id:'wecker',name:'Wecker',description:'Morgen-Quest Wecker',importance:5,visibility:1,sound:'wecker.wav',vibration:true,lights:true,lightColor:'#FFC23D'});
       let p=await LN.checkPermissions();if(p.display!=='granted')p=await LN.requestPermissions();
       const ex=await LN.checkExactNotificationSetting();exactOk=ex.exact_alarm==='granted';
     }catch(e){}
     markAlarmIfRecent();await scheduleAlarms();renderAlarm();
-    LN.addListener('localNotificationReceived',n=>{if(n.extra&&n.extra.alarm&&!ringing){st.alarm.fired=realKey(new Date());save();ring(false)}});
-    LN.addListener('localNotificationActionPerformed',a=>{if(a.notification.extra&&a.notification.extra.alarm){markAlarmIfRecent();if(ringing)stopRing();renderHome();show('home')}});
-    APP.addListener('resume',()=>{markAlarmIfRecent();if($('sess').hidden)renderHome();scheduleSoon()});
+    scheduleStand();
+    LN.addListener('localNotificationReceived',n=>{if(n.extra&&n.extra.alarm&&!ringing){st.alarm.fired=realKey(new Date());save();ring(false)}
+      else if(n.extra&&n.extra.stand&&!S&&!ringing&&$('ov').hidden)showStandOverlay()});
+    LN.addListener('localNotificationActionPerformed',a=>{const x=a.notification.extra||{};
+      if(x.alarm){markAlarmIfRecent();if(ringing)stopRing();renderHome();show('home')}
+      else if(x.stand&&!S)startStandBreak()});
+    APP.addListener('resume',()=>{markAlarmIfRecent();if($('sess').hidden)renderHome();scheduleSoon();onStandChange()});
     APP.addListener('backButton',()=>{
       if(!$('ov').hidden||!$('alarm').hidden)return;
       if(!$('sess').hidden){$('s-quit').click();return}
