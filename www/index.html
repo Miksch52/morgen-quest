@@ -460,16 +460,34 @@ canvas#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-in
     </ul>
   </section>
   <section>
-    <h2>Acht Grundprinzipien</h2>
+    <h2>Zehn Grundprinzipien</h2>
     <ol id="k-list"></ol>
   </section>
   <section>
     <h2>Hintergrund: Dr. Hans-Wilhelm Müller-Wohlfahrt</h2>
     <p>Orthopäde und Sportmediziner, jahrzehntelang Mannschaftsarzt des FC Bayern München (1977–2015, 2017–2020) und der deutschen Fußballnationalmannschaft (1995–2018). 2017 erhielt er von der Fascia Research Society den „Clinical Pioneer Award“ für Beiträge zur Faszienforschung.</p>
     <p>In seinen Büchern geht es unter anderem um Bewegung als Gesundheitsfaktor („Bewegung. Das Lebenselixier für unsere Gesundheit“, 2022), um das Bindegewebe („Mensch, beweg dich! So stärken Sie Ihr Bindegewebe“, 2001) und um Training („Besser trainieren!“, 2007).</p>
-    <p><b>Was die App daraus aufgreift:</b> Regelmäßige, abwechslungsreiche Bewegung und Übungen, die den ganzen Körper in langen Bewegungsketten fordern, statt einzelne Muskeln isoliert zu trainieren.</p>
+    <p><b>Fünf Themen aus „Bewegung. Das Lebenselixier für unsere Gesundheit“</b> (2022), frei zusammengefasst, und was die App daraus macht:</p>
+    <ol>
+      <li><b>Sitzen macht krank</b>Zu viel Sitzen schadet nicht nur Rücken und Gelenken, sondern auch Herz-Kreislauf, Stoffwechsel und Abwehr.<br><i>In der App:</i> Thema „Anti-Sitzen-Stretching“ und der Tipp, Sitzen regelmäßig zu unterbrechen.</li>
+      <li><b>Bewegung wirkt auf Körper und Kopf</b>Muskelarbeit regt das Gehirn an, stärkt Knochen, bremst Muskelabbau im Alter und schult die Koordination.<br><i>In der App:</i> Ganzkörper-Workouts mit Kraft, Koordination und Puls.</li>
+      <li><b>Bindegewebe und Faszien</b>Das Bindegewebe umhüllt und verbindet Muskeln, Organe und Gelenke. Ohne vielseitige Bewegung verhärtet es.<br><i>In der App:</i> Jedes Workout ist anders, mit wechselnden Bewegungsrichtungen und langen Bewegungsketten.</li>
+      <li><b>Gehen und Laufen</b>Der Körper ist auf Gehen und Laufen gebaut. Wichtig sind saubere Technik, kein falscher Ehrgeiz und genug Erholung.<br><i>In der App:</i> Lauf-ABC auf der Stelle (Anfersen, Fußgelenk-Skippings) und der Hinweis auf Ruhetage. Gehen und Laufen draußen ersetzt die App nicht, sie ergänzt es.</li>
+      <li><b>Verletzungen vorbeugen</b>Richtig aufwärmen, Überlastung früh erkennen und bei akuten Verletzungen schnell richtig handeln.<br><i>In der App:</i> Aufwärmen in jedem Kraft-Workout, Hinweise zum häufigsten Fehler, Erste-Hilfe-Regel unten.</li>
+    </ol>
     <p><b>Wichtig:</b> Die Übungen und Tipps in dieser App stammen nicht aus seinen Büchern und sind nicht von ihm geprüft. Einige seiner Behandlungsmethoden, etwa bestimmte Injektionen, und seine Ansichten zu Nahrungsergänzungsmitteln sind unter Medizinern umstritten. Die App empfiehlt keine Präparate.</p>
-    <p class="src">Quelle: Wikipedia, Artikel „Hans-Wilhelm Müller-Wohlfahrt“, abgerufen November 2026.</p>
+    <p class="src">Quellen: Wikipedia, Artikel „Hans-Wilhelm Müller-Wohlfahrt“ (abgerufen November 2026); Buchthemen nach einer Zusammenfassung, nicht wörtlich.</p>
+  </section>
+  <section>
+    <h2>Erste Hilfe bei Zerrung oder Prellung</h2>
+    <p>Allgemein übliche PECH-Regel, keine Empfehlung aus dem Buch:</p>
+    <ul>
+      <li><b>P wie Pause</b>Sofort aufhören, nicht „durchziehen“.</li>
+      <li><b>E wie Eis</b>Kühlen, aber nie Eis direkt auf die Haut, immer ein Tuch dazwischen.</li>
+      <li><b>C wie Compression</b>Leichter Druck, zum Beispiel mit einer elastischen Binde.</li>
+      <li><b>H wie Hochlagern</b>Den verletzten Bereich hochlegen.</li>
+    </ul>
+    <p>Bei starken Schmerzen, Schwellung oder wenn du nicht mehr auftreten kannst: zum Arzt.</p>
   </section>
 </section>
 
@@ -545,6 +563,8 @@ const EX = [
  {id:'crawl',n:'Bärengang',c:'cardio',cue:['Bärenstand, Knie schweben','Zwei Schritte vor, zwei zurück'],e:'Kleinere Schritte.'},
  {id:'crab',n:'Krebsgang',c:'cardio',cue:['Sitzen, Hände hinter dir, Po hoch','Vorwärts und rückwärts krabbeln'],e:'Po zwischendurch absetzen.'},
  {id:'frog',n:'Froschsprünge',c:'cardio',j:1,cue:['Tiefe Hocke','Nach vorn springen, umdrehen, zurück'],e:'Kleine Sprünge.'},
+ {id:'anfersen',n:'Anfersen',c:'cardio',j:1,cue:['Lauf-ABC: auf der Stelle locker laufen','Fersen abwechselnd Richtung Po','Aufrecht bleiben, Arme schwingen mit'],e:'Gehen statt laufen, Ferse langsam zum Po.'},
+ {id:'skipping',n:'Fußgelenk-Skippings',c:'cardio',j:1,cue:['Lauf-ABC: kleine, schnelle Schritte auf der Stelle','Nur über die Fußballen abrollen, Knie kaum heben','Leise und federnd, Oberkörper aufrecht'],e:'Langsamer und im Wechsel nur auf die Zehen.'},
  // Rumpf, zusätzlich
  {id:'birddog',n:'Vierfüßler-Strecker',c:'core',cue:['Vierfüßlerstand, Rücken flach wie ein Tisch','Gegenüberliegenden Arm und Bein lang strecken','Kurz halten, dann Seite wechseln'],e:'Nur das Bein strecken.'},
  {id:'legraise',n:'Beinheben',c:'core',cue:['Rückenlage, Hände neben dem Po','Gestreckte Beine langsam bis senkrecht heben','Langsam senken, unterer Rücken bleibt am Boden'],e:'Knie gebeugt lassen.'},
@@ -582,7 +602,8 @@ const FEHLER={
  burpee:'Im Liegestütz hängt die Hüfte durch.',skate:'Mit durchgestrecktem Knie landen.',box:'Ellbogen durchschlagen lassen, die Deckung fällt.',
  knees:'Nach hinten lehnen statt aufrecht zu bleiben.',crawl:'Po ragt hoch, Knie berühren den Boden.',crab:'Po hängt durch.',frog:'Mit gestreckten Knien landen.',
  birddog:'Bein zu hoch heben, dann kippt das Becken ins Hohlkreuz.',legraise:'Unterer Rücken hebt beim Absenken ab.',twist:'Rücken rund machen und nur die Arme schwingen.',
- revcrunch:'Mit Schwung arbeiten statt aus dem Bauch.',hipflex:'Oberkörper kippt nach vorn und ins Hohlkreuz: Die Dehnung landet im Rücken statt in der Hüfte.',
+ revcrunch:'Mit Schwung arbeiten statt aus dem Bauch.',anfersen:'Oberkörper kippt nach vorn, Knie wandert nach vorn statt nach unten zu zeigen.',
+ skipping:'Auf den Fersen landen und stampfen statt leise über den Ballen zu federn.',hipflex:'Oberkörper kippt nach vorn und ins Hohlkreuz: Die Dehnung landet im Rücken statt in der Hüfte.',
  chestop:'Kopf nach vorn schieben und Schultern hochziehen.',child:'Po hebt sich von den Fersen, dann fehlt die Dehnung im Rücken.',
  sphinx:'Kopf in den Nacken werfen und Schultern hochziehen.',kneechest:'Kopf und Schultern heben sich vom Boden. Der Nacken bleibt locker liegen.',
  hamlie:'Bein mit Gewalt ziehen, bis das Becken abhebt.',quadst:'Knie wandert nach vorn, Oberkörper kippt.',tneedle:'Aus der Hüfte drehen statt aus der Brustwirbelsäule.',
@@ -606,7 +627,7 @@ const MODS = {
 };
 const THEMES={
  full:{n:'Ganzkörper',d:'Kraft und Puls: Beine, Oberkörper und Rumpf im Wechsel.',mods:['speed','boss','blind','wheel','ladder','dice','slow','double']},
- stretch:{n:'Anti-Sitzen-Stretching',d:'Hüfte, Brust, Rücken und Nacken lösen. Ruhig, ohne Springen.',mods:['flow','blind','wheel','dice','breath']},
+ stretch:{n:'Anti-Sitzen-Stretching',d:'Gegen langes Sitzen: Hüfte, Brust, Rücken und Nacken lösen. Ruhig, ohne Springen.',mods:['flow','blind','wheel','dice','breath']},
  core:{n:'Core-Workout',d:'Bauch, Rücken und tiefe Rumpfmuskeln: die Basis für eine stabile Wirbelsäule.',mods:['speed','boss','blind','wheel','ladder','dice','slow']},
 };
 const PRINCIPLES=[
@@ -618,6 +639,8 @@ const PRINCIPLES=[
  ['Sitzen unterbrechen','Spätestens nach 30 bis 60 Minuten Sitzen kurz aufstehen und bewegen. Hüftbeuger, Brust und Brustwirbelsäule leiden am meisten.'],
  ['Ruhig dehnen','Dehnungen ruhig halten und nicht wippen. Ein deutliches Ziehen ist richtig, Schmerz nicht.'],
  ['Abwechslung','Unterschiedliche Übungen und Bewegungsrichtungen fordern Muskeln und Bindegewebe vielseitiger als immer dasselbe Programm.'],
+ ['Erholung gehört dazu','Muskeln werden in der Pause stärker, nicht während des Trainings. Nach mehreren harten Tagen ist ein ruhiger Dehn-Tag sinnvoll.'],
+ ['Auf den Körper hören','Ungewohnte Schmerzen oder ein Gelenk, das sich falsch anfühlt, sind ein Signal. Dann leichter machen oder pausieren statt durchziehen.'],
 ];
 const MOD_IDS = Object.keys(MODS);
 const BOSSES = ['Snooze-Golem','Sofa-Krake','Graf Müdula','Scroll-Dämon','Kissen-Titan','Lord Später'];
@@ -648,7 +671,7 @@ function shuffle(arr,r){const a=arr.slice();for(let i=a.length-1;i>0;i--){const 
 /* ---------- Zustand ---------- */
 const KEY='tammo-morgen-quest-v1';
 const FRESH = ()=>({xp:0,level:1,streak:0,best:0,lastDone:null,shields:1,potion:false,splitter:0,sinceEpic:0,sinceLeg:0,relics:{},plans:{},opened:{},done:{},pending:null,dayOffset:0,total:0,sound:true,
-  gen:{min:10,theme:'full',test:false},cur:null,curOpened:false,recent:[],lastMod:null,chestDay:{k:null,n:0},
+  gen:{min:10,theme:'full',test:false},cur:null,curOpened:false,recent:[],lastMod:null,chestDay:{k:null,n:0},hist:[],
   bench:{},alarm:{on:true,time:'07:50',days:[1,1,1,1,1,1,1],fired:null,firedAt:0,snoozed:false}});
 const BENCH='push';
 let st = FRESH();
@@ -775,8 +798,14 @@ function renderHome(){
   else if(!done&&ss.saved){note.hidden=false;note.className='note good';note.textContent=`${ss.missed} Tag verpasst. Ein Serien-Schild fängt das ab, wenn du heute trainierst.`}
   else if(!done&&st.potion){note.hidden=false;note.className='note good';note.textContent='XP-Trank aktiv: Das nächste Workout bringt 1,5× XP.'}
   renderGen();renderCard();
-  $('h-tip').innerHTML=tipHTML(dayIndex(k));
+  $('h-tip').innerHTML=needsRest(k)?`<span class="label">Erholung</span><p><b>Drei harte Tage in Folge.</b> Muskeln werden in der Pause stärker. Heute passt ein ruhiges Anti-Sitzen-Stretching.</p><button class="linkbtn" id="b-rest">Stretching auswählen</button>`:tipHTML(dayIndex(k));
+  if($('b-rest'))$('b-rest').onclick=()=>{st.gen.theme='stretch';save();renderGen();$('gen').scrollIntoView({behavior:'smooth',block:'center'})};
   renderBench(k);renderAlarm();
+}
+// Drei Tage hintereinander mit mindestens 10 Min Kraft (Ganzkörper/Core)? Dann Erholung vorschlagen
+function needsRest(k){
+  if(st.gen.theme==='stretch'||st.done[k])return false;
+  return [1,2,3].every(n=>{const dk=addDays(k,-n);return (st.hist||[]).filter(h=>h.k===dk&&h.valid&&h.theme!=='stretch').reduce((a,h)=>a+h.min,0)>=10});
 }
 function renderGen(){
   const G=st.gen;$('g-min').textContent=G.min;$('g-range').value=G.min;
@@ -998,6 +1027,7 @@ function finish(){
   const before={lvl:st.level,xp:st.xp};
   st.xp+=total;let ups=0;while(st.xp>=need(st.level)){st.xp-=need(st.level);st.level++;ups++}
   if(valid){st.done[k]=true;st.lastDone=k}st.total++;
+  st.hist=(st.hist||[]).concat({k,theme:P.theme,min:P.min,valid}).slice(-40);
   // Truhe ab 3 Minuten, höchstens 3 pro Tag
   if(st.chestDay.k!==k)st.chestDay={k,n:0};
   const chests=[];let chestNote='';
@@ -1137,6 +1167,8 @@ const MOVES={
  crawl:{fr:[BE,V(BE,{x:5,a:[20,15],d:[20,-70]}),V(BE,{x:10,b:[20,15],c:[20,-70]}),V(BE,{x:15})]},
  crab:{fr:[P({t:-115,a:[-10,-10],b:[-10,-10],c:[100,0],d:[100,0]}),P({t:-115,x:8,a:[-10,-10],b:[0,0],c:[110,5],d:[100,0]}),P({t:-115,x:16,a:[-10,-10],b:[-10,-10],c:[100,0],d:[100,0]})]},
  frog:{fr:[ST,P({t:130,a:[15,15],b:[15,15],c:[115,-35],d:[115,-35]}),P({x:28,lift:18,t:150,a:[150,150],b:[150,150],c:[-15,-15],d:[-15,-15],toe:-40,toe2:-40}),P({x:50,t:130,a:[15,15],b:[15,15],c:[115,-35],d:[115,-35]})]},
+ anfersen:{fr:[ST,P({c:[-8,-160],a:[50,110],b:[-35,-20],lift:3,toe2:-30}),P({d:[-8,-160],b:[50,110],a:[-35,-20],lift:3,toe:-30}),P({c:[-8,-160],a:[50,110],b:[-35,-20],lift:3,toe2:-30}),ST]},
+ skipping:{fr:[ST,P({c:[30,-15],a:[40,100],b:[-25,-10],toe2:-50,lift:1}),P({d:[30,-15],b:[40,100],a:[-25,-10],toe:-50,lift:1}),P({c:[30,-15],a:[40,100],b:[-25,-10],toe2:-50,lift:1}),ST]},
  birddog:{fr:[QUAD,V(QUAD,{a:[95,95],d:[-92,-92]}),QUAD,V(QUAD,{b:[95,95],c:[-92,-92]}),QUAD]},
  legraise:{fr:(()=>{const b=P({t:-90,a:[90,90],b:[90,90],c:[95,95],d:[95,95]});return[b,V(b,{c:[178,178],d:[178,178]}),b]})()},
  twist:{fr:(()=>{const b=P({t:-158,a:[60,70],b:[60,70],c:[120,50],d:[120,50]});return[b,V(b,{a:[25,10],b:[25,10]}),b,V(b,{a:[110,120],b:[110,120]}),b]})()},
@@ -1194,6 +1226,7 @@ const MUS={
  hollow:[['bauch'],['beinv']],bike:[['bauch'],[]],super:[['ruecken','po'],['beinh','schulter']],bear:[['bauch','schulter'],['beinv']],
  burpee:[['beinv','brust'],['schulter','bauch'],1],skate:[['po','beinv'],['waden'],1],box:[['schulter'],['bauch'],1],
  knees:[['beinv'],['bauch'],1],crawl:[['schulter','bauch'],['beinv'],1],crab:[['trizeps','po'],['schulter']],frog:[['beinv','po'],['waden'],1],
+ anfersen:[['beinh'],['waden'],1],skipping:[['waden'],['beinv'],1],
  birddog:[['ruecken','po'],['bauch','schulter']],legraise:[['bauch'],['hueftb']],twist:[['bauch','flanke'],[]],revcrunch:[['bauch'],[]],
  hipflex:[['hueftb'],['beinv'],0,'d'],chestop:[['brust'],['schulter'],0,'d'],child:[['ruecken'],['schulter'],0,'d'],sphinx:[['bauch'],['hueftb'],0,'d'],
  kneechest:[['po','ruecken'],[],0,'d'],hamlie:[['beinh'],['waden'],0,'d'],quadst:[['beinv'],['hueftb'],0,'d'],tneedle:[['ruecken'],['schulter'],0,'d'],
