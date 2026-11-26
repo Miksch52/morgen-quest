@@ -163,7 +163,7 @@ img{max-width:100%}
   --text:#ecf7f5; --muted:#8db2ae;
   --gold:#f2c14e; --coral:#ff6b6b; --mint:#4fe3a1;
   --accent:var(--mint);
-  --body:#a7cdc7; --body2:#5d8a86; --outline:#08232a; --hot:#ff6b6b; --warm:#f2c14e;
+  --body:#b3d3ce; --body2:#64908b; --outline:#08232a; --mus-idle:#93bab4; --mus-idle2:#557f7a; --hair:#13343a; --hot:#ff6b6b; --warm:#f2c14e;
   --r-common:#a9c5c1; --r-rare:#4cc3ff; --r-epic:#b48cff; --r-leg:#f2c14e;
   --f-display:"Sora","Segoe UI",system-ui,sans-serif;
   --f-body:"Rubik",system-ui,-apple-system,"Segoe UI",sans-serif;
@@ -397,7 +397,9 @@ canvas#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-in
 .demo canvas{display:block;width:100%;height:auto;aspect-ratio:240/152}
 .demo .tag{position:absolute;left:12px;top:10px}
 .demo .replay{position:absolute;right:8px;top:6px;font-size:12px;font-weight:700;padding:6px 10px;border-radius:99px;background:var(--panel2)}
-.mus{display:flex;flex-wrap:wrap;gap:6px;padding:0 12px 12px}
+.mus{display:flex;flex-wrap:wrap;gap:6px;align-content:center;min-width:0}
+.musrow{display:flex;gap:10px;align-items:center;padding:0 12px 12px}
+.demo .bmap{width:112px;height:auto;flex:none;aspect-ratio:104/78}
 .mus span{font-size:12px;font-weight:700;padding:4px 9px;border-radius:99px;background:var(--panel2);display:inline-flex;align-items:center;gap:6px}
 .mus i{width:9px;height:9px;border-radius:50%;background:var(--hot);flex:none}
 .mus span.s i{background:var(--warm)}
@@ -516,7 +518,7 @@ canvas#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-in
     <div class="t"><span class="big mono" id="s-time">30</span><span class="sub" id="s-sub">Los</span></div>
   </div>
   <h2 class="exname" id="s-name">…</h2>
-  <div class="demo"><span class="label tag">So geht's</span><canvas id="s-fig" width="480" height="304"></canvas><button class="replay" id="s-replay">Anhalten</button><div class="mus" id="s-mus"></div></div>
+  <div class="demo"><span class="label tag">So geht's</span><canvas id="s-fig" width="480" height="304"></canvas><button class="replay" id="s-replay">Anhalten</button><div class="musrow"><canvas class="bmap" id="s-map" width="208" height="156" role="img" aria-label="Muskelkarte vorne und hinten"></canvas><div class="mus" id="s-mus"></div></div></div>
   <span class="badge" id="s-badge" hidden></span>
   <div class="cues" id="s-cues"></div>
   <div class="ctrl">
@@ -553,7 +555,7 @@ canvas#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-in
   <button class="ghost back" id="ld-back">Zurück zur Bibliothek</button>
   <div><span class="label" id="ld-cat"></span><h1 style="font-size:26px" id="ld-name"></h1></div>
   <div class="chiprow" id="ld-chips"></div>
-  <div class="demo"><span class="label tag">So geht's</span><canvas id="l-fig" width="480" height="304"></canvas><button class="replay" id="l-replay">Anhalten</button><div class="mus" id="l-mus"></div></div>
+  <div class="demo"><span class="label tag">So geht's</span><canvas id="l-fig" width="480" height="304"></canvas><button class="replay" id="l-replay">Anhalten</button><div class="musrow"><canvas class="bmap" id="l-map" width="208" height="156" role="img" aria-label="Muskelkarte vorne und hinten"></canvas><div class="mus" id="l-mus"></div></div></div>
   <div class="cues" id="l-cues"></div>
   <p class="lcount" id="ld-count"></p>
   <button class="cta" id="ld-try">Kurz ausprobieren (45 Sekunden)</button>
@@ -1072,7 +1074,7 @@ function startSession(){
   const plan=st.cur,k=todayKey();
   S={k,plan,steps:plan.steps.map(s=>Object.assign({},s)),i:0,run:true,end:0,left:0,done:0,xp:0,bonus:[],events:0,dbl:false,revealed:{},lastSec:null,
     bossMax:plan.steps.filter(s=>s.k==='w'&&s.main).reduce((a,s)=>a+s.d,0),bossDone:0,started:Date.now(),shown:new Set(),doneIds:[]};
-  figTarget={fig:'s-fig',mus:'s-mus'};
+  figTarget={fig:'s-fig',mus:'s-mus',map:'s-map'};
   demoCur=null;
   $('s-boss').hidden=!plan.boss;if(plan.boss)$('s-bossname').textContent=plan.boss;
   show('sess');enterStep();
@@ -1145,7 +1147,7 @@ function renderTime(){
 function renderCues(s,cid='s-cues',wid='s-wrong'){
   const c=$(cid);if(!s){c.hidden=true;return}c.hidden=false;const x=EXM[s.ex],wr=WR[s.ex];
   c.innerHTML=`<p class="ch ok">✓ SO GEHT'S RICHTIG</p><ul>${x.cue.map(t=>`<li>${t}</li>`).join('')}</ul><p class="easy">Leichter: ${x.e}</p>`
-    +(x.f?`<div class="wrong ${wr?'':'txt'}">${wr?'<canvas id="${wid}" width="240" height="152" role="img" aria-label="So nicht"></canvas>':''}<div><p class="ch bad">✗ HÄUFIGER FEHLER</p><p>${x.f}</p></div></div>`:'');
+    +(x.f?`<div class="wrong ${wr?'':'txt'}">${wr?`<canvas id="${wid}" width="240" height="152" role="img" aria-label="So nicht"></canvas>`:''}<div><p class="ch bad">✗ HÄUFIGER FEHLER</p><p>${x.f}</p></div></div>`:'');
   if(wr)drawWrong(s.ex,wid);
 }
 function drawWrong(id,wid='s-wrong'){
@@ -1492,10 +1494,10 @@ function fitMove(mv){
   return{s,ox:FW/2-(x0+x1)/2*s,pr};
 }
 function figColors(){const cs=getComputedStyle(document.documentElement),g=n=>cs.getPropertyValue(n).trim();
-  return{fg:g('--text'),far:g('--muted'),line:g('--line'),prop:g('--panel2'),acc:g('--accent'),bg:g('--panel'),body:g('--body'),body2:g('--body2'),outline:g('--outline'),hot:g('--hot'),warm:g('--warm')}}
-let figTarget={fig:'s-fig',mus:'s-mus'};
+  return{fg:g('--text'),far:g('--muted'),line:g('--line'),prop:g('--panel2'),acc:g('--accent'),bg:g('--panel'),body:g('--body'),body2:g('--body2'),outline:g('--outline'),hot:g('--hot'),warm:g('--warm'),idle:g('--mus-idle'),idle2:g('--mus-idle2'),hair:g('--hair')}}
+let figTarget={fig:'s-fig',mus:'s-mus',map:'s-map'};
 function figCtx(){const c=$(figTarget.fig),x=c.getContext('2d');x.setTransform(c.width/FW,0,0,c.width/FW,0,0);return x}
-// Figur mit Körperform: verjüngte Glieder, Rumpf mit Brust und Rücken, Muskelbäuche leuchten rot (stark) bzw. gelb (hilft mit)
+// Menschliche Figur: Körperform, Haare und Gesicht; alle Muskeln als dezente Formen, beanspruchte leuchten rot (stark) bzw. gelb (hilft mit)
 function drawPose(ctx,mv,pose,fi,col,mus,glow=1){
   ctx.clearRect(0,0,FW,200);
   const s=fi.s,front=!!mv.f,M=q=>[fi.ox+q[0]*s,GY+q[1]*s];
@@ -1505,7 +1507,6 @@ function drawPose(ctx,mv,pose,fi,col,mus,glow=1){
   const PS=new Set(mus?mus[0]:[]),WS=new Set(mus?mus[1]:[]),mc=k=>PS.has(k)?col.hot:WS.has(k)?col.warm:null;
   const nrm=(a,b)=>{const dx=b[0]-a[0],dy=b[1]-a[1],L=Math.hypot(dx,dy)||1;return[-dy/L,dx/L]},dot=(u,v)=>u[0]*v[0]+u[1]*v[1];
   const tn=nrm(g.H,g.S); // zeigt zur Körpervorderseite
-  // Seite, zu der ein Gelenk einknickt; bei gestrecktem Glied: Vorder- bzw. Rückseite des Rumpfs
   const sideOf=(a,b,c,dflt)=>{const n=nrm(a,b),v=[c[0]-b[0],c[1]-b[1]],d=dot(n,v)/(Math.hypot(v[0],v[1])||1);return Math.abs(d)>.18?Math.sign(d):(Math.sign(dot(n,tn))||1)*dflt};
   const disc=(q,r)=>{const p=M(q);ctx.beginPath();ctx.arc(p[0],p[1],Math.max(.5,r*s),0,Math.PI*2);ctx.fill()};
   const quad=(a,b,ra,rb)=>{const pa=M(a),pb=M(b),n=nrm(pa,pb);ctx.beginPath();ctx.moveTo(pa[0]+n[0]*ra*s,pa[1]+n[1]*ra*s);ctx.lineTo(pb[0]+n[0]*rb*s,pb[1]+n[1]*rb*s);
@@ -1513,46 +1514,86 @@ function drawPose(ctx,mv,pose,fi,col,mus,glow=1){
   const limb=(parts,fill)=>{ctx.fillStyle=col.outline;parts.forEach(([a,b,ra,rb])=>{quad(a,b,ra+1,rb+1);disc(a,ra+1);disc(b,rb+1)});
     ctx.fillStyle=fill;parts.forEach(([a,b,ra,rb])=>{quad(a,b,ra,rb);disc(a,ra);disc(b,rb)})};
   const belly=(a,b,u0,u1,side,off,ry,c,alpha,lit)=>{const pa=M(a),pb=M(b),dx=pb[0]-pa[0],dy=pb[1]-pa[1],L=Math.hypot(dx,dy)||1,n=[-dy/L,dx/L],um=(u0+u1)/2;
-    ctx.save();ctx.globalAlpha=alpha;ctx.fillStyle=c;if(lit){ctx.shadowColor=c;ctx.shadowBlur=(3+9*glow)*s}
-    ctx.beginPath();ctx.ellipse(pa[0]+dx*um+n[0]*side*off*s,pa[1]+dy*um+n[1]*side*off*s,Math.max(1.5,L*(u1-u0)/2),ry*s,Math.atan2(dy,dx),0,Math.PI*2);ctx.fill();ctx.restore()};
-  const ma=far=>(far?.55:1)*(.6+.4*glow),A1=ma(false),mb=(k,f)=>{const c=mc(k);if(c)f(c)};
-  const leg=(L,far)=>{const [K,A,T]=L,base=far?col.body2:col.body,parts=[[g.H,K,6.3,4.5],[K,A,4.5,2.8]];if(!front)parts.push([A,T,2.6,1.6]);limb(parts,base);
-    const bk=front?0:sideOf(g.H,K,A,-1),a=ma(far);
-    if(!front)belly(K,A,.12,.55,bk,2.1,2.7,base,1,false); // Wadenform
-    mb('beinv',c=>belly(g.H,K,.14,.86,-bk,2.2,3,c,a,true));
-    mb('beinh',c=>belly(g.H,K,.14,.86,bk,2.2,3,c,a,true));
-    mb('hueftb',c=>belly(g.H,K,.02,.4,-bk,2.4,2.8,c,a,true));
-    mb('waden',c=>belly(K,A,.1,.55,bk,2.3,2.7,c,a,true))};
-  const arm=(L,far)=>{const [E,Wr]=L,base=far?col.body2:col.body;limb([[g.S,E,4.3,3.3],[E,Wr,3.3,2.3],[Wr,Wr,2.7,2.7]],base);
-    const bi=front?0:sideOf(g.S,E,Wr,1);mb('trizeps',c=>belly(g.S,E,.15,.85,-bi,1.7,2.4,c,ma(far),true))};
+    ctx.save();ctx.globalAlpha=alpha;ctx.fillStyle=c;if(lit){ctx.shadowColor=c;ctx.shadowBlur=(4+10*glow)*s}
+    ctx.beginPath();ctx.ellipse(pa[0]+dx*um+n[0]*side*off*s,pa[1]+dy*um+n[1]*side*off*s,Math.max(1.2,L*(u1-u0)/2),ry*s,Math.atan2(dy,dx),0,Math.PI*2);ctx.fill();ctx.restore()};
+  const ma=far=>(far?.6:1)*(.62+.38*glow);
+  // Muskel: aktiv farbig mit Leuchten, sonst als dezente Muskelform
+  const mz=(key,far,fn)=>{const c=mc(key);fn(c||(far?col.idle2:col.idle),c?ma(far):1,!!c)};
+  const leg=(L,far)=>{const [K,A,T]=L,base=far?col.body2:col.body,parts=[[g.H,K,6.9,4.7],[K,A,4.5,2.6]];if(!front)parts.push([A,T,2.6,1.6]);limb(parts,base);
+    const bk=front?0:sideOf(g.H,K,A,-1);
+    mz('beinv',far,(c,a,l)=>belly(g.H,K,.14,.84,front?0:-bk,front?0:2.4,front?3.6:3.2,c,a,l));
+    if(!front)mz('beinh',far,(c,a,l)=>belly(g.H,K,.2,.88,bk,2.4,2.8,c,a,l));
+    if(mc('hueftb'))belly(g.H,K,0,.34,front?0:-bk,front?0:2.8,2.8,mc('hueftb'),ma(far),true);
+    mz('waden',far,(c,a,l)=>belly(K,A,.1,.56,front?0:bk,front?0:2.2,front?2.5:3,c,a,l))};
+  const arm=(L,far)=>{const [E,Wr]=L,base=far?col.body2:col.body;limb([[g.S,E,4.5,3.4],[E,Wr,3.3,2.2],[Wr,Wr,3,3]],base);
+    const bi=front?0:sideOf(g.S,E,Wr,1);
+    if(!front)belly(g.S,E,.22,.8,bi,1.8,2.2,far?col.idle2:col.idle,1,false); // Bizeps-Form
+    mz('trizeps',far,(c,a,l)=>belly(g.S,E,.15,.86,front?0:-bi,front?0:1.8,front?2.6:2.4,c,a,l))};
   leg(g.D,!front);arm(g.B,!front);
   // Rumpf als Körperform entlang der (gebogenen) Wirbelsäule
   const H=g.H,S=g.S,C=g.C,qp=u=>[(1-u)*(1-u)*H[0]+2*(1-u)*u*C[0]+u*u*S[0],(1-u)*(1-u)*H[1]+2*(1-u)*u*C[1]+u*u*S[1]];
   const lw=(u,pts)=>{for(let i=1;i<pts.length;i++)if(u<=pts[i][0]){const[a,wa]=pts[i-1],[b,wb]=pts[i];return wa+(wb-wa)*(u-a)/(b-a)}return pts[pts.length-1][1]};
-  const WF=front?[[0,8],[.35,6.6],[.75,8.6],[1,7.6]]:[[0,6.4],[.35,5],[.72,7.8],[1,5.4]],WB=front?WF:[[0,7.6],[.35,5.4],[.7,7],[1,6]];
-  const tor=[];for(let i=0;i<=12;i++){const q=qp(i/12),w=lw(i/12,WF);tor.push([q[0]+tn[0]*w,q[1]+tn[1]*w])}
-  for(let i=12;i>=0;i--){const q=qp(i/12),w=lw(i/12,WB);tor.push([q[0]-tn[0]*w,q[1]-tn[1]*w])}
+  const WF=front?[[0,8.6],[.35,6.8],[.78,9.2],[1,8.2]]:[[0,6.6],[.35,5.2],[.7,8.2],[.92,7],[1,5.4]],WB=front?WF:[[0,8.2],[.3,5.6],[.68,7.4],[1,6.2]];
+  const tor=[];for(let i=0;i<=14;i++){const q=qp(i/14),w=lw(i/14,WF);tor.push([q[0]+tn[0]*w,q[1]+tn[1]*w])}
+  for(let i=14;i>=0;i--){const q=qp(i/14),w=lw(i/14,WB);tor.push([q[0]-tn[0]*w,q[1]-tn[1]*w])}
   ctx.beginPath();tor.map(M).forEach((p,i)=>i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]));ctx.closePath();
   ctx.lineJoin='round';ctx.strokeStyle=col.outline;ctx.lineWidth=2*s;ctx.stroke();ctx.fillStyle=col.body;ctx.fill();
-  mb('ruecken',c=>{if(!front)belly(H,S,.3,.9,-1,4,3,c,A1,true)});
-  mb('bauch',c=>belly(H,S,.1,.5,front?0:1,front?0:2.6,front?4.4:2.8,c,A1,true));
-  mb('brust',c=>belly(H,S,.6,.9,front?0:1,front?0:4,front?5.5:3.2,c,A1,true));
-  mb('flanke',c=>belly(H,S,.22,.72,0,0,front?3:3.4,c,A1,true));
-  mb('po',c=>belly(H,S,-.1,.2,front?0:-1,front?0:4.6,front?5:4.2,c,A1,true));
-  // Hals und Kopf
+  const A1=ma(false);
+  if(!front)mz('ruecken',false,(c,a,l)=>{belly(H,S,.48,.92,-1,4.4,3.2,c,a,l);belly(H,S,.14,.42,-1,3.6,2.4,c,a,l)});
+  else if(mc('ruecken'))belly(H,S,.4,.9,0,0,5,mc('ruecken'),A1,true);
+  mz('bauch',false,(c,a,l)=>{for(const u of [.15,.28,.41]){if(front){belly(H,S,u-.05,u+.05,1,1.9,1.8,c,a,l);belly(H,S,u-.05,u+.05,-1,1.9,1.8,c,a,l)}else belly(H,S,u-.055,u+.055,1,3,2.1,c,a,l)}});
+  mz('brust',false,(c,a,l)=>{if(front){belly(H,S,.62,.88,1,3.8,3.4,c,a,l);belly(H,S,.62,.88,-1,3.8,3.4,c,a,l)}else belly(H,S,.6,.9,1,4.4,3.3,c,a,l)});
+  if(mc('flanke')){const c=mc('flanke');if(front){belly(H,S,.18,.62,1,6,1.8,c,A1,true);belly(H,S,.18,.62,-1,6,1.8,c,A1,true)}else belly(H,S,.18,.66,0,0,3.2,c,A1,true)}
+  if(!front)mz('po',false,(c,a,l)=>belly(H,S,-.16,.18,-1,4.9,4.6,c,a,l));
+  else if(mc('po'))belly(H,S,-.1,.14,0,0,5.4,mc('po'),A1,true);
+  // Hals und Kopf mit Haaren und Gesicht
   const nd=dv(pose.t+pose.hd),nt=[S[0]+nd[0]*LEN.N,S[1]+nd[1]*LEN.N];
-  limb([[S,nt,2.9,2.7]],col.body);
-  mb('nacken',c=>belly(S,nt,-.3,1.3,0,0,2.4,c,A1,true));
-  ctx.fillStyle=col.outline;disc(g.Hd,LEN.HR-.2);ctx.fillStyle=col.body;disc(g.Hd,LEN.HR-1.2);
-  if(!front){let hn=nrm(S,g.Hd);if(dot(hn,tn)<0)hn=[-hn[0],-hn[1]];ctx.fillStyle=col.outline;disc([g.Hd[0]+hn[0]*3.6+nd[0]*1.2,g.Hd[1]+hn[1]*3.6+nd[1]*1.2],1.1)}
+  limb([[S,nt,3,2.8]],col.body);
+  if(mc('nacken'))belly(S,nt,-.4,1.3,0,0,2.7,mc('nacken'),A1,true);
+  const Hd=g.Hd,hc=M(Hd),hr=(LEN.HR-1.2)*s;
+  ctx.fillStyle=col.outline;disc(Hd,LEN.HR-.2);
+  let hn=nrm(S,Hd);if(dot(hn,tn)<0)hn=[-hn[0],-hn[1]];
+  if(!front){ctx.fillStyle=col.body;disc([Hd[0]+hn[0]*5.8-nd[0]*.6,Hd[1]+hn[1]*5.8-nd[1]*.6],1.9)} // Nase
+  ctx.fillStyle=col.body;disc(Hd,LEN.HR-1.2);
+  ctx.save();ctx.beginPath();ctx.arc(hc[0],hc[1],hr,0,Math.PI*2);ctx.clip();ctx.fillStyle=col.hair;
+  if(front)disc([Hd[0]+nd[0]*5.2,Hd[1]+nd[1]*5.2],LEN.HR-.6);else disc([Hd[0]+nd[0]*3.4-hn[0]*3.2,Hd[1]+nd[1]*3.4-hn[1]*3.2],LEN.HR-1);
+  ctx.restore();
+  ctx.fillStyle=col.outline;
+  if(front){const pp=[-nd[1],nd[0]];disc([Hd[0]+pp[0]*2.5-nd[0]*.4,Hd[1]+pp[1]*2.5-nd[1]*.4],.9);disc([Hd[0]-pp[0]*2.5-nd[0]*.4,Hd[1]-pp[1]*2.5-nd[1]*.4],.9)}
+  else{disc([Hd[0]+hn[0]*3.7+nd[0]*.8,Hd[1]+hn[1]*3.7+nd[1]*.8],1);ctx.fillStyle=col.idle;disc([Hd[0]-hn[0]*.6,Hd[1]-hn[1]*.6],1.5)} // Auge, Ohr
   leg(g.Cl,false);arm(g.A,false);
-  mb('schulter',c=>belly(S,g.A[0],-.08,.45,0,0,3.6,c,A1,true));
+  mz('schulter',false,(c,a,l)=>belly(S,g.A[0],-.12,.42,0,0,4,c,a,l));
   // Herz für "Puls hoch"
   if(mus&&mus[2]){const k=.75+.25*glow,x=26,y=42;ctx.fillStyle=col.hot;ctx.globalAlpha=.5+.5*glow;ctx.beginPath();
     ctx.moveTo(x,y+6*k);ctx.bezierCurveTo(x-11*k,y-2*k,x-5*k,y-11*k,x,y-5*k);ctx.bezierCurveTo(x+5*k,y-11*k,x+11*k,y-2*k,x,y+6*k);ctx.fill();ctx.globalAlpha=1}
 }
+// Muskelkarte: Körper von vorne und hinten, beanspruchte Gruppen farbig
+function drawBodyMap(cv,mus){
+  if(!cv)return;const ctx=cv.getContext('2d'),col=figColors(),W=104,Hh=78;
+  ctx.setTransform(cv.width/W,0,0,cv.width/W,0,0);ctx.clearRect(0,0,W,Hh);
+  const PS=new Set(mus?mus[0]:[]),WS=new Set(mus?mus[1]:[]),mc=k=>PS.has(k)?col.hot:WS.has(k)?col.warm:null;
+  const fig=(cx,back)=>{
+    const cap=(x1,y1,x2,y2,r)=>{ctx.strokeStyle=col.body2;ctx.lineWidth=r*2;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(cx+x1,y1);ctx.lineTo(cx+x2,y2);ctx.stroke()};
+    const ell=(x,y,rx,ry,k)=>{const c=k&&mc(k);ctx.save();ctx.fillStyle=c||col.idle2;if(c){ctx.shadowColor=c;ctx.shadowBlur=3}ctx.beginPath();ctx.ellipse(cx+x,y,rx,ry,0,0,Math.PI*2);ctx.fill();ctx.restore()};
+    const both=(x,y,rx,ry,k)=>{ell(x,y,rx,ry,k);ell(-x,y,rx,ry,k)};
+    ctx.fillStyle=col.body2;ctx.beginPath();ctx.ellipse(cx,7,4.3,4.8,0,0,Math.PI*2);ctx.fill();
+    cap(0,10,0,14,1.9);
+    ctx.beginPath();ctx.moveTo(cx-10,15);ctx.lineTo(cx+10,15);ctx.lineTo(cx+7.5,38);ctx.lineTo(cx-7.5,38);ctx.closePath();ctx.fill();
+    [1,-1].forEach(sg=>{cap(10*sg,17,12.5*sg,28,2.5);cap(12.5*sg,28,13.5*sg,38,1.9);cap(4.6*sg,39,5.2*sg,54,3.3);cap(5.2*sg,54,4.8*sg,69,2.4)});
+    if(!back){
+      both(4.6,20,4.1,2.9,'brust');both(10.4,17.4,2.4,2.7,'schulter');both(12,22.5,1.5,3.6,null);
+      ctx.save();const ab=mc('bauch');[24.5,28.5,32.5].forEach(y=>both(1.8,y,1.5,1.7,'bauch'));ctx.restore();
+      both(6.3,29,1.3,4.6,'flanke');both(3.9,40,2,3.1,'hueftb');both(5,47.5,2.9,6.4,'beinv');ell(0,12.5,1.5,1.6,'nacken');
+    }else{
+      ell(0,15.5,4.8,2.3,'nacken');both(10.4,17.4,2.4,2.7,'schulter');both(4.7,23,3.9,6,'ruecken');ell(0,33.5,3,3.2,'ruecken');
+      both(12,22.5,1.6,3.8,'trizeps');both(3.9,41.5,3.6,3.4,'po');both(5,50,2.6,5.8,'beinh');both(4.9,61,2.1,4.4,'waden');
+    }
+  };
+  fig(26,false);fig(78,true);
+  ctx.fillStyle=col.far;ctx.font='600 7px Rubik, sans-serif';ctx.textAlign='center';ctx.fillText('vorne',26,77);ctx.fillText('hinten',78,77);
+}
 function renderMus(id){
-  const m=MUS[id],el=$(figTarget.mus);if(!m){el.innerHTML='';return}
+  const m=MUS[id],el=$(figTarget.mus);drawBodyMap($(figTarget.map),m);if(!m){el.innerHTML='';return}
   el.innerHTML=m[0].map(k=>`<span><i></i>${MNAME[k]}</span>`).join('')+m[1].map(k=>`<span class="s"><i></i>${MNAME[k]}</span>`).join('')
     +(m[2]?'<span class="puls">♥ Puls hoch</span>':'')+(m[3]==='l'?'<span class="key">Ganz locker lassen: entlastet die Gelenke'+(m[1].length?' · gelb: wird entlastet':'')+'</span>':m[3]==='d'?'<span class="key">rot: wird gedehnt · gelb: auch beteiligt</span>':'<span class="key">rot: arbeitet stark · gelb: hilft mit</span>');
 }
@@ -1573,7 +1614,7 @@ function playMove(id,animate){
 }
 function drawQ(){const ctx=figCtx(),col=figColors();ctx.clearRect(0,0,FW,200);ctx.strokeStyle=col.line;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(12,GY+1);ctx.lineTo(FW-12,GY+1);ctx.stroke();
   ctx.fillStyle=col.far;ctx.font='800 56px Sora, sans-serif';ctx.textAlign='center';ctx.fillText('?',FW/2,GY-34);
-  $(figTarget.mus).innerHTML='<span class="key">Muskeln: Überraschung</span>'}
+  $(figTarget.mus).innerHTML='<span class="key">Muskeln: Überraschung</span>';drawBodyMap($(figTarget.map),null)}
 // Die Übung läuft in Schleife, solange sie angezeigt wird; "Anhalten" friert sie als Standbild ein.
 let demoPaused=false;
 function showDemo(id){if(demoCur===id)return;demoCur=id;playMove(id,!demoPaused)}
@@ -1608,7 +1649,7 @@ function openExercise(id){
   if(g.knee&&KNEE_X.includes(id))warn.push('Bei Knie-Schonung ausgeschlossen');if(g.calf&&CALF_X.includes(id))warn.push('Bei Waden-Schonung ausgeschlossen');
   $('ld-chips').innerHTML=chips.map(c=>`<span class="chip">${c}</span>`).join('')+warn.map(c=>`<span class="chip warn">${c}</span>`).join('');
   const n=(st.exCount||{})[id]||0;$('ld-count').textContent=n?`Bisher ${n}-mal gemacht.`:'Noch nie gemacht.';
-  show('libd');figTarget={fig:'l-fig',mus:'l-mus'};demoCur=id;$('l-replay').textContent=demoPaused?'Abspielen':'Anhalten';playMove(id,!demoPaused);
+  show('libd');figTarget={fig:'l-fig',mus:'l-mus',map:'l-map'};demoCur=id;$('l-replay').textContent=demoPaused?'Abspielen':'Anhalten';playMove(id,!demoPaused);
   renderCues({ex:id},'l-cues','l-wrong');
 }
 $('ld-back').onclick=()=>{cancelAnimationFrame(anim);demoCur=null;show('lib')};
